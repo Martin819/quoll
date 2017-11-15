@@ -44,8 +44,12 @@ body {
     margin: 5rem 0;
 }
 
+#first-featurette-divider {
+    margin-top: 0;
+}
+
 .featurette-divider:last-child {
-    margin-bottom: 0rem;
+    margin-bottom: 0;
 }
 
 
