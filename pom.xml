@@ -16,10 +16,9 @@
 
     <properties>
         <spring-boot.version>1.2.1.RELEASE</spring-boot.version>
-        <bootstrap.version>3.3.2</bootstrap.version>
+        <bootstrap.version>4.0.0-beta.2</bootstrap.version>
     </properties>
 
-    <!-- Spring -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -30,9 +29,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
-        <!--Twitter Bootstrap-->
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>

@@ -1,23 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Quoll</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
-    <!-- Bootstrap -->
-    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+    <title>quoll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link href="webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+    <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">quoll</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Oliver Sykes</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="#">Messages</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>What is quoll?</h1>
+            <p class="lead">Are you struggling to find the right one? Quoll is here to help you find a partner who you are going to have a big chance to have a happy and long-lasting relationship with. All you need to do is tell us a few things about yourself and quoll will take care of the rest. Interested?</p>
+            <a class="btn btn-lg btn-primary" href="#" role="button">Join now</a>
+        </div>
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile1.png" alt="Generic placeholder image"></img>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile2.jpg" alt="Generic placeholder image"></img>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile3.jpg" alt="Generic placeholder image"></img>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted small">@Ondřej Kycelt, Martin Polreich</span>
+        </div>
+    </footer>
+
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <!--/*@thymesVar id="username" type="java.lang.String"*/-->
-    <p th:text="'Hello, ' + ${username} + '!'" />
-    <p th:text="Test text" />
-
-    <div class="btn-group">
-        <button type="button" class="btn btn-success">This is a success button</button>
-        <button type="button" class="btn btn-warning">This is a warning button</button>
-        <button type="button" class="btn btn-danger">This is a danger button</button>
-    </div>
+    <script src="webjars/popper.js/1.11.1/dist/umd/popper.min.js"></script>
+    <script src="webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 </body>
 </html>
