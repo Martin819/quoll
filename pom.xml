@@ -9,30 +9,41 @@
     <version>1.0-SNAPSHOT</version>
 
     <parent>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.1.RELEASE</version>
+        <version>1.5.8.RELEASE</version>
     </parent>
 
     <properties>
-        <spring-boot.version>1.2.1.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
         <bootstrap.version>4.0.0-beta.2</bootstrap.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>${bootstrap.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
     </dependencies>
 
@@ -41,6 +52,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
