@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class HelloWorldController {
+public class HomeController {
 
     @RequestMapping("/")
     public String helloWorld(@RequestParam(value = "username", required = false, defaultValue = "World") String username, Model model) {
