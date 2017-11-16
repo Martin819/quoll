@@ -21,9 +21,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        registry.addResourceHandler("/js/**").addResourceLocations("/js/**");
     }
 
-/*    @Bean
+    @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
-    }*/
+    }
 }
