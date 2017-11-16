@@ -45,7 +45,7 @@ public class HomeController {
         return "/login";
     }
 
-    @GetMapping("/403")
+    @GetMapping("error/403")
     public String error403() {
         return "/error/403";
     }
