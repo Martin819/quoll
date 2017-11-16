@@ -49,4 +49,7 @@ public class HomeController {
     public String error403() {
         return "/error/403";
     }
+
+    @GetMapping("/password-reset")
+    public String passwordreset() { return "/password-reset"; }
 }
