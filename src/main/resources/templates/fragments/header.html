@@ -3,10 +3,11 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <div th:fragment="header-css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-    <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css"/>
+    <div th:fragment="header-css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css"/>
+    </div>
 </head>
 <body>
 <div th:fragment="header">
