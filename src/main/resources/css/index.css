@@ -7,7 +7,12 @@ html {
 
 body {
     min-height: 100%;
-    padding-top: 4.5rem;
+    padding-top: 5rem;
+}
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
 }
 
 .jumbotron {
