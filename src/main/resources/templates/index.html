@@ -9,8 +9,8 @@
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-    <div th:replace="fragments/header :: header"/>
-    <div layout:fragment="content" th:remove="tag"/>
+    <div th:replace="fragments/header :: header"></div>
+    <div layout:fragment="content" th:remove="tag"></div>
 
     <main role="main" class="container">
         <div class="jumbotron">
@@ -63,7 +63,7 @@
     </main>
 
     <footer class="footer">
-        <div th:replace="fragments/footer :: footer"/>
+        <div th:replace="fragments/footer :: footer"></div>
     </footer>
 
     <script src="http://code.jquery.com/jquery.js"></script>
