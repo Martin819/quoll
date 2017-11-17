@@ -3,15 +3,12 @@
 <head>
     <title>Login</title>
     <div th:replace="fragments/header :: header-css"/>
-<<<<<<< Updated upstream
-=======
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     <link th:href="@{/css/index.css}" href="/css/index.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Pacifico&amp;subset=latin-ext"
           rel="stylesheet"/>
     <!--TODO Proc nefunguje th:replace ???-->
->>>>>>> Stashed changes
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
@@ -63,7 +60,6 @@
 
                 </div>
             </form>
-<!--            <form th:action="@{/registration}" method="get">-->
                 <div class="row">
                     <div class="col alert alert-info">
                         Dont't have an account? <a th:href="@{/registration}" method="get" class="alert-link">Register</a>
@@ -72,7 +68,6 @@
                         Forgotten password? <a th:href="@{/password-reset}" method="get" class="alert-link">Password reset</a>
                     </div>
                 </div>
-<!--            </form>-->
         </div>
         <a class="text-muted" href="/index" th:href="@{/index}"> Back to home page</a>
     </div>
