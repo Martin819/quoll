@@ -21,8 +21,14 @@ public class HomeController {
     }
 
     @GetMapping("/index")
-    public String home() {
-        return "/index";
+    public String home(Model model) {
+        model.addAttribute("page_title", "quoll");
+        return "index";
+    }
+
+    @GetMapping("/mock")
+    public String mock() {
+        return "mock";
     }
 
     @GetMapping("/admin")

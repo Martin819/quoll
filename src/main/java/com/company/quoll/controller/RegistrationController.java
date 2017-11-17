@@ -11,5 +11,4 @@ public class RegistrationController {
     public String getForm(Model model) {
         return "registration";
     }
-
 }
