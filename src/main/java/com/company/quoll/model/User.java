@@ -1,17 +1,9 @@
 package com.company.quoll.model;
 
+        import java.util.Date;
         import java.util.Set;
 
-        import javax.persistence.CascadeType;
-        import javax.persistence.Column;
-        import javax.persistence.Entity;
-        import javax.persistence.GeneratedValue;
-        import javax.persistence.GenerationType;
-        import javax.persistence.Id;
-        import javax.persistence.JoinColumn;
-        import javax.persistence.JoinTable;
-        import javax.persistence.ManyToMany;
-        import javax.persistence.Table;
+        import javax.persistence.*;
 
         import org.hibernate.validator.constraints.Email;
         import org.hibernate.validator.constraints.Length;
@@ -19,33 +11,37 @@ package com.company.quoll.model;
         import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
+    @Column(name="username")
+    @Length(min=4, message = "*Your username must have at least 5 characters")
+    @NotEmpty(message = "Please provide your username")
+    private String username;
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
     @Column(name = "password")
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @Length(min = 8, message = "*Your password must have at least 8 characters")
     @NotEmpty(message = "*Please provide your password")
     @Transient
     private String password;
-    @Column(name = "name")
-    @NotEmpty(message = "*Please provide your name")
-    private String name;
-    @Column(name = "last_name")
-    @NotEmpty(message = "*Please provide your last name")
-    private String lastName;
+    @Column(name = "date_of_birth")
+    @NotEmpty(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
+    private Date date_of_birth;
     @Column(name = "active")
     private int active;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     public int getId() {
         return id;
@@ -63,20 +59,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String name) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -103,4 +91,19 @@ public class User {
         this.roles = roles;
     }
 
+    public Date getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

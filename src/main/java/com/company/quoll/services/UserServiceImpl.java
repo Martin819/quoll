@@ -3,6 +3,8 @@ package com.company.quoll.services;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import com.company.quoll.model.Address;
+import com.company.quoll.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private AddressRepository addressRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
