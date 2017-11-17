@@ -7,7 +7,28 @@ html {
 
 body {
     min-height: 100%;
-    padding-top: 4.5rem;
+    padding-top: 5rem;
+}
+
+h1 {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 3rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+}
+
+.nav-link {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 1rem;
+}
+
+.login-container {
+    margin-right: 35rem;
+    margin-left: 35rem;
 }
 
 .jumbotron {
