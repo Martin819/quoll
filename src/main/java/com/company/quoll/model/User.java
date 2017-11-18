@@ -32,11 +32,11 @@ public class User {
     private String password;
     @Column(name = "date_of_birth")
     @NotEmpty(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
-    private Date date_of_birth;
+    private Date dateOfBirth;
     @Column(name = "zodiac_sign")
-    private String zodiac_sign;
+    private String zodiacSign;
     @Column(name = "socionics_type")
-    private String socionics_type;
+    private String socionicsType;
     @Column(name = "active")
     private int active;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -44,10 +44,10 @@ public class User {
     private Set<Role> roles;
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id")
-    private Address address_id;
+    private Address address;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "socionics_results")
-    private SocionicsResult socionics_result;
+    private SocionicsResult socionicsResult;
 
     public int getId() {
         return id;
@@ -97,43 +97,43 @@ public class User {
         this.roles = roles;
     }
 
-    public Date getDate_of_birth() {
-        return date_of_birth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public Address getAddress_id() {
-        return address_id;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress_id(Address address_id) {
-        this.address_id = address_id;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getZodiac_sign() {
-        return zodiac_sign;
+    public String getZodiacSign() {
+        return zodiacSign;
     }
 
-    public void setZodiac_sign(String zodiac_sign) {
-        this.zodiac_sign = zodiac_sign;
+    public void setZodiacSign(String zodiacSign) {
+        this.zodiacSign = zodiacSign;
     }
 
-    public String getSocionics_type() {
-        return socionics_type;
+    public String getSocionicsType() {
+        return socionicsType;
     }
 
-    public void setSocionics_type(String socionics_type) {
-        this.socionics_type = socionics_type;
+    public void setSocionicsType(String socionicsType) {
+        this.socionicsType = socionicsType;
     }
 
-    public SocionicsResult getSocionics_result() {
-        return socionics_result;
+    public SocionicsResult getSocionicsResult() {
+        return socionicsResult;
     }
 
-    public void setSocionics_result(SocionicsResult socionics_result) {
-        this.socionics_result = socionics_result;
+    public void setSocionicsResult(SocionicsResult socionicsResult) {
+        this.socionicsResult = socionicsResult;
     }
 }

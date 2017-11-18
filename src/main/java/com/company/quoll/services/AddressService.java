@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 public interface AddressService {
     Address findAddressById(int id);
 
-    Address findAddressByNUTS0StartingWith(String NUTS0);
+    Address findAddressByNuts0StartingWith(String nuts0);
 
-    Address findAddressByNUTS1StartingWith(String NUTS1);
+    Address findAddressByNuts1StartingWith(String nuts1);
 
-    Address findAddressByNUTS2StartingWith(String NUTS2);
+    Address findAddressByNuts2StartingWith(String nuts2);
 
-    Address findAddressByNUTS3(String NUTS3);
+    Address findAddressByNuts3(String nuts3);
 }

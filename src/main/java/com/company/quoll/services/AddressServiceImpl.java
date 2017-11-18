@@ -17,23 +17,23 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address findAddressByNUTS0StartingWith(String NUTS0) {
-        return addressRepository.findByNUTS0StartingWith(NUTS0);
+    public Address findAddressByNuts0StartingWith(String nuts0) {
+        return addressRepository.findByNuts0StartingWith(nuts0);
     }
 
     @Override
-    public Address findAddressByNUTS1StartingWith(String NUTS1) {
-        return addressRepository.findByNUTS1StartingWith(NUTS1);
+    public Address findAddressByNuts1StartingWith(String nuts1) {
+        return addressRepository.findByNuts1StartingWith(nuts1);
     }
 
     @Override
-    public Address findAddressByNUTS2StartingWith(String NUTS2) {
-        return addressRepository.findByNUTS2StartingWith(NUTS2);
+    public Address findAddressByNuts2StartingWith(String nuts2) {
+        return addressRepository.findByNuts2StartingWith(nuts2);
     }
 
     @Override
-    public Address findAddressByNUTS3(String NUTS3) {
-        return addressRepository.findByNUTS3(NUTS3);
+    public Address findAddressByNuts3(String nuts3) {
+        return addressRepository.findByNuts3(nuts3);
     }
 
     ;

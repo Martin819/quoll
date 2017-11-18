@@ -4,15 +4,15 @@ import com.company.quoll.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("addressRepository")
 public interface AddressRepository extends JpaRepository<Address, Integer> {
     Address findById(int id);
 
-    Address findByNUTS0StartingWith(String NUTS0);
+    Address findByNuts0StartingWith(String nuts0);
 
-    Address findByNUTS1StartingWith(String NUTS1);
+    Address findByNuts1StartingWith(String nuts1);
 
-    Address findByNUTS2StartingWith(String NUTS2);
+    Address findByNuts2StartingWith(String nuts2);
 
-    Address findByNUTS3(String NUTS3);
+    Address findByNuts3(String nuts3);
 }

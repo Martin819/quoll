@@ -6,17 +6,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
-@Repository
+@Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
-    User findByAddress_id(int address_id);
+    User findByAddress(int address);
 
     User findByUsername(String username);
 
-    User findByZodiac_sign(String zodiac_sign);
+    User findByZodiacSign(String zodiacSign);
 
     User findById(int id);
 
-    User findByDate_of_birth(Date date_of_birth);
+    User findByDateOfBirth(Date dateOfBirth);
 }

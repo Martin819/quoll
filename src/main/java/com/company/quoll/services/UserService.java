@@ -12,13 +12,13 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
-    User findUserByAddress_id(int address_id);
+    User findUserByAddress(int address);
 
-    User findUserByZodiac_sign(String zodiac_sign);
+    User findUserByZodiacSign(String zodiacSign);
 
     User findUserById(int id);
 
-    User findUserByDate_of_birth(Date date_of_birth);
+    User findUserByDateOfBirth(Date dateOfBirth);
 
     void saveUser(User user);
 }

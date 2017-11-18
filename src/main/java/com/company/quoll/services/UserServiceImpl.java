@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByAddress_id(int address_id) {
-        return userRepository.findByAddress_id(address_id);
+    public User findUserByAddress(int address) {
+        return userRepository.findByAddress(address);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByZodiac_sign(String zodiac_sign) {
-        return userRepository.findByZodiac_sign(zodiac_sign);
+    public User findUserByZodiacSign(String zodiacSign) {
+        return userRepository.findByZodiacSign(zodiacSign);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByDate_of_birth(Date date_of_birth) {
-        return userRepository.findByDate_of_birth(date_of_birth);
+    public User findUserByDateOfBirth(Date dateOfBirth) {
+        return userRepository.findByDateOfBirth(dateOfBirth);
     }
 
     @Override
