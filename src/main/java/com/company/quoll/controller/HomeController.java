@@ -1,7 +1,9 @@
 package com.company.quoll.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -13,7 +15,8 @@ public class HomeController {
             return "index";
         }*/
     @GetMapping("/")
-    public String home1() {
+    public String home1(Model model) {
+        model.addAttribute("page_title", "quoll");
         return "/index";
     }
 
@@ -52,4 +55,5 @@ public class HomeController {
     public String passwordreset() {
         return "/password-reset";
     }
+
 }
