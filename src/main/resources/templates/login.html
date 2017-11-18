@@ -18,7 +18,7 @@
             <form th:action="@{/login}" method="post">
                 <div th:if="${param.error}">
                     <div class="alert alert-danger" role="alert">
-                        Invalid username or password. <a href="/password-reset" class="alert-link">Forgotten
+                        Invalid username or password. <a th:href="@{/password-reset}" class="alert-link">Forgotten
                         password?</a>
                     </div>
                 </div>
@@ -59,6 +59,14 @@
 
                 </div>
             </form>
+                <div class="row">
+                    <div class="col alert alert-info">
+                        Dont't have an account? <a th:href="@{/registration}" method="get" class="alert-link">Register</a>
+                    </div>
+                    <div class="col alert alert-info">
+                        Forgotten password? <a th:href="@{/password-reset}" method="get" class="alert-link">Password reset</a>
+                    </div>
+                </div>
         </div>
         <a class="text-muted" href="/index" th:href="@{/index}"> Back to home page</a>
     </div>
