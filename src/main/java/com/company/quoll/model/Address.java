@@ -3,6 +3,7 @@ package com.company.quoll.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "addresses")
@@ -24,6 +25,8 @@ public class Address {
     @Column(name = "NUTS3")
     @NotEmpty(message = "Please provide your province")
     private String NUTS3;
+    @OneToMany(mappedBy = "address")
+    private Set<User> users;
 
 
     public int getId() {
@@ -64,5 +67,13 @@ public class Address {
 
     public void setNUTS3(String NUTS3) {
         this.NUTS3 = NUTS3;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

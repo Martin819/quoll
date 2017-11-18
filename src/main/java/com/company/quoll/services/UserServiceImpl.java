@@ -1,19 +1,19 @@
 package com.company.quoll.services;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.company.quoll.model.Role;
 import com.company.quoll.model.User;
 import com.company.quoll.repository.RoleRepository;
 import com.company.quoll.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,6 +25,31 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserByAddress_id(int address_id) {
+        return userRepository.findByAddress_id(address_id);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findUserByZodiac_sign(String zodiac_sign) {
+        return userRepository.findByZodiac_sign(zodiac_sign);
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public User findUserByDate_of_birth(Date date_of_birth) {
+        return userRepository.findByDate_of_birth(date_of_birth);
     }
 
     @Override

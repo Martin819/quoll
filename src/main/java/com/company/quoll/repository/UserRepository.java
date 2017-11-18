@@ -1,13 +1,22 @@
 package com.company.quoll.repository;
 
-import org.springframework.context.annotation.Bean;
+import com.company.quoll.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.company.quoll.model.User;
+import java.util.Date;
 
-@Repository("userRepository")
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
+
+    User findByAddress_id(int address_id);
+
+    User findByUsername(String username);
+
+    User findByZodiac_sign(String zodiac_sign);
+
+    User findById(int id);
+
+    User findByDate_of_birth(Date date_of_birth);
 }
