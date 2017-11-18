@@ -2,6 +2,7 @@
 *.class
 */target/**
 *target/**
+src/main/java/META-INF/**
 
 # Package Files #
 *.jar
