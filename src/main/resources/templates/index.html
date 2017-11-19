@@ -1,22 +1,78 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Quoll</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
-    <!-- Bootstrap -->
-    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+    <title>quoll</title>
+    <!--TODO Vyresit Title-->
 </head>
 <body>
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<div th:replace="fragments/header :: header"></div>
 
-    <!--/*@thymesVar id="username" type="java.lang.String"*/-->
-    <p th:text="'Hello, ' + ${username} + '!'" />
-
-    <div class="btn-group">
-        <button type="button" class="btn btn-success">This is a success button</button>
-        <button type="button" class="btn btn-warning">This is a warning button</button>
-        <button type="button" class="btn btn-danger">This is a danger button</button>
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>What is Quoll?</h1>
+        <p class="lead">Are you struggling to find the right one? Quoll is here to help you find a partner who you are
+            going to have a big chance to have a happy and long-lasting relationship with. All you need to do is tell us
+            a few things about yourself and quoll will take care of the rest. Interested?</p>
+        <a class="btn btn-lg btn-primary" href="/registration" role="button">Join now</a>
     </div>
+
+    <p class="lead">Not conviced yet? Read some of the stories below.</p>
+
+    <hr class="featurette-divider" id="first-featurette-divider"/>
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span
+                    class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile1.png"
+                 alt="Generic placeholder image"/>
+        </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span>
+            </h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile2.jpg"
+                 alt="Generic placeholder image"/>
+        </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto rounded-circle" src="/img/profile3.jpg"
+                 alt="Generic placeholder image"/>
+        </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
 </body>
 </html>
