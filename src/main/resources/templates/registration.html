@@ -111,5 +111,26 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="webjars/popper.js/1.11.1/dist/umd/popper.min.js"></script>
 <script src="webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<script>
+    $("#country").change(function() {
+        $.get("/registration/nuts1", function(data) {
+            alert(data);
+            $("#state").prop("disabled", false);
+        });
+    });
+    $("#state").change(function() {
+        alert("Handler for state change called.");
+        $("#region").prop("disabled", false);
+    });
+    $("#region").change(function() {
+        alert("Handler for region change called.");
+        $("#province").prop("disabled", false);
+    });
+    $("#province").change(function() {
+        alert("Handler for province change called.");
+    });
+</script>
+
 </body>
 </html>
