@@ -27,32 +27,17 @@ public class RegistrationController {
 
     @GetMapping("/registration/nuts1")
     public @ResponseBody List<Address> getNuts1(@RequestParam String nuts0) {
-        System.out.println(nuts0);
-        List<Address> addresses = addressService.findAddresses(nuts0, 1);
-        for (Address a : addresses) {
-            System.out.println(a.getName());
-        }
-        return addresses;
+        return addressService.findAddresses(nuts0, 1);
     }
 
     @GetMapping("/registration/nuts2")
     public @ResponseBody List<Address> getNuts2(@RequestParam String nuts1) {
-        System.out.println(nuts1);
-        List<Address> addresses = addressService.findAddresses(nuts1, 2);
-        for (Address a : addresses) {
-            System.out.println(a.getName());
-        }
-        return addresses;
+        return addressService.findAddresses(nuts1, 2);
     }
 
     @GetMapping("/registration/nuts3")
     public @ResponseBody List<Address> getNuts3(@RequestParam String nuts2) {
-        System.out.println(nuts2);
-        List<Address> addresses = addressService.findAddresses(nuts2, 3);
-        for (Address a : addresses) {
-            System.out.println(a.getName());
-        }
-        return addresses;
+        return addressService.findAddresses(nuts2, 3);
     }
 
 }
