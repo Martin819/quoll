@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
-    List<Address> findAddressesByNutsLevelEqualsAndNameStartingWith(int nutsLevel, String name);
+    List<Address> findAddressesByNutsLevelEqualsAndIdStartingWith(int nutsLevel, String name);
     List<Address> findAddressesByNutsLevelEquals(int nutsLevel);
 
 }

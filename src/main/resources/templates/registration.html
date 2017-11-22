@@ -33,44 +33,27 @@
                 <label for="country">Country</label>
                 <select class="custom-select form-control" id="country">
                     <option selected="selected" disabled="disabled">Please select country</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <th:block th:each="address : ${countries}">
+                        <option th:value="${address.id}" th:text="${address.name}"></option>
+                    </th:block>
                 </select>
             </div>
             <div class="form-group">
                 <label for="state">State</label>
                 <select class="custom-select form-control" id="state" disabled="disabled">
                     <option selected="selected" disabled="disabled">Please select state</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="region">Region</label>
                 <select class="custom-select form-control" id="region" disabled="disabled">
                     <option selected="selected" disabled="disabled">Please select region</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="province">Province</label>
                 <select class="custom-select form-control" id="province" disabled="disabled">
                     <option selected="selected" disabled="disabled">Please select province</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
                 </select>
             </div>
         </div>
@@ -101,36 +84,11 @@
 <footer class="footer">
     <div th:replace="fragments/footer :: footer"></div>
 </footer>
-<!--<div th:replace="fragments/footer :: footer"></div>-->
-<!--<footer class="footer">-->
-    <!--<div class="container">-->
-        <!--<span class="text-muted small">©Ondřej Kycelt, Martin Polreich</span>-->
-    <!--</div>-->
-<!--</footer>-->
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="webjars/popper.js/1.11.1/dist/umd/popper.min.js"></script>
 <script src="webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
-<script>
-    $("#country").change(function() {
-        $.get("/registration/nuts1", function(data) {
-            alert(data);
-            $("#state").prop("disabled", false);
-        });
-    });
-    $("#state").change(function() {
-        alert("Handler for state change called.");
-        $("#region").prop("disabled", false);
-    });
-    $("#region").change(function() {
-        alert("Handler for region change called.");
-        $("#province").prop("disabled", false);
-    });
-    $("#province").change(function() {
-        alert("Handler for province change called.");
-    });
-</script>
+<script th:src="@{/js/registration.js}" src="/js/registration.js"></script>
 
 </body>
 </html>
