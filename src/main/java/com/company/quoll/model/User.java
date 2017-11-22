@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,34 +18,44 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
+
     @Column(name = "username")
-    @Length(min = 4, message = "*Your username must have at least 5 characters")
+    @Length(min = 4, message = "Your username must have at least 5 characters")
     @NotEmpty(message = "Please provide your username")
     private String username;
+
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
+
     @Column(name = "password")
     @Length(min = 8, message = "*Your password must have at least 8 characters")
     @NotEmpty(message = "*Please provide your password")
     @Transient
     private String password;
+
     @Column(name = "date_of_birth")
-    @NotEmpty(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
+    @NotNull(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
     private Date dateOfBirth;
+
     @Column(name = "zodiac_sign")
     private String zodiacSign;
+
     @Column(name = "socionics_type")
     private String socionicsType;
+
     @Column(name = "active")
     private int active;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id")
     private Address address;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "socionics_results")
     private SocionicsResult socionicsResult;

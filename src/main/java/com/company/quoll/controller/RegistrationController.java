@@ -1,15 +1,18 @@
 package com.company.quoll.controller;
 
 import com.company.quoll.model.Address;
+import com.company.quoll.model.User;
 import com.company.quoll.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -18,11 +21,33 @@ public class RegistrationController {
     @Autowired
     AddressService addressService;
 
-    @RequestMapping("/registration")
+    @GetMapping("/registration")
     public String getForm(Model model) {
         final List<Address> countries = addressService.findAddresses(null, 0);
         model.addAttribute("countries", countries);
+        User user = new User();
+        model.addAttribute("user", user);
+        // TODO address
         return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String submitForm(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("hasErrors");
+            System.out.println(user.getUsername());
+            System.out.println(user.getDateOfBirth());
+            System.out.println(user.getEmail());
+            System.out.println(user.getPassword());
+            System.out.println(bindingResult.getAllErrors().toString());
+            return "registration";
+        }
+        System.out.println("does not have errors");
+        System.out.println(user.getUsername());
+        System.out.println(user.getDateOfBirth());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+        return "redirect:/";
     }
 
     @GetMapping("/registration/nuts1")
