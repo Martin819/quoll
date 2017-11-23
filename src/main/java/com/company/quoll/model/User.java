@@ -3,7 +3,6 @@ package com.company.quoll.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,7 +31,6 @@ public class User {
     @Column(name = "password")
     @Length(min = 8, message = "*Your password must have at least 8 characters")
     @NotEmpty(message = "*Please provide your password")
-    @Transient
     private String password;
 
     @Column(name = "date_of_birth")
@@ -60,6 +58,28 @@ public class User {
     @JoinColumn(name = "socionics_results")
     private SocionicsResult socionicsResult;
 
+    @Transient
+    private String addressCode;
+
+    @Transient
+    private String repeatPassword;
+
+    public String getAddressCode() {
+        return addressCode;
+    }
+
+    public void setAddressCode(String addressCode) {
+        this.addressCode = addressCode;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
+
     public int getId() {
         return id;
     }
@@ -80,7 +100,7 @@ public class User {
         return username;
     }
 
-    public void setUsername(String name) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

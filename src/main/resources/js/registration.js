@@ -1,3 +1,16 @@
+$(document).ready(function() {
+    $.get("/registration/nuts0", function(data) {
+        var state = $("#country");
+        var first = state.find("option:first").html();
+        var options = '<option disabled="disabled" selected="selected">' + first + '</option>';
+        data.forEach(function (a) {
+            options += '<option value="' + a.id + '">' + a.name + '</option>';
+        });
+        state.html(options);
+        state.prop("disabled", false);
+    });
+});
+
 $("#country").change(function() {
     var countryId = $("#country").find("option:selected").val();
     $.get("/registration/nuts1", "nuts0=" + countryId, function(data) {

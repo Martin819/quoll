@@ -31,12 +31,13 @@
             <hr class="featurette-divider"/>
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="custom-select form-control" id="country">
-                    <option selected="selected" disabled="disabled">Please select country</option>
-                    <th:block th:each="address : ${countries}">
-                        <option th:value="${address.id}" th:text="${address.name}"></option>
-                    </th:block>
+                <select class="custom-select form-control" th:field="*{registrationForm.nuts0}" id="country">
+                    <option selected="selected" value="" disabled="disabled">Please select country</option>
+                    <!--<th:block th:each="address : ${countries}">-->
+                        <!--<option th:value="${address.id}" th:text="${address.name}"></option>-->
+                    <!--</th:block>-->
                 </select>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.nuts0')}" th:errors="*{registrationForm.nuts0}">Country error</div>
             </div>
             <div class="form-group">
                 <label for="state">State</label>
@@ -86,11 +87,11 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="webjars/popper.js/1.11.1/dist/umd/popper.min.js"></script>
 <script src="webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<script th:inline="javascript">
-    $(document).ready(function (){
-        var countries = [[${countries}]];
-    });
-</script>
+<!--<script th:inline="javascript">-->
+    <!--$(document).ready(function (){-->
+        <!--var countryId = [[${registrationForm.nuts0}]];-->
+    <!--});-->
+<!--</script>-->
 <script th:src="@{/js/registration.js}" src="/js/registration.js"></script>
 
 </body>

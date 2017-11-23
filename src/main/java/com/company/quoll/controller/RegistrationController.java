@@ -39,6 +39,7 @@ public class RegistrationController {
         System.out.println("SUBMIT");
         System.out.println(registrationForm.getUsername());
         System.out.println(registrationForm.getDateOfBirth());
+        System.out.println(registrationForm.getNuts0());
         System.out.println(registrationForm.getEmail());
         System.out.println(registrationForm.getPassword());
         if (bindingResult.hasErrors()) {
@@ -66,6 +67,11 @@ public class RegistrationController {
 //        System.out.println(user.getPassword());
 //        return "redirect:/";
 //    }
+
+    @GetMapping("/registration/nuts0")
+    public @ResponseBody List<Address> getNuts0() {
+        return addressService.findAddresses(null, 0);
+    }
 
     @GetMapping("/registration/nuts1")
     public @ResponseBody List<Address> getNuts1(@RequestParam String nuts0) {
