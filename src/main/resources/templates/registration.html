@@ -19,11 +19,13 @@
         <div class="form-div m-auto">
             <div class="form-group m-auto">
                 <label class="col-form-label" for="username">Username</label>
-                <input type="text" class="form-control" id="username" th:field="*{user.username}" name="username" placeholder="Username"/>
+                <input type="text" class="form-control" id="username" th:field="*{registrationForm.username}" name="username" placeholder="Username"/>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.username')}" th:errors="*{registrationForm.username}">Username error</div>
             </div>
             <div class="form-group m-auto">
                 <label class="col-form-label" for="dateOfBirth">Date of birth</label>
-                <input type="date" class="form-control" id="dateOfBirth" th:field="*{user.dateOfBirth}" name="dateOfBirth" placeholder="MM/dd/yyyy"/>
+                <input type="date" class="form-control" id="dateOfBirth" th:field="*{registrationForm.dateOfBirth}" name="dateOfBirth" placeholder="MM/dd/yyyy"/>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.dateOfBirth')}" th:errors="*{registrationForm.dateOfBirth}">Date of birth error</div>
                 <small id="birth-date-help" class="form-text text-muted">Your date of birth will be used for internal purposes only. It will not be visible to other users unless you specify otherwise.</small>
             </div>
             <hr class="featurette-divider"/>
@@ -57,11 +59,13 @@
             <hr class="featurette-divider"/>
             <div class="form-group m-auto">
                 <label class="col-form-label">E-mail</label>
-                <input type="email" class="form-control" th:field="*{user.email}" name="email" placeholder="E-mail"/>
+                <input type="email" class="form-control" th:field="*{registrationForm.email}" name="email" placeholder="E-mail"/>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.email')}" th:errors="*{registrationForm.email}">Email error</div>
             </div>
             <div class="form-group m-auto">
                 <label class="col-form-label">Password</label>
-                <input type="password" class="form-control" th:field="*{user.password}" name="password" placeholder="Password"/>
+                <input type="password" class="form-control" th:field="*{registrationForm.password}" name="password" placeholder="Password"/>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.password')}" th:errors="*{registrationForm.password}">Password error</div>
             </div>
             <div class="form-group m-auto">
                 <label class="col-form-label">Repeat password</label>
