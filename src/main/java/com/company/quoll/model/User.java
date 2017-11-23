@@ -37,7 +37,7 @@ public class User {
     @Column(name = "date_of_birth")
     @NotNull(message = "Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
     @Column(name = "zodiac_sign")
