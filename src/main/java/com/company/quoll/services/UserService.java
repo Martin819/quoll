@@ -1,10 +1,12 @@
 package com.company.quoll.services;
 
 
+import com.company.quoll.model.Address;
 import com.company.quoll.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public interface UserService {
@@ -12,13 +14,13 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
-    User findUserByAddress(int address);
+    List<User> findUserByAddress(Address address);
 
-    User findUserByZodiacSign(String zodiacSign);
+    List<User> findUserByZodiacSign(String zodiacSign);
 
     User findUserById(int id);
 
-    User findUserByDateOfBirth(Date dateOfBirth);
+    List<User> findUserByDateOfBirth(Date dateOfBirth);
 
     void saveUser(User user);
 }

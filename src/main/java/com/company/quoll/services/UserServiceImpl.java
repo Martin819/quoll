@@ -1,5 +1,6 @@
 package com.company.quoll.services;
 
+import com.company.quoll.model.Address;
 import com.company.quoll.model.Role;
 import com.company.quoll.model.User;
 import com.company.quoll.repository.RoleRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByAddress(int address) {
+    public List<User> findUserByAddress(Address address) {
         return userRepository.findByAddress(address);
     }
 
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByZodiacSign(String zodiacSign) {
+    public List<User> findUserByZodiacSign(String zodiacSign) {
         return userRepository.findByZodiacSign(zodiacSign);
     }
 
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByDateOfBirth(Date dateOfBirth) {
+    public List<User> findUserByDateOfBirth(Date dateOfBirth) {
         return userRepository.findByDateOfBirth(dateOfBirth);
     }
 
