@@ -35,9 +35,9 @@ public class User {
     private String password;
 
     @Column(name = "date_of_birth")
+    @NotNull(message = "Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @NotNull(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
     private Date dateOfBirth;
 
     @Column(name = "zodiac_sign")
