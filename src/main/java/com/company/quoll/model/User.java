@@ -3,6 +3,7 @@ package com.company.quoll.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,6 +35,8 @@ public class User {
     private String password;
 
     @Column(name = "date_of_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @NotNull(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
     private Date dateOfBirth;
 

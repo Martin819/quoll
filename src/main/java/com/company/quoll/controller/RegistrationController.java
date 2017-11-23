@@ -26,15 +26,15 @@ public class RegistrationController {
     public String getForm(Model model) {
         final List<Address> countries = addressService.findAddresses(null, 0);
         model.addAttribute("countries", countries);
-//        User user = new User();
-//        model.addAttribute("user", user);
-        RegistrationForm registrationForm = new RegistrationForm();
-        model.addAttribute("registrationForm", registrationForm);
+        User user = new User();
+        model.addAttribute("user", user);
+//        RegistrationForm registrationForm = new RegistrationForm();
+//        model.addAttribute("registrationForm", registrationForm);
         // TODO address
         return "registration";
     }
 
-    @PostMapping("/registration")
+/*    @PostMapping("/registration")
     public String submitForm(@Valid RegistrationForm registrationForm, BindingResult bindingResult) {
         System.out.println("SUBMIT");
         System.out.println(registrationForm.getUsername());
@@ -47,26 +47,26 @@ public class RegistrationController {
             return "registration";
         }
         return "redirect:/";
-    }
+    }*/
 
-//    @PostMapping("/registration")
-//    public String submitForm(@Valid User user, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            System.out.println("hasErrors");
-//            System.out.println(user.getUsername());
-//            System.out.println(user.getDateOfBirth());
-//            System.out.println(user.getEmail());
-//            System.out.println(user.getPassword());
-//            System.out.println(bindingResult.getAllErrors().toString());
-//            return "registration";
-//        }
-//        System.out.println("does not have errors");
-//        System.out.println(user.getUsername());
-//        System.out.println(user.getDateOfBirth());
-//        System.out.println(user.getEmail());
-//        System.out.println(user.getPassword());
-//        return "redirect:/";
-//    }
+    @PostMapping("/registration")
+    public String submitForm(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("hasErrors");
+            System.out.println(user.getUsername());
+            System.out.println(user.getDateOfBirth());
+            System.out.println(user.getEmail());
+            System.out.println(user.getPassword());
+            System.out.println(bindingResult.getAllErrors().toString());
+            return "registration";
+        }
+        System.out.println("does not have errors");
+        System.out.println(user.getUsername());
+        System.out.println(user.getDateOfBirth());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+        return "redirect:/";
+    }
 
     @GetMapping("/registration/nuts0")
     public @ResponseBody List<Address> getNuts0() {
