@@ -53,9 +53,10 @@
             </div>
             <div class="form-group">
                 <label for="province">Province</label>
-                <select class="custom-select form-control" id="province" disabled="disabled">
-                    <option selected="selected" disabled="disabled">Please select province</option>
+                <select class="custom-select form-control" th:field="*{user.addressCode}" id="province" disabled="disabled">
+                    <option selected="selected" value="" disabled="disabled">Please select province</option>
                 </select>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('user.addressCode')}" th:errors="*{user.addressCode}">Address code error</div>
             </div>
             <hr class="featurette-divider"/>
             <div class="form-group m-auto">
@@ -70,7 +71,8 @@
             </div>
             <div class="form-group m-auto">
                 <label class="col-form-label">Repeat password</label>
-                <input type="password" class="form-control" name="repeat-password" placeholder="Repeat password"/>
+                <input type="password" class="form-control" th:field="*{user.repeatPassword}" name="repeat-password" placeholder="Repeat password"/>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('user.repeatPassword')}" th:errors="*{user.repeatPassword}">Repeat password error</div>
             </div>
             <hr class="featurette-divider"/>
             <small class="text-muted">Quoll will never share your personal information with any third party.</small><br/>
@@ -87,11 +89,6 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="webjars/popper.js/1.11.1/dist/umd/popper.min.js"></script>
 <script src="webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<!--<script th:inline="javascript">-->
-    <!--$(document).ready(function (){-->
-        <!--var countryId = [[${registrationForm.nuts0}]];-->
-    <!--});-->
-<!--</script>-->
 <script th:src="@{/js/registration.js}" src="/js/registration.js"></script>
 
 </body>

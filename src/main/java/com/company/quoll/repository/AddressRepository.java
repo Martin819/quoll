@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
+    Address findAddressByIdEquals(String id);
     List<Address> findAddressesByNutsLevelEqualsAndIdStartingWith(int nutsLevel, String name);
     List<Address> findAddressesByNutsLevelEquals(int nutsLevel);
 

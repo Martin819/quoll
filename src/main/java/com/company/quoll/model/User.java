@@ -20,22 +20,22 @@ public class User {
     private int id;
 
     @Column(name = "username")
-    @Length(min = 4, message = "Your username must have at least 5 characters")
-    @NotEmpty(message = "Please provide your username")
+    @Length(min = 5, message = "*Username must have at least 5 characters")
+    @NotEmpty(message = "*Please fill in your username")
     private String username;
 
     @Column(name = "email")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
+    @Email(message = "*Please fill in a valid e-mail")
+    @NotEmpty(message = "*Please fill in your e-mail")
     private String email;
 
     @Column(name = "password")
-    @Length(min = 8, message = "*Your password must have at least 8 characters")
-    @NotEmpty(message = "*Please provide your password")
+    @Length(min = 8, message = "*Password must have at least 8 characters")
+    @NotEmpty(message = "*Please fill in your password")
     private String password;
 
     @Column(name = "date_of_birth")
-    @NotNull(message = "Please fill in your date of birth.")
+    @NotNull(message = "*Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
@@ -61,9 +61,11 @@ public class User {
     @JoinColumn(name = "socionics_results")
     private SocionicsResult socionicsResult;
 
+    @NotNull(message = "*Please select the place of your stay.")
     @Transient
     private String addressCode;
 
+    @NotEmpty(message = "*Please fill the password twice.")
     @Transient
     private String repeatPassword;
 

@@ -14,8 +14,8 @@ public class AddressServiceImpl implements AddressService {
     private AddressRepository addressRepository;
 
     @Override
-    public Address findAddressById(int id) {
-        return null;
+    public Address findAddressById(String id) {
+        return addressRepository.findAddressByIdEquals(id);
     }
 
     @Override
@@ -26,6 +26,8 @@ public class AddressServiceImpl implements AddressService {
             return addressRepository.findAddressesByNutsLevelEqualsAndIdStartingWith(nutsLevel,name);
         }
     }
+
+
 
 
 //

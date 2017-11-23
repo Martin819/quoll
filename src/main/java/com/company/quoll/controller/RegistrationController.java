@@ -4,10 +4,12 @@ import com.company.quoll.model.Address;
 import com.company.quoll.model.RegistrationForm;
 import com.company.quoll.model.User;
 import com.company.quoll.services.AddressService;
+import com.company.quoll.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +23,9 @@ public class RegistrationController {
 
     @Autowired
     AddressService addressService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/registration")
     public String getForm(Model model) {
@@ -51,20 +56,33 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String submitForm(@Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            System.out.println("hasErrors");
-            System.out.println(user.getUsername());
-            System.out.println(user.getDateOfBirth());
-            System.out.println(user.getEmail());
-            System.out.println(user.getPassword());
-            System.out.println(bindingResult.getAllErrors().toString());
-            return "registration";
-        }
-        System.out.println("does not have errors");
         System.out.println(user.getUsername());
         System.out.println(user.getDateOfBirth());
         System.out.println(user.getEmail());
         System.out.println(user.getPassword());
+        System.out.println(user.getAddressCode());
+        System.out.println(user.getRepeatPassword());
+        if (bindingResult.hasErrors()) {
+            System.out.println("hasErrors");
+            System.out.println(bindingResult.getAllErrors().toString());
+            return "registration";
+        }
+
+        if (!user.getPassword().equals(user.getRepeatPassword())) {
+            bindingResult.rejectValue("password", "error.user", "Passwords do not match.");
+            bindingResult.rejectValue("repeatPassword", "error.user", "Passwords do not match.");
+            return "registration";
+        }
+
+        final Address address = addressService.findAddressById(user.getAddressCode());
+        if (address != null) {
+            user.setAddress(address);
+        } else {
+            System.err.println("No address with provided id found in the database.");
+        }
+
+        userService.saveUser(user);
+
         return "redirect:/";
     }
 
