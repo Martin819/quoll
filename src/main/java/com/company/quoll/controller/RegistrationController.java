@@ -5,6 +5,7 @@ import com.company.quoll.model.RegistrationForm;
 import com.company.quoll.model.User;
 import com.company.quoll.services.AddressService;
 import com.company.quoll.services.UserService;
+import com.company.quoll.utils.ZodiacSigns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -62,6 +65,7 @@ public class RegistrationController {
         System.out.println(user.getPassword());
         System.out.println(user.getAddressCode());
         System.out.println(user.getRepeatPassword());
+
         if (bindingResult.hasErrors()) {
             System.out.println("hasErrors");
             System.out.println(bindingResult.getAllErrors().toString());
@@ -80,6 +84,8 @@ public class RegistrationController {
         } else {
             System.err.println("No address with provided id found in the database.");
         }
+
+        user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
 
         userService.saveUser(user);
 

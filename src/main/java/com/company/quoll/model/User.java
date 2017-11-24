@@ -41,7 +41,7 @@ public class User {
     private Date dateOfBirth;
 
     @Column(name = "zodiac_sign")
-    private String zodiacSign;
+    private int zodiacSign;
 
     @Column(name = "socionics_type")
     private String socionicsType;
@@ -149,11 +149,11 @@ public class User {
         this.address = address;
     }
 
-    public String getZodiacSign() {
+    public int getZodiacSign() {
         return zodiacSign;
     }
 
-    public void setZodiacSign(String zodiacSign) {
+    public void setZodiacSign(int zodiacSign) {
         this.zodiacSign = zodiacSign;
     }
 
