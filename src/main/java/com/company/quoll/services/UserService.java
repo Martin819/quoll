@@ -16,11 +16,13 @@ public interface UserService {
 
     List<User> findUserByAddress(Address address);
 
-    List<User> findUserByZodiacSign(String zodiacSign);
+    List<User> findUserByZodiacSign(int zodiacSign);
 
     User findUserById(int id);
 
     List<User> findUserByDateOfBirth(Date dateOfBirth);
+
+    List<User> findUserBySocionicsType(String socionicsTypes);
 
     void saveUser(User user);
 }

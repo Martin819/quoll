@@ -5,6 +5,8 @@ import com.company.quoll.model.Role;
 import com.company.quoll.model.User;
 import com.company.quoll.repository.RoleRepository;
 import com.company.quoll.repository.UserRepository;
+import com.company.quoll.utils.SocionicsTypes;
+import com.company.quoll.utils.ZodiacSigns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByZodiacSign(String zodiacSign) {
+    public List<User> findUserByZodiacSign(int zodiacSign) {
         return userRepository.findByZodiacSign(zodiacSign);
     }
 
@@ -57,11 +59,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserBySocionicsType(String socionicsType) {
+        return userRepository.findBySocionicsType(socionicsType);
+    }
+
+    @Override
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
+        user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
         userRepository.save(user);
     }
 
