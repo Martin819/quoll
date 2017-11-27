@@ -70,8 +70,12 @@ public class UserServiceImpl implements UserService {
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
-        user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
         userRepository.save(user);
+    }
+
+    @Override
+    public void addSocionicsTypeToUser(User user) {
+        user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
     }
 
 }
