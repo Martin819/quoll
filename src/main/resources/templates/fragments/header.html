@@ -20,13 +20,14 @@
                     <a class="nav-link" href="/login" sec:authorize="isAnonymous()">Login</a>
                 </li>
                 <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-                    Logged in user: <span sec:authentication="name"></span> |
-                    Roles: <span sec:authentication="principal.authorities"></span>
-                <div>
-                    <form action="#" th:action="@{/logout}" method="post">
-                        <input type="submit" value="Logout"/>
-                    </form>
-                </div>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span sec:authentication="name"/></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="#">Messages</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+<!--                    <a class="nav-link" href="/logout">Logout</a>-->
                 </div>
                 <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
