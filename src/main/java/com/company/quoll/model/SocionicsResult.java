@@ -1,5 +1,7 @@
 package com.company.quoll.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,16 +13,16 @@ public class SocionicsResult {
     @Column(name = "role_id")
     private int id;
     @Column(name = "extrovert_value")
-    @NotNull
+    @NotBlank
     private float extrovert_value;
     @Column(name = "sensing_value")
-    @NotNull
+    @NotBlank
     private float sensing_value;
     @Column(name = "thinking_value")
-    @NotNull
+    @NotBlank
     private float thinking_value;
     @Column(name = "perceiving_value")
-    @NotNull
+    @NotBlank
     private float perceiving_value;
 
     public int getId() {

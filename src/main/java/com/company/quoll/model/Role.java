@@ -1,5 +1,7 @@
 package com.company.quoll.model;
 
+        import org.hibernate.validator.constraints.NotBlank;
+
         import javax.persistence.Column;
         import javax.persistence.Entity;
         import javax.persistence.GeneratedValue;
@@ -14,6 +16,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="role_id")
     private int id;
+
+    @NotBlank
     @Column(name="role")
     private String role;
 

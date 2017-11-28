@@ -2,6 +2,7 @@ package com.company.quoll.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,21 +22,21 @@ public class User {
 
     @Column(name = "username")
     @Length(min = 5, message = "*Username must have at least 5 characters")
-    @NotEmpty(message = "*Please fill in your username")
+    @NotBlank(message = "*Please fill in your username")
     private String username;
 
     @Column(name = "email")
     @Email(message = "*Please fill in a valid e-mail")
-    @NotEmpty(message = "*Please fill in your e-mail")
+    @NotBlank(message = "*Please fill in your e-mail")
     private String email;
 
     @Column(name = "password")
     @Length(min = 8, message = "*Password must have at least 8 characters")
-    @NotEmpty(message = "*Please fill in your password")
+    @NotBlank(message = "*Please fill in your password")
     private String password;
 
     @Column(name = "date_of_birth")
-    @NotNull(message = "*Please fill in your date of birth.")
+    @NotBlank(message = "*Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
@@ -46,6 +47,7 @@ public class User {
     @Column(name = "socionics_type")
     private String socionicsType;
 
+    @NotBlank
     @Column(name = "active")
     private int active;
 
@@ -53,6 +55,7 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @NotBlank
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -61,11 +64,11 @@ public class User {
     @JoinColumn(name = "socionics_results")
     private SocionicsResult socionicsResult;
 
-    @NotNull(message = "*Please select the place of your stay.")
+    @NotBlank(message = "*Please select the place of your stay.")
     @Transient
     private String addressCode;
 
-    @NotEmpty(message = "*Please fill the password twice.")
+    @NotBlank(message = "*Please fill the password twice.")
     @Transient
     private String repeatPassword;
 

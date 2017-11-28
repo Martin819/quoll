@@ -1,5 +1,6 @@
 package com.company.quoll.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,30 +11,30 @@ import java.util.Date;
 
 public class RegistrationForm {
 
-    @NotEmpty(message = "Please fill in your username.")
+    @NotBlank(message = "Please fill in your username.")
     private String username;
 
-    @NotNull(message = "Please fill in your date of birth.")
+    @NotBlank(message = "Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
 
-    @NotEmpty(message = "Please select country.")
+    @NotBlank(message = "Please select country.")
     private String nuts0;
 
-    @NotEmpty(message = "Please select state.")
+    @NotBlank(message = "Please select state.")
     private String nuts1;
 
-    @NotEmpty(message = "Please select region.")
+    @NotBlank(message = "Please select region.")
     private String nuts2;
 
-    @NotEmpty(message = "Please select province.")
+    @NotBlank(message = "Please select province.")
     private String nuts3;
 
-    @NotEmpty(message = "Please fill in your email.")
+    @NotBlank(message = "Please fill in your email.")
     private String email;
 
-    @NotEmpty(message = "Please fill in your password.")
+    @NotBlank(message = "Please fill in your password.")
     private String password;
 
 

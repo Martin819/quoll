@@ -1,5 +1,6 @@
 package com.company.quoll.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -11,11 +12,10 @@ import java.util.Set;
 public class Address {
 
     @Id
-    @NotNull
     @Column(name = "address_id")
     private String id;
 
-    @NotNull
+    @NotBlank
     @Column(name = "name")
     private String name;
 
