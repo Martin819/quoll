@@ -22,9 +22,9 @@ public class SocionicsTypes {
         else code += "F";
 
         if (socionicsResult.getPerceiving_value() > 0.5) {
-            code += "P";
+            code += "p";
         }
-        else code += "J";
+        else code += "j";
         return code;
     }
 

@@ -10,7 +10,6 @@ import java.util.Set;
 public class IntertypeRelation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "relation_id")
     private int id;
 

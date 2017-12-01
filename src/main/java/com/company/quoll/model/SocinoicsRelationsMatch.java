@@ -9,8 +9,7 @@ import javax.persistence.*;
 public class SocinoicsRelationsMatch {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "socionicsRelationsMatch_id")
+    @Column(name = "match_id")
     private int id;
 
     @NotEmpty
