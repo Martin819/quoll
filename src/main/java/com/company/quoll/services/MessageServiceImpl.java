@@ -1,6 +1,7 @@
 package com.company.quoll.services;
 
 import com.company.quoll.model.Message;
+import com.company.quoll.model.User;
 import com.company.quoll.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,22 +16,26 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
-    public List<Message> findMessageByRecipient(int recipient) {
+    public List<Message> findMessageByRecipient(User recipient) {
         return messageRepository.findByRecipient(recipient);
     }
 
+    public List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient) {
+        return messageRepository.findByRecipientOrderByMessageReadAsc(recipient);
+    };
+
     @Override
-    public List<Message> findMessageByRecipientAndSender(int recipient, int sender) {
+    public List<Message> findMessageByRecipientAndSender(User recipient, User sender) {
         return messageRepository.findByRecipientAndSender(recipient, sender);
     }
 
     @Override
-    public List<Message> findMessageByRecipientAndDateTimeAfter(int recipient, Date dateTime) {
+    public List<Message> findMessageByRecipientAndDateTimeAfter(User recipient, Date dateTime) {
         return messageRepository.findByRecipientAndDateTimeAfter(recipient, dateTime);
     }
 
     @Override
-    public List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(int recipient, int sender, Date dateTime) {
+    public List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime) {
         return messageRepository.findByRecipientAndSenderAndDateTimeAfter(recipient, sender, dateTime);
     }
 
