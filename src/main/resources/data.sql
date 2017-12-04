@@ -2061,7 +2061,7 @@ INSERT IGNORE INTO socionics_relations_matches (match_id, typea, typeb, relation
 /* USERS */
 /*       */
 
-INSERT IGNORE INTO users (active, date_of_birth, email, password, username, zodiac_sign, address_id) VALUES (1, '1979-02-24', 'acheatle0@wordpress.com', 'p6fFp9qNu', 'mtrippitt0', 4, 'HR043');
+INSERT IGNORE INTO users (active, date_of_birth, email, password, username, zodiac_sign, address_id) VALUES (1, '1979-02-24', 'acheatle0@wordpress.com', '$2a$10$wzP47DClAeDC.gfb8jogm.mJcM68rp1FXRdYneD5.BQ9qNkYTId8i', 'admin', 4, 'HR043');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, zodiac_sign, address_id) VALUES (1, '1996-07-17', 'ccurnick1@ning.com', 'lEpEWbuEjI', 'ddurand1', 2, 'LT004');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, zodiac_sign, address_id) VALUES (1, '1995-11-18', 'lbruineman2@moonfruit.com', 'BqKEmM5uo9', 'ewarn2', 3, 'EL421');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, zodiac_sign, address_id) VALUES (1, '1983-05-01', 'pmetherell3@businessinsider.com', 'I05VyU', 'vblenkinsopp3', 8, 'ES419');

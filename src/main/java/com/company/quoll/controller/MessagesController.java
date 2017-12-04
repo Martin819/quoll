@@ -26,7 +26,7 @@ public class MessagesController {
     @GetMapping("/messages")
     public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        final List<Message> messages = messageService.findMessageDistinctByRecipientOrderByMessageReadAsc(user);
+        final List<Message> messages = messageService.findMessageByRecipientOrderByMessageReadAsc(user);
         model.addAttribute("messages", messages);
         return "messages";
     }
