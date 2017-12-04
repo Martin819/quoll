@@ -36,7 +36,7 @@ public class User {
     private String password;
 
     @Column(name = "date_of_birth")
-    @NotBlank(message = "*Please fill in your date of birth.")
+    @NotNull(message = "*Please fill in your date of birth.")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
@@ -47,7 +47,6 @@ public class User {
     @Column(name = "socionics_type")
     private String socionicsType;
 
-    @NotBlank
     @Column(name = "active")
     private int active;
 
@@ -55,7 +54,6 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @NotBlank
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id")
     private Address address;
