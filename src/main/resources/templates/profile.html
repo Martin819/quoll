@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>quoll: registration</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <!--<link th:href="@{/css/registration.css}" href="/css/registration.css" rel="stylesheet" type="text/css"/>-->
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div layout:fragment="content" th:remove="tag"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Registration</h1>
+        <p class="lead">In order to join quoll, please tell us a few basic things about yourself.</p>
+    </div>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{webjars/popper.js/1.11.1/dist/umd/popper.min.js}"></script>
+<script th:src="@{webjars/bootstrap/4.0.0-beta.2/js/bootstrap.min.js}"></script>
+<!--<script th:src="@{/js/registration.js}" src="/js/registration.js"></script>-->
+
+</body>
+</html>
