@@ -20,4 +20,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findDistinctByRecipientOrderByMessageReadAsc(User recipient);
     Message findById(long id);
 
+    @Query("select m from Message m where m.dateTime=(select max(me.dateTime) from Message me where me.sender=m.sender and me.recipient=?1)")
+    List<Message> findLastForRecipient(User recipient);
+
 }

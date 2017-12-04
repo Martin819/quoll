@@ -26,7 +26,13 @@ public class MessagesController {
     @GetMapping("/messages")
     public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        final List<Message> messages = messageService.findMessageByRecipientOrderByMessageReadAsc(user);
+        System.out.println(user.getUsername());
+
+        List<Message> messages = messageService.findLastMessages(user);
+        for (Message m : messages) {
+            System.out.println(m);
+        }
+
         model.addAttribute("messages", messages);
         return "messages";
     }

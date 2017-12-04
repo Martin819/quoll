@@ -18,4 +18,6 @@ public interface MessageService {
     List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient);
     Message findMessageById(long id);
 
+    List<Message> findLastMessages(User recipient);
+
 }

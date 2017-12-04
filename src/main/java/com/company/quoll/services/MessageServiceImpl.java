@@ -44,6 +44,11 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> findLastMessages(User recipient) {
+        return messageRepository.findLastForRecipient(recipient);
+    }
+
+    @Override
     public Message findMessageById(long id) {
         return messageRepository.findById(id);
     }

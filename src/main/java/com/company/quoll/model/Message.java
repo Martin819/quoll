@@ -87,4 +87,9 @@ public class Message {
     public void setMessageRead(boolean messageRead) {
         this.messageRead = messageRead;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Message { %s, sender: %s, recipient: %s }", dateTime.toString(), sender.getUsername(), recipient.getUsername());
+    }
 }
