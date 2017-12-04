@@ -13,6 +13,7 @@ public interface MessageService {
     List<Message> findMessageByRecipient(User recipient);
     List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient);
     List<Message> findMessageByRecipientAndSender(User recipient, User sender);
+    List<Message> findMessageByRecipientAndSenderOrderByDateTimeDesc (User recipient, User sender);
     List<Message> findMessageByRecipientAndDateTimeAfter(User recipient, Date dateTime);
     List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime);
     List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient);

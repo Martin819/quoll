@@ -30,6 +30,11 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> findMessageByRecipientAndSenderOrderByDateTimeDesc(User recipient, User sender) {
+        return messageRepository.findByRecipientAndSenderOrderByDateTimeDesc(recipient, sender);
+    }
+
+    @Override
     public List<Message> findMessageByRecipientAndDateTimeAfter(User recipient, Date dateTime) {
         return messageRepository.findByRecipientAndDateTimeAfter(recipient, dateTime);
     }

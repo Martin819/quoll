@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -26,13 +28,16 @@ public class MessagesController {
     @GetMapping("/messages")
     public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        System.out.println(user.getUsername());
-
         List<Message> messages = messageService.findLastMessages(user);
-        for (Message m : messages) {
-            System.out.println(m);
-        }
+        model.addAttribute("messages", messages);
+        return "messages";
+    }
 
+    @RequestMapping("/messages/{sender_id}")
+    public String getConversation(Model model, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("sender_id") int sender_id){
+        User user = userService.findUserByUsername(currentUser.getUsername());
+        User sender = userService.findUserById(sender_id);
+        List<Message> messages = messageService.findMessageByRecipientAndSenderOrderByDateTimeDesc(user, sender);
         model.addAttribute("messages", messages);
         return "messages";
     }

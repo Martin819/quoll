@@ -19,7 +19,7 @@
             Date: <th:block th:text="${message.getDateTime()}"></th:block><br>
             Message: <th:block th:text="${message.getContent()}"></th:block><br>
             Read: <th:block th:text="${message.isMessageRead()}"></th:block><br>
-            <a th:href="@{'/message/' + ${message.getId()}}">READ MESSAGE</a><br>
+            <a th:href="@{'/messages/' + ${message.getSender().getId()}}">SHOW CONVERSATION</a><br>
             <br>
         </p>
     </div>

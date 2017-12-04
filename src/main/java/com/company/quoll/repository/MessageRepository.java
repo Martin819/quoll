@@ -15,6 +15,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findByRecipient(User recipient);
     List<Message> findByRecipientOrderByMessageReadAsc(User recipient);
     List<Message> findByRecipientAndSender(User recipient, User sender);
+    List<Message> findByRecipientAndSenderOrderByDateTimeDesc(User recipient, User sender);
     List<Message> findByRecipientAndDateTimeAfter(User recipient, Date dateTime);
     List<Message> findByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime);
     List<Message> findDistinctByRecipientOrderByMessageReadAsc(User recipient);
