@@ -22,7 +22,7 @@ public class MessageServiceImpl implements MessageService {
 
     public List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient) {
         return messageRepository.findByRecipientOrderByMessageReadAsc(recipient);
-    };
+    }
 
     @Override
     public List<Message> findMessageByRecipientAndSender(User recipient, User sender) {
@@ -37,6 +37,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime) {
         return messageRepository.findByRecipientAndSenderAndDateTimeAfter(recipient, sender, dateTime);
+    }
+
+    public List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient) {
+        return messageRepository.findDistinctByRecipientOrderByMessageReadAsc(recipient);
     }
 
     @Override
