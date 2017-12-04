@@ -27,6 +27,9 @@ public class Address {
     @Column(name = "country_code")
     private String countryCode;
 
+/*    @OneToMany(mappedBy = "address_id", targetEntity = Set.class)
+    private Set<User> usersSet;*/
+
     public String getId() {
         return id;
     }
@@ -58,4 +61,12 @@ public class Address {
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
     }
+
+/*    public Set<User> getUsersSet() {
+        return usersSet;
+    }
+
+    public void setUsersSet(Set<User> usersSet) {
+        this.usersSet = usersSet;
+    }*/
 }

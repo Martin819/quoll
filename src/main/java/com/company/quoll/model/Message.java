@@ -1,5 +1,6 @@
 package com.company.quoll.model;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -32,8 +33,12 @@ public class Message {
 
     @NotEmpty
     @Column(name = "content")
-    @Lob
-    private byte[] content;
+    @Type(type = "text")
+    private String content;
+
+    @NotEmpty
+    @Column(name = "messageRead")
+    private boolean messageRead;
 
     public long getId() {
         return id;
@@ -67,11 +72,19 @@ public class Message {
         this.dateTime = dateTime;
     }
 
-    public byte[] getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isMessageRead() {
+        return messageRead;
+    }
+
+    public void setMessageRead(boolean messageRead) {
+        this.messageRead = messageRead;
     }
 }

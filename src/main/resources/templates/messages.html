@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+<title>quoll</title>
+<!--TODO Vyresit Title-->
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Messages</h1>
+        <p class="lead"></p>
+    </div>
+    <div class="">
+        <p th:each="message : ${messages}">
+            Sender: <th:block th:text="${message.getSender().getUsername()} "></th:block><br>
+            Date: <th:block th:text="${message.getDateTime()}"></th:block><br>
+            Message: <th:block th:text="${message.getContent()}"></th:block><br>
+            Read: <th:block th:text="${message.isMessageRead()}"></th:block><br>
+            <a th:href="@{'/message/' + ${message.getId()}}">READ MESSAGE</a><br>
+            <br>
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>
