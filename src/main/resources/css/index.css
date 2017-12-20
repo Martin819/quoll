@@ -31,6 +31,14 @@ h1 {
     margin-left: 35rem;
 }
 
+.container {
+    background-color: red;
+}
+
+.message-p {
+    background-color: aqua;
+}
+
 .jumbotron {
     background-color: #6fb98f;
     color: white;
