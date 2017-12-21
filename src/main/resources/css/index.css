@@ -16,6 +16,10 @@ h1 {
     /*padding-bottom: 1rem;*/
 }
 
+a, a:hover {
+    text-decoration: none;
+}
+
 .navbar-brand {
     font-family: 'Pacifico', cursive;
     font-size: 2rem;
@@ -31,12 +35,50 @@ h1 {
     margin-left: 35rem;
 }
 
-.container {
-    background-color: red;
+.message-container{
+/*    background-color: red;*/
 }
 
 .message-p {
-    background-color: aqua;
+    background-color: lightgray;
+    border-radius: 20px;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.message-p:hover, .message-p:focus, .message-p:active:focus {
+    background-color: darkgray;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.message-p-unread {
+    background-color: darkgray;
+    border-radius: 20px;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.message-p-unread:hover, .message-p-unread:focus, .message-p-unread:active:focus {
+    background-color: darkgray;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.message-sender {
+    font-weight: bolder;
+}
+
+.message-date {
+    color: gray;
+    text-align: right;
+}
+
+.message-content {
+
 }
 
 .jumbotron {

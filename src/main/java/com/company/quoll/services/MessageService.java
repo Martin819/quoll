@@ -17,6 +17,7 @@ public interface MessageService {
     List<Message> findMessageByRecipientAndDateTimeAfter(User recipient, Date dateTime);
     List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime);
     List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient);
+    List<Message> findMessageByRecipientAndMessageRead(User recipient, boolean messageRead);
     Message findMessageById(long id);
 
     List<Message> findLastMessages(User recipient);

@@ -44,8 +44,14 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findByRecipientAndSenderAndDateTimeAfter(recipient, sender, dateTime);
     }
 
+    @Override
     public List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient) {
         return messageRepository.findDistinctByRecipientOrderByMessageReadAsc(recipient);
+    }
+
+    @Override
+    public List<Message> findMessageByRecipientAndMessageRead(User recipient, boolean messageRead) {
+        return messageRepository.findByRecipientAndMessageRead(recipient, messageRead);
     }
 
     @Override

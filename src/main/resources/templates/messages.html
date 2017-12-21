@@ -14,14 +14,20 @@
         <p class="lead"></p>
     </div>
     <div class="container message-container">
-        <p class="message-p" th:each="message : ${messages}">
-            Sender: <th:block th:text="${message.getSender().getUsername()} "></th:block><br>
-            Date: <th:block th:text="${message.getDateTime()}"></th:block><br>
-            Message: <th:block th:text="${message.getContent()}"></th:block><br>
-            Read: <th:block th:text="${message.isMessageRead()}"></th:block><br>
-            <a th:href="@{'/messages/' + ${message.getSender().getId()}}">SHOW CONVERSATION</a><br>
-            <br>
-        </p>
+        <th:block th:each="message : ${messages}">
+            <a th:href="@{'/messages/' + ${message.getSender().getId()}}">
+                <p th:if="${message.isMessageRead()} == false" th:class="message-p-unread">
+                    Sender: <span class="message-sender" th:text="${message.getSender().getUsername()} "></span><br>
+                    Date: <span class="message-date" th:text="${message.getDateTime()}"></span><br>
+                    Message: <span class="message-content" th:text="${message.getContent()}"></span><br>
+                </p>
+                <p th:if="${message.isMessageRead()} == true" th:class="message-p">
+                    Sender: <span class="message-sender" th:text="${message.getSender().getUsername()} "></span><br>
+                    Date: <span class="message-date" th:text="${message.getDateTime()}"></span><br>
+                    Message: <span class="message-content" th:text="${message.getContent()}"></span><br>
+                </p>
+            </a>
+        </th:block>
     </div>
 </main>
 
