@@ -54,6 +54,7 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findByRecipientAndMessageRead(recipient, messageRead);
     }
 
+
     @Override
     public List<Message> findLastMessages(User recipient) {
         return messageRepository.findLastForRecipient(recipient);
@@ -62,5 +63,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Message findMessageById(long id) {
         return messageRepository.findById(id);
+    }
+
+    @Override
+    public void saveMessage(Message message) {
+        messageRepository.save(message);
     }
 }

@@ -38,6 +38,10 @@ public class MessagesController {
         User user = userService.findUserByUsername(currentUser.getUsername());
         User sender = userService.findUserById(sender_id);
         List<Message> messages = messageService.findMessageByRecipientAndSenderOrderByDateTimeDesc(user, sender);
+        for (Message message:messages) {
+            message.setMessageRead(true);
+            messageService.saveMessage(message);
+        }
         model.addAttribute("messages", messages);
         return "messages";
     }

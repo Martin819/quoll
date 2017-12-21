@@ -19,7 +19,7 @@ public interface MessageService {
     List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient);
     List<Message> findMessageByRecipientAndMessageRead(User recipient, boolean messageRead);
     Message findMessageById(long id);
-
+    void saveMessage(Message message);
     List<Message> findLastMessages(User recipient);
 
 }

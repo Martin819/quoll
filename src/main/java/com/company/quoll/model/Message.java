@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -16,17 +17,17 @@ public class Message {
     @Column(name = "message_id")
     private long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "sender")
     private User sender;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "recipient")
     private User recipient;
 
-    @NotBlank
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dateTime", insertable=false, updatable=false)
     private Date dateTime;
@@ -36,7 +37,7 @@ public class Message {
     @Type(type = "text")
     private String content;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "messageRead")
     private boolean messageRead;
 
