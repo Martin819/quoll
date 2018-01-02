@@ -19,7 +19,7 @@ public class IntertypeRelation {
 
     @NotEmpty
     @Column(name = "fitnessOrder")
-    private int order;
+    private int fitnessOrder;
 
     @NotEmpty
     @Column(name = "description")
@@ -27,7 +27,7 @@ public class IntertypeRelation {
     private byte[] description;
 
     @OneToMany(mappedBy = "intertypeRelation")
-    private Set<SocinoicsRelationsMatch> socinoicsRelationsMatchSet;
+    private Set<SocionicsRelationsMatch> socionicsRelationsMatchSet;
 
     public int getId() {
         return id;
@@ -45,12 +45,12 @@ public class IntertypeRelation {
         this.name = name;
     }
 
-    public int getOrder() {
-        return order;
+    public int getFitnessOrder() {
+        return fitnessOrder;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setFitnessOrder(int fitnessOrder) {
+        this.fitnessOrder = fitnessOrder;
     }
 
     public byte[] getDescription() {
@@ -61,11 +61,11 @@ public class IntertypeRelation {
         this.description = description;
     }
 
-    public Set<SocinoicsRelationsMatch> getSocinoicsRelationsMatchSet() {
-        return socinoicsRelationsMatchSet;
+    public Set<SocionicsRelationsMatch> getSocionicsRelationsMatchSet() {
+        return socionicsRelationsMatchSet;
     }
 
-    public void setSocinoicsRelationsMatchSet(Set<SocinoicsRelationsMatch> socinoicsRelationsMatchSet) {
-        this.socinoicsRelationsMatchSet = socinoicsRelationsMatchSet;
+    public void setSocionicsRelationsMatchSet(Set<SocionicsRelationsMatch> socionicsRelationsMatchSet) {
+        this.socionicsRelationsMatchSet = socionicsRelationsMatchSet;
     }
 }

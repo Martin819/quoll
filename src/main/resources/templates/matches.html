@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+<title>quoll</title>
+<!--TODO Vyresit Title-->
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Matches</h1>
+        <p class="lead"></p>
+    </div>
+    <div class="container partner-container">
+        <!--/*@thymesVar id="partners1" type="List<User>"*/-->
+        <th:block th:each="partner : ${partners1}">
+            <a th:href="@{'/user/' + ${partner.getId()}}">
+                <p th:class="partner-p">
+                    Username: <span class="partner-username" th:text="${partner.getUsername()} "></span><br>
+                    Socionics type: <span class="partner-type" th:text="${partner.getSocionicsType()}"></span><br>
+                    Description: <!--TODO <span class="partner-description" th:text="${partner.getContent()
+                    }"></span><br>-->
+                </p>
+            </a>
+        </th:block>
+    </div>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

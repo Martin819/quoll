@@ -2,6 +2,7 @@ package com.company.quoll.services;
 
 
 import com.company.quoll.model.Address;
+import com.company.quoll.model.IntertypeRelation;
 import com.company.quoll.model.User;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public interface UserService {
 
     List<User> findUserByDateOfBirth(Date dateOfBirth);
 
-    List<User> findUserBySocionicsType(String socionicsTypes);
+    List<User> findUserBySocionicsType(String socionicsType);
 
     void saveUser(User user);
 

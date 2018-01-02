@@ -1,6 +1,7 @@
 package com.company.quoll.services;
 
 import com.company.quoll.model.Address;
+import com.company.quoll.model.IntertypeRelation;
 import com.company.quoll.model.Role;
 import com.company.quoll.model.User;
 import com.company.quoll.repository.RoleRepository;

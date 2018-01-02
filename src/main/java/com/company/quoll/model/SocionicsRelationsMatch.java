@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "socionicsRelationsMatches")
-public class SocinoicsRelationsMatch {
+public class SocionicsRelationsMatch {
 
     @Id
     @Column(name = "match_id")

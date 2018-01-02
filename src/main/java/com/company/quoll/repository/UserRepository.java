@@ -1,6 +1,7 @@
 package com.company.quoll.repository;
 
 import com.company.quoll.model.Address;
+import com.company.quoll.model.IntertypeRelation;
 import com.company.quoll.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

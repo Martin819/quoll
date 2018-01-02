@@ -3,7 +3,6 @@ package com.company.quoll.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "socionicsResults")
@@ -14,16 +13,16 @@ public class SocionicsResult {
     private int id;
     @Column(name = "extrovert_value")
     @NotBlank
-    private float extrovert_value;
+    private float extrovertValue;
     @Column(name = "sensing_value")
     @NotBlank
-    private float sensing_value;
+    private float sensingValue;
     @Column(name = "thinking_value")
     @NotBlank
-    private float thinking_value;
+    private float thinkingValue;
     @Column(name = "perceiving_value")
     @NotBlank
-    private float perceiving_value;
+    private float perceivingValue;
 
     public int getId() {
         return id;
@@ -33,35 +32,35 @@ public class SocionicsResult {
         this.id = id;
     }
 
-    public float getExtrovert_value() {
-        return extrovert_value;
+    public float getExtrovertValue() {
+        return extrovertValue;
     }
 
-    public void setExtrovert_value(float extrovert_value) {
-        this.extrovert_value = extrovert_value;
+    public void setExtrovertValue(float extrovertValue) {
+        this.extrovertValue = extrovertValue;
     }
 
-    public float getSensing_value() {
-        return sensing_value;
+    public float getSensingValue() {
+        return sensingValue;
     }
 
-    public void setSensing_value(float sensing_value) {
-        this.sensing_value = sensing_value;
+    public void setSensingValue(float sensingValue) {
+        this.sensingValue = sensingValue;
     }
 
-    public float getThinking_value() {
-        return thinking_value;
+    public float getThinkingValue() {
+        return thinkingValue;
     }
 
-    public void setThinking_value(float thinking_value) {
-        this.thinking_value = thinking_value;
+    public void setThinkingValue(float thinkingValue) {
+        this.thinkingValue = thinkingValue;
     }
 
-    public float getPerceiving_value() {
-        return perceiving_value;
+    public float getPerceivingValue() {
+        return perceivingValue;
     }
 
-    public void setPerceiving_value(float perceiving_value) {
-        this.perceiving_value = perceiving_value;
+    public void setPerceivingValue(float perceivingValue) {
+        this.perceivingValue = perceivingValue;
     }
 }

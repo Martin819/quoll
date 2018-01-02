@@ -20,6 +20,7 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findByRecipient(recipient);
     }
 
+    @Override
     public List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient) {
         return messageRepository.findByRecipientOrderByMessageReadAsc(recipient);
     }
