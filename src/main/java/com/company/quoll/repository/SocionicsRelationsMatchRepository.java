@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface SocionicsRelationsMatchRepository extends JpaRepository<SocionicsRelationsMatch, Integer> {
 
     SocionicsRelationsMatch findById(int id);
-    SocionicsRelationsMatch findByTypeAAndAndIntertypeRelation(String typeA, IntertypeRelation intertypeRelation);
+    SocionicsRelationsMatch findByTypeAAndIntertypeRelation(String typeA, IntertypeRelation intertypeRelation);
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public interface SocionicsRelationsMatchService {
 
     SocionicsRelationsMatch findSocionicsRelationsMatchById(int id);
-    SocionicsRelationsMatch findSocionicsRelationsMatchByTypeAAndAndIntertypeRelation(String typeA,
+    SocionicsRelationsMatch findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
                                                                                       IntertypeRelation
                                                                                                  intertypeRelation);
 }

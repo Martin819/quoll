@@ -38,13 +38,13 @@ public class MatchesController {
         SocionicsResult userResults = socionicsResultService.findSocionicsResultById(user.getId());
         String userSocionicsType = user.getSocionicsType();
         SocionicsRelationsMatch partnerType1 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndAndIntertypeRelation(userSocionicsType,
+                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
                         intertypeRelationService.findIntertypeRelationByFitnessOrder(1));
 /*        SocionicsRelationsMatch partnerType2 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndAndIntertypeRelation(userSocionicsType,
+                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
                         intertypeRelationService.findIntertypeRelationByFitnessOrder(2));
         SocionicsRelationsMatch partnerType3 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndAndIntertypeRelation(userSocionicsType,
+                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
                         intertypeRelationService.findIntertypeRelationByFitnessOrder(3));*/
         List<User> partners1 = userService.findUserBySocionicsType(partnerType1.getTypeB());
 /*        List<User> partners2 = userService.findUserBySocionicsType(partnerType2.getTypeB());
