@@ -77,4 +77,10 @@ public class SocionicsResult {
 
     public SocionicsResult() {
     }
+
+    @Override
+    public String toString() {
+        return String.format("SocionicsResult { e: %f, s: %f, t: %f, p: %f }",
+                extrovertValue, sensingValue, thinkingValue, perceivingValue);
+    }
 }
