@@ -1,34 +1,37 @@
 package com.company.quoll.model;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Entity
 @Table(name = "socionicsResults")
 public class SocionicsResult {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private int id;
+    @Column(name = "result_id")
+    @Type(type = "uuid-char")
+    private UUID id;
     @Column(name = "extrovert_value")
-    @NotBlank
+    @NotNull
     private float extrovertValue;
     @Column(name = "sensing_value")
-    @NotBlank
+    @NotNull
     private float sensingValue;
     @Column(name = "thinking_value")
-    @NotBlank
+    @NotNull
     private float thinkingValue;
     @Column(name = "perceiving_value")
-    @NotBlank
+    @NotNull
     private float perceivingValue;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -62,5 +65,16 @@ public class SocionicsResult {
 
     public void setPerceivingValue(float perceivingValue) {
         this.perceivingValue = perceivingValue;
+    }
+
+    public SocionicsResult(UUID id, float extrovertValue, float sensingValue, float thinkingValue, float perceivingValue) {
+        this.id = id;
+        this.extrovertValue = extrovertValue;
+        this.sensingValue = sensingValue;
+        this.thinkingValue = thinkingValue;
+        this.perceivingValue = perceivingValue;
+    }
+
+    public SocionicsResult() {
     }
 }

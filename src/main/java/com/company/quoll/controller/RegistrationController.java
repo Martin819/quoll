@@ -1,7 +1,6 @@
 package com.company.quoll.controller;
 
 import com.company.quoll.model.Address;
-import com.company.quoll.model.RegistrationForm;
 import com.company.quoll.model.User;
 import com.company.quoll.services.AddressService;
 import com.company.quoll.services.UserService;
@@ -10,15 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Controller

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+<title>quoll</title>
+<!--TODO Vyresit Title-->
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Dashboard</h1>
+        <p class="lead">This is your main page, where you can find everything important.</p>
+        <a class="btn btn-lg btn-primary" href="/matches" role="button">Find matches</a>
+    </div>
+    <div class="row">
+        <div class="col col-soc-type">
+            Your Socionics type: <th:block th:text="${userSocionicsType}"></th:block>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

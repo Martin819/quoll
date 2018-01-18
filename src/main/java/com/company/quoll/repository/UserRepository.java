@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-    List<User> findByZodiacSign(int zodiacSign);
+    List<User> findByZodiacSign(Integer zodiacSign);
 
     User findById(int id);
 

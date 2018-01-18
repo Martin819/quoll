@@ -3,7 +3,6 @@ package com.company.quoll.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -42,7 +41,7 @@ public class User {
     private Date dateOfBirth;
 
     @Column(name = "zodiac_sign")
-    private int zodiacSign;
+    private Integer zodiacSign;
 
     @Column(name = "socionics_type")
     private String socionicsType;
@@ -150,11 +149,11 @@ public class User {
         this.address = address;
     }
 
-    public int getZodiacSign() {
+    public Integer getZodiacSign() {
         return zodiacSign;
     }
 
-    public void setZodiacSign(int zodiacSign) {
+    public void setZodiacSign(Integer zodiacSign) {
         this.zodiacSign = zodiacSign;
     }
 

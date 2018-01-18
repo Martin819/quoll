@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MatchesController {
@@ -35,7 +36,7 @@ public class MatchesController {
     @GetMapping("/matches")
     public String getMapping(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        SocionicsResult userResults = socionicsResultService.findSocionicsResultById(user.getId());
+        SocionicsResult userResults = user.getSocionicsResult();
         String userSocionicsType = user.getSocionicsType();
         SocionicsRelationsMatch partnerType1 = socionicsRelationsMatchService
                 .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
@@ -54,7 +55,7 @@ public class MatchesController {
         model.addAttribute("partners1", partners1);
 /*        model.addAttribute(partners2);
         model.addAttribute(partners3);*/
-        System.out.println(userResults.getId() + userResults.getExtrovertValue());
+        System.out.println(userResults.getId().toString() + userResults.getExtrovertValue());
         System.out.println(userSocionicsType);
         System.out.println(partners1);
         return "matches";

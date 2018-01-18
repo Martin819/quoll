@@ -29,7 +29,7 @@ public class Message {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "dateTime", insertable=false, updatable=false)
+    @Column(name = "date_time", insertable=false, updatable=false)
     private Date dateTime;
 
     @NotEmpty
@@ -38,7 +38,7 @@ public class Message {
     private String content;
 
     @NotNull
-    @Column(name = "messageRead")
+    @Column(name = "message_read")
     private boolean messageRead;
 
     public long getId() {

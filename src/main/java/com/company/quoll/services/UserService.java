@@ -17,7 +17,7 @@ public interface UserService {
 
     List<User> findUserByAddress(Address address);
 
-    List<User> findUserByZodiacSign(int zodiacSign);
+    List<User> findUserByZodiacSign(Integer zodiacSign);
 
     User findUserById(int id);
 

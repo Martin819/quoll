@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service("socionicsResultService")
 public class SocionicsResultServiceImpl implements SocionicsResultService {
@@ -14,7 +15,7 @@ public class SocionicsResultServiceImpl implements SocionicsResultService {
     private SocionicsResultRepository socionicsResultRepository;
 
     @Override
-    public SocionicsResult findSocionicsResultById(int id) {
+    public SocionicsResult findSocionicsResultById(UUID id) {
         return socionicsResultRepository.findById(id);
     }
 
@@ -23,4 +24,9 @@ public class SocionicsResultServiceImpl implements SocionicsResultService {
         return socionicsResultRepository.findByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(E,S,T,p);
     }
 
+    @Override
+    public void saveSocionicsResult(SocionicsResult socionicsResult) {
+        System.out.println("2");
+        socionicsResultRepository.save(socionicsResult);
+    }
 }
