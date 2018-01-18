@@ -14,7 +14,7 @@ public class SocionicsTypes {
         if (socionicsResult.getSensingValue() > 0.5) {
             code += "S";
         }
-        else code += "I";
+        else code += "N";
 
         if (socionicsResult.getThinkingValue() > 0.5) {
             code += "T";

@@ -29,28 +29,28 @@ public class SocionicsTestForm {
 
         float extrovertValue = 0.0f;
         for (String s : values.get(0)) {
-            if ("right".equals(s)) {
+            if ("left".equals(s)) {
                 extrovertValue += 1.0f / values.get(0).size();
             }
         }
 
         float sensingValue = 0.0f;
         for (String s : values.get(1)) {
-            if ("right".equals(s)) {
+            if ("left".equals(s)) {
                 sensingValue += 1.0f / values.get(1).size();
             }
         }
 
         float thinkingValue = 0.0f;
         for (String s : values.get(2)) {
-            if ("right".equals(s)) {
+            if ("left".equals(s)) {
                 thinkingValue += 1.0f / values.get(2).size();
             }
         }
 
         float perceivingValue = 0.0f;
         for (String s : values.get(3)) {
-            if ("right".equals(s)) {
+            if ("left".equals(s)) {
                 perceivingValue += 1.0f / values.get(3).size();
             }
         }

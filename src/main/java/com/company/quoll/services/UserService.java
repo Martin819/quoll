@@ -27,5 +27,7 @@ public interface UserService {
 
     void saveUser(User user);
 
+    void update(User user);
+
     void addSocionicsTypeToUser(User user);
 }

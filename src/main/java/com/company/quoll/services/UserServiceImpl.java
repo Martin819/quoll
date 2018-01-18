@@ -74,6 +74,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void update(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
     public void addSocionicsTypeToUser(User user) {
         user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
     }

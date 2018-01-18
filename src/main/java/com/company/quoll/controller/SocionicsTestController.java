@@ -3,9 +3,11 @@ package com.company.quoll.controller;
 import com.company.quoll.model.RegistrationSocionicsSection;
 import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.SocionicsTestForm;
+import com.company.quoll.model.User;
 import com.company.quoll.services.RegistrationSocionicsProvider;
 import com.company.quoll.services.SocionicsResultService;
 import com.company.quoll.services.UserService;
+import com.company.quoll.utils.SocionicsTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,14 +43,18 @@ public class SocionicsTestController {
     }
 
     @PostMapping("/user/test")
-    public String showProfile(SocionicsTestForm form, BindingResult bindingResult,
-                              @AuthenticationPrincipal UserDetails currentUser) {
+    public String showProfile(SocionicsTestForm form, @AuthenticationPrincipal UserDetails activeUser) {
 
         final SocionicsResult result = form.makeResult();
-        System.out.println(result.toString());
+        socionicsResultService.saveSocionicsResult(result);
 
-        // TODO: save result to database
-        // TODO: spring validation?
+        final User user = userService.findUserByUsername(activeUser.getUsername());
+        user.setRepeatPassword(user.getPassword());
+        user.setAddressCode(user.getAddress().getId());
+        user.setSocionicsResult(result);
+        user.setSocionicsType(SocionicsTypes.getTypeCode(result));
+        userService.update(user);
+
         // TODO: redirect to profile to show the results (profile view not ready yet, therefore redirecting home for now)
 
         return "redirect:/";

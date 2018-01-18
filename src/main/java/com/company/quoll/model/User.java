@@ -58,7 +58,7 @@ public class User {
     private Address address;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "socionics_results")
+    @JoinColumn(name = "result_id")
     private SocionicsResult socionicsResult;
 
     @NotBlank(message = "*Please select the place of your stay.")

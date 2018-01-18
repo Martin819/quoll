@@ -76,11 +76,12 @@ public class SocionicsResult {
     }
 
     public SocionicsResult() {
+        id = UUID.randomUUID();
     }
 
     @Override
     public String toString() {
-        return String.format("SocionicsResult { e: %f, s: %f, t: %f, p: %f }",
-                extrovertValue, sensingValue, thinkingValue, perceivingValue);
+        return String.format("SocionicsResult { %s , e: %f, s: %f, t: %f, p: %f }",
+                id, extrovertValue, sensingValue, thinkingValue, perceivingValue);
     }
 }

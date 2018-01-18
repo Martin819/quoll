@@ -26,7 +26,6 @@ public class SocionicsResultServiceImpl implements SocionicsResultService {
 
     @Override
     public void saveSocionicsResult(SocionicsResult socionicsResult) {
-        System.out.println("2");
         socionicsResultRepository.save(socionicsResult);
     }
 }
