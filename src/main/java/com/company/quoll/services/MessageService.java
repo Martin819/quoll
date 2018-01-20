@@ -11,6 +11,7 @@ import java.util.List;
 public interface MessageService {
 
     List<Message> findMessageByRecipient(User recipient);
+    List<Message> findMessageBySender(User sender);
     List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient);
     List<Message> findMessageByRecipientAndSender(User recipient, User sender);
     List<Message> findMessageByRecipientAndSenderOrderByDateTimeDesc (User recipient, User sender);

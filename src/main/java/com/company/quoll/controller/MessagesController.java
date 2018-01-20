@@ -5,6 +5,7 @@ import com.company.quoll.model.User;
 import com.company.quoll.services.MessageService;
 import com.company.quoll.services.MessageServiceImpl;
 import com.company.quoll.services.UserService;
+import com.company.quoll.utils.MessagesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class MessagesController {
@@ -25,11 +29,31 @@ public class MessagesController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/messages")
+/*    @GetMapping("/messages")
     public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
         List<Message> messages = messageService.findLastMessages(user);
         model.addAttribute("messages", messages);
+        return "messages";
+    }*/
+
+    @GetMapping("/messages")
+    public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
+        User user = userService.findUserByUsername(currentUser.getUsername());
+        List<Message> messagesFrom = messageService.findMessageByRecipient(user);
+        List<Message> messagesTo = messageService.findMessageBySender(user);
+        List<Message> allMessages = MessagesUtils.getAllMessages(messagesFrom, messagesTo);
+        List<User> uniqueContacts = MessagesUtils.getUniqueContacts(messagesFrom, messagesTo);
+        model.addAttribute("messagesFrom", messagesFrom);
+        model.addAttribute("messagesTo", messagesTo);
+        model.addAttribute("allMessages", allMessages);
+        model.addAttribute("uniqueContacts", uniqueContacts);
+        for (User contact:uniqueContacts) {
+            System.out.println(contact.getUsername());
+        }
+        for (Message message:allMessages) {
+            System.out.println(message.getContent());
+        }
         return "messages";
     }
 
