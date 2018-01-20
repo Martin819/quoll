@@ -28,7 +28,7 @@
                 </div>
             </div>
         </th:block>
-        <th:block th:if="${message.getSender()} != ${user.getUsername()}">
+        <th:block th:if="${message.getSender().getId()} != ${user.getId()}">
             <div class="card float-left" style="width: 60%">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${message.getSender().getUsername()}"></h5>
