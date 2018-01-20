@@ -49,12 +49,6 @@ public class MessagesController {
         model.addAttribute("messagesTo", messagesTo);
         model.addAttribute("allMessages", allMessages);
         model.addAttribute("uniqueContacts", uniqueContacts);
-        for (User contact:uniqueContacts) {
-            System.out.println(contact.getUsername());
-        }
-        for (Message message:allMessages) {
-            System.out.println(message.getContent());
-        }
         return "messages";
     }
 
