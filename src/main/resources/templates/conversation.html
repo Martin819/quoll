@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+<title>quoll - conversation</title>
+<!--TODO Vyresit Title-->
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Messages</h1>
+        <p class="lead"></p>
+    </div>
+    <!--/*@thymesVar id="allMessages" type="java.util.List<Message>"*/-->
+    <!--/*@thymesVar id="message" type="com.company.quoll.model.Message"*/-->
+    <!--/*@thymesVar id="user" type="com.company.quoll.model.User"*/-->
+    <th:block th:each="message : ${allMessages}">
+        <th:block th:if="${message.getSender().getId()} == ${user.getId()}">
+            <div class="card pull-right" style="width: 80%">
+                <div class="card-body">
+                    <h5 class="card-title">You</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${message.getDateTime()}"></h6>
+                    <p class="card-text" th:text="${message.getContent()}"></p>
+                    <a href="#" class="btn btn-primary">Send again</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </th:block>
+        <th:block th:if="${message.getSender()} != ${user.getUsername()}">
+            <div class="card pull-left" style="width: 80%">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${message.getSender().getUsername()}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${message.getDateTime()}"></h6>
+                    <p class="card-text" th:text="${message.getContent()}"></p>
+                    <a href="#" class="btn btn-primary">Send again</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </th:block>
+    </th:block>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

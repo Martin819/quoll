@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,17 +53,21 @@ public class MessagesController {
         return "messages";
     }
 
-    @RequestMapping("/messages/{sender_id}")
-    public String getConversation(Model model, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("sender_id") int sender_id){
+    @RequestMapping("/messages/{contact_id}")
+    public String getConversation(Model model, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("contact_id") int contact_id){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        User sender = userService.findUserById(sender_id);
-        List<Message> messages = messageService.findMessageByRecipientAndSenderOrderByDateTimeDesc(user, sender);
-        for (Message message:messages) {
+        User contact = userService.findUserById(contact_id);
+        List<Message> messagesTo = messageService.findMessageByRecipientAndSenderOrderByDateTimeDesc(user, contact);
+        List<Message> messagesFrom = messageService.findMessageByRecipientAndSenderOrderByDateTimeDesc(contact, user);
+        List<Message> allMessages = MessagesUtils.getAllMessages(messagesFrom, messagesTo);
+        allMessages.sort(Comparator.comparing(Message::getDateTime));
+        for (Message message:allMessages) {
             message.setMessageRead(true);
             messageService.saveMessage(message);
         }
-        model.addAttribute("messages", messages);
-        return "messages";
+        model.addAttribute("allMessages", allMessages);
+        model.addAttribute("user", user);
+        return "conversation";
     }
 
 }
