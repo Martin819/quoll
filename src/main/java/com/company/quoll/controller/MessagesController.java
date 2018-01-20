@@ -6,6 +6,7 @@ import com.company.quoll.services.MessageService;
 import com.company.quoll.services.MessageServiceImpl;
 import com.company.quoll.services.UserService;
 import com.company.quoll.utils.MessagesUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
