@@ -25,6 +25,8 @@ public interface UserService {
 
     List<User> findUserBySocionicsType(String socionicsType);
 
+    List<User> findAll();
+
     void saveUser(User user);
 
     void update(User user);

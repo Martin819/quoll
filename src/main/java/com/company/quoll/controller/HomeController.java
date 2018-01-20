@@ -4,6 +4,7 @@ import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
 import com.company.quoll.repository.UserRepository;
 import com.company.quoll.services.SocionicsResultService;
+import com.company.quoll.services.UserService;
 import com.company.quoll.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class HomeController {
     SocionicsResultService socionicsResultService;
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @GetMapping("/")
     public String home1(Model model) {
@@ -37,17 +38,15 @@ public class HomeController {
 
     @GetMapping("/mock")
     public String mock() {
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.findAll();
         for (User user:users) {
             user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
             user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
             System.out.println(user.getSocionicsResult().getId().toString());
             System.out.println(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
             System.out.println(user.getSocionicsType());
-            userRepository.save(user);
+            userService.update(user);
         }
-        SocionicsResult result2 = new SocionicsResult(UUID.randomUUID(),0.2f, 0.3f, 0.5f, 0.2f);
-        socionicsResultService.saveSocionicsResult(result2);
         return "mock";
     }
 
