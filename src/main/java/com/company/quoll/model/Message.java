@@ -1,5 +1,6 @@
 package com.company.quoll.model;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,9 +28,9 @@ public class Message {
     @JoinColumn(name = "recipient")
     private User recipient;
 
-    @NotNull
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_time", insertable=false, updatable=false)
+    @Column(name = "date_time", updatable=false)
     private Date dateTime;
 
     @NotEmpty

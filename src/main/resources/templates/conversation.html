@@ -6,6 +6,11 @@
 <!--TODO Vyresit Title-->
 </head>
 <body>
+<!--/*@thymesVar id="newMessage" type="com.company.quoll.model.Message"*/-->
+<!--/*@thymesVar id="contact" type="com.company.quoll.model.User"*/-->
+<!--/*@thymesVar id="allMessages" type="java.util.List<com.company.quoll.model.Message>"*/-->
+<!--/*@thymesVar id="message" type="com.company.quoll.model.Message"*/-->
+<!--/*@thymesVar id="user" type="com.company.quoll.model.User"*/-->
 <div th:replace="fragments/header :: header"></div>
 
 <main role="main" class="container">
@@ -13,9 +18,16 @@
         <h1>Messages</h1>
         <p class="lead"></p>
     </div>
-    <!--/*@thymesVar id="allMessages" type="java.util.List<Message>"*/-->
-    <!--/*@thymesVar id="message" type="com.company.quoll.model.Message"*/-->
-    <!--/*@thymesVar id="user" type="com.company.quoll.model.User"*/-->
+    <form action="#" th:action="'/messages/' + ${contact.getId()}" method="post" >
+        <div class="form-div m-auto">
+            <div class="form-group m-auto">
+                <label class="col-form-label" for="newMessage">New message</label>
+                <textarea class="form-control" id="newMessage" th:field="*{newMessage.content}" name="newMessage" placeholder="New message"></textarea>
+                <div class="mycoolerror small" th:if="${#fields.hasErrors('newMessage.content')}">Message error</div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Send" style="margin-top: 1rem"/>
+        </div>
+        <br><br>
     <th:block th:each="message : ${allMessages}">
         <th:block th:if="${message.getSender().getId()} == ${user.getId()}">
             <div class="card float-right" style="width: 60%">

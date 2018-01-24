@@ -12,12 +12,18 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -65,9 +71,26 @@ public class MessagesController {
             message.setMessageRead(true);
             messageService.saveMessage(message);
         }
+        Message newMessage = new Message();
         model.addAttribute("allMessages", allMessages);
         model.addAttribute("user", user);
+        model.addAttribute("contact", contact);
+        model.addAttribute("newMessage", newMessage);
         return "conversation";
     }
 
+    @PostMapping("/messages/{contact_id}")
+    public String submitForm(Message newMessage, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("contact_id") int contact_id) {
+        User user = userService.findUserByUsername(currentUser.getUsername());
+        User contact = userService.findUserById(contact_id);
+        newMessage.setSender(user);
+        newMessage.setRecipient(contact);
+        System.out.println("Sender: " + newMessage.getSender().getUsername());
+        System.out.println("Recipient: " + newMessage.getRecipient().getUsername());
+        System.out.println("Content: " + newMessage.getContent());
+        newMessage.setMessageRead(true);
+        messageService.saveMessage(newMessage);
+        return "redirect:/messages/{contact_id}";
+
+    }
 }
