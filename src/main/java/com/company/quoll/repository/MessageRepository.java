@@ -13,6 +13,7 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findByRecipient(User recipient);
+    List<Message> findBySender(User sender);
     List<Message> findByRecipientOrderByMessageReadAsc(User recipient);
     List<Message> findByRecipientAndSender(User recipient, User sender);
     List<Message> findByRecipientAndSenderOrderByDateTimeDesc(User recipient, User sender);

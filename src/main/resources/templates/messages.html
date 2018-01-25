@@ -13,21 +13,16 @@
         <h1>Messages</h1>
         <p class="lead"></p>
     </div>
-    <div class="container message-container">
-        <th:block th:each="message : ${messages}">
-            <a th:href="@{'/messages/' + ${message.getSender().getId()}}">
-                <p th:if="${message.isMessageRead()} == false" th:class="message-p-unread">
-                    Sender: <span class="message-sender" th:text="${message.getSender().getUsername()} "></span><br>
-                    Date: <span class="message-date" th:text="${message.getDateTime()}"></span><br>
-                    Message: <span class="message-content" th:text="${message.getContent()}"></span><br>
-                </p>
-                <p th:if="${message.isMessageRead()} == true" th:class="message-p">
-                    Sender: <span class="message-sender" th:text="${message.getSender().getUsername()} "></span><br>
-                    Date: <span class="message-date" th:text="${message.getDateTime()}"></span><br>
-                    Message: <span class="message-content" th:text="${message.getContent()}"></span><br>
-                </p>
-            </a>
-        </th:block>
+    <div class="col-md-5">
+        <div class="list-group">
+            <!--/*@thymesVar id="uniqueContacts" type="java.util.List<User>"*/-->
+            <!--/*@thymesVar id="contact" type="com.company.quoll.model.User"*/-->
+            <th:block th:each="contact : ${uniqueContacts}">
+                <a class="list-group-item" th:href="@{'/messages/' + ${contact.getId()}}">
+                    <th:block th:text="${contact.getUsername()}"/>
+                </a>
+            </th:block>
+        </div>
     </div>
 </main>
 
