@@ -1,6 +1,7 @@
 package com.company.quoll.model;
 
-import com.sun.istack.internal.Nullable;
+
+import javax.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
