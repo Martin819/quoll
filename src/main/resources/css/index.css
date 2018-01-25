@@ -11,9 +11,13 @@ body {
 }
 
 h1 {
-    font-family: 'Merriweather Sans', sans-serif;
-    font-size: 3rem;
-    padding-bottom: 1rem;
+    /*font-family: 'Merriweather Sans', sans-serif;*/
+    /*font-size: 3rem;*/
+    /*padding-bottom: 1rem;*/
+}
+
+a, a:hover {
+    text-decoration: none;
 }
 
 .navbar-brand {

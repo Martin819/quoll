@@ -32,6 +32,61 @@ public class StaticRegistrationSocionicsProvider implements RegistrationSocionic
                 "I am interested in new people",
                 "I do not like unexpected visits and therefore do not make them"));
         sections.add(extInt);
+
+        final RegistrationSocionicsSection senInt = new RegistrationSocionicsSection("Sensing or intuitive");
+        senInt.addItem(new RegistrationSocionicsItem(
+                "I live in here and now",
+                "I am mostly in the past or in the future"));
+        senInt.addItem(new RegistrationSocionicsItem(
+                "I see everyone and sense everything",
+                "I worry about the future more than the present"));
+        senInt.addItem(new RegistrationSocionicsItem(
+                "I like pleasures based on physical sensation",
+                "I am attracted more to the theory than the practice"));
+        senInt.addItem(new RegistrationSocionicsItem(
+                "I am practical and realistic",
+                "I am interested in everything new and unusual"));
+        senInt.addItem(new RegistrationSocionicsItem(
+                "I am active and self-confident",
+                "I often have doubts"));
+        sections.add(senInt);
+
+        final RegistrationSocionicsSection thiFee = new RegistrationSocionicsSection("Thinking or feeling");
+        thiFee.addItem(new RegistrationSocionicsItem(
+                "I am interested in systems, structures, patterns",
+                "I am interested in people and their feelings"));
+        thiFee.addItem(new RegistrationSocionicsItem(
+                "I expose everything to logical analysis",
+                "I easily pass my own mood to others"));
+        thiFee.addItem(new RegistrationSocionicsItem(
+                "I am relatively cold and unemotiona",
+                "I pay great attention to love and passion"));
+        thiFee.addItem(new RegistrationSocionicsItem(
+                "I evaluate things by intellect and right or wrong",
+                "I evaluate things by ethics and good or bad"));
+        thiFee.addItem(new RegistrationSocionicsItem(
+                "I have difficulties talking about feelings",
+                "I can be touchy or use emotional manipulation"));
+        sections.add(thiFee);
+
+
+        final RegistrationSocionicsSection perJud = new RegistrationSocionicsSection("Perceiving or judging");
+        perJud.addItem(new RegistrationSocionicsItem(
+                "I prefer to have freedom from obligations",
+                "I do not like to leave unanswered questions"));
+        perJud.addItem(new RegistrationSocionicsItem(
+                "I can start many things at once without finishing them properly",
+                "I plan work ahead and tend to finish it"));
+        perJud.addItem(new RegistrationSocionicsItem(
+                "I am curious and like a fresh look at things",
+                "I do not like to change my decisions"));
+        perJud.addItem(new RegistrationSocionicsItem(
+                "My work productivity depends on my mood",
+                "I have relatively stable workability"));
+        perJud.addItem(new RegistrationSocionicsItem(
+                "I often act without any preparation",
+                "I easily follow rules and discipline"));
+        sections.add(perJud);
     }
 
     @Override

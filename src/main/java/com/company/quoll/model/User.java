@@ -2,10 +2,11 @@ package com.company.quoll.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,37 +18,72 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
-    @Column(name = "username")
-    @Length(min = 4, message = "*Your username must have at least 5 characters")
-    @NotEmpty(message = "Please provide your username")
+
+    @Column(name = "username", unique = true)
+    @Length(min = 5, message = "*Username must have at least 5 characters")
+    @NotBlank(message = "*Please fill in your username")
     private String username;
-    @Column(name = "email")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
+
+    @Column(name = "email", unique = true)
+    @Email(message = "*Please fill in a valid e-mail")
+    @NotBlank(message = "*Please fill in your e-mail")
     private String email;
+
     @Column(name = "password")
-    @Length(min = 8, message = "*Your password must have at least 8 characters")
-    @NotEmpty(message = "*Please provide your password")
-    @Transient
+    @Length(min = 8, message = "*Password must have at least 8 characters")
+    @NotBlank(message = "*Please fill in your password")
     private String password;
+
     @Column(name = "date_of_birth")
-    @NotEmpty(message = "Please provide your date of birth. It will not be visible to other users unless you specify otherwise.")
+    @NotNull(message = "*Please fill in your date of birth.")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
+
     @Column(name = "zodiac_sign")
-    private String zodiacSign;
+    private Integer zodiacSign;
+
     @Column(name = "socionics_type")
     private String socionicsType;
+
     @Column(name = "active")
     private int active;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name = "address_id")
     private Address address;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "socionics_results")
+    @JoinColumn(name = "result_id")
     private SocionicsResult socionicsResult;
+
+    @NotBlank(message = "*Please select the place of your stay.")
+    @Transient
+    private String addressCode;
+
+    @NotBlank(message = "*Please fill the password twice.")
+    @Transient
+    private String repeatPassword;
+
+    public String getAddressCode() {
+        return addressCode;
+    }
+
+    public void setAddressCode(String addressCode) {
+        this.addressCode = addressCode;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
 
     public int getId() {
         return id;
@@ -69,7 +105,7 @@ public class User {
         return username;
     }
 
-    public void setUsername(String name) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -113,11 +149,11 @@ public class User {
         this.address = address;
     }
 
-    public String getZodiacSign() {
+    public Integer getZodiacSign() {
         return zodiacSign;
     }
 
-    public void setZodiacSign(String zodiacSign) {
+    public void setZodiacSign(Integer zodiacSign) {
         this.zodiacSign = zodiacSign;
     }
 

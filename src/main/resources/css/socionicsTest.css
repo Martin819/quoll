@@ -1,0 +1,25 @@
+.form-div {
+    width: 40rem;
+}
+
+.section-div {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.featurette-divider {
+    margin: 3rem 0;
+}
+
+.mycoolerror {
+    color: red;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 50em) {
+    .form-div {
+        width: 100%;
+    }
+}

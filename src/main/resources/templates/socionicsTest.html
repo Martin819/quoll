@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>quoll: registration</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <link th:href="@{/css/socionicsTest.css}" href="/css/registration.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div layout:fragment="content" th:remove="tag"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Socionics test</h1>
+        <p class="lead">In order to help quoll with finding you the best match, please tell us a few things about your personality.</p>
+    </div>
+    <form action="#" th:action="@{/user/test}" method="post">
+        <div class="form-div m-auto">
+            <div th:each="section, sectionIter : ${sections}">
+                <hr class="featurette-divider" th:if="${!sectionIter.first}"/>
+                <h2 class="text-muted" th:text="${section.title}"></h2>
+                <div class="row section-div" th:each="item, itemIter : ${section.items}">
+                    <div class="col-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" th:name="${itemIter.index}"
+                                   th:field="*{form.values[__${sectionIter.index}__][__${itemIter.index}__]}"
+                                   th:id="${'s' + sectionIter.index + 'i' + itemIter.index + 'l'}" value="left" required="required">
+                            <label class="form-check-label"
+                                   th:for="${'s' + sectionIter.index + 'i' + itemIter.index + 'l'}"
+                                   th:text="${item.left}"></label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" th:name="${itemIter.index}"
+                                   th:field="*{form.values[__${sectionIter.index}__][__${itemIter.index}__]}"
+                                   th:id="${'s' + sectionIter.index + 'i' + itemIter.index + 'r'}" value="right" required="required">
+                            <label class="form-check-label"
+                                   th:for="${'s' + sectionIter.index + 'i' + itemIter.index + 'r'}"
+                                   th:text="${item.right}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider"/>
+            <small class="text-muted">Quoll will never share your answers with any third party.</small><br/>
+            <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 1rem"/>
+        </div>
+        <hr class="featurette-divider"/>
+    </form>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+    <!--<script th:src="@{/js/registration.js}" src="/js/registration.js"></script>-->
+</footer>
+
+</body>
+</html>

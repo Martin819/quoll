@@ -1,8 +1,10 @@
 package com.company.quoll.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -10,69 +12,61 @@ import java.util.Set;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "address_id")
-    private int id;
-    @Column(name = "nuts0")
-    @NotEmpty(message = "Please provide your country")
-    private String nuts0;
-    @Column(name = "nuts1")
-    @NotEmpty(message = "Please provide your state")
-    private String nuts1;
-    @Column(name = "nuts2")
-    @NotEmpty(message = "Please provide your region")
-    private String nuts2;
-    @Column(name = "nuts3")
-    @NotEmpty(message = "Please provide your province")
-    private String nuts3;
-    @OneToMany(mappedBy = "address")
-    private Set<User> users;
+    private String id;
 
-    public int getId() {
+    @NotBlank
+    @Column(name = "name")
+    private String name;
+
+    @NotNull
+    @Column(name = "nuts_level")
+    private int nutsLevel;
+
+    @NotNull
+    @Column(name = "country_code")
+    private String countryCode;
+
+/*    @OneToMany(mappedBy = "address_id", targetEntity = Set.class)
+    private Set<User> usersSet;*/
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNuts0() {
-        return nuts0;
+    public String getName() {
+        return name;
     }
 
-    public void setNuts0(String nuts0) {
-        this.nuts0 = nuts0;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNuts1() {
-        return nuts1;
+    public int getNutsLevel() {
+        return nutsLevel;
     }
 
-    public void setNuts1(String NUTS1) {
-        this.nuts1 = NUTS1;
+    public void setNutsLevel(int nutsLevel) {
+        this.nutsLevel = nutsLevel;
     }
 
-    public String getNuts2() {
-        return nuts2;
+    public String getCountryCode() {
+        return countryCode;
     }
 
-    public void setNuts2(String nuts2) {
-        this.nuts2 = nuts2;
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
-    public String getNuts3() {
-        return nuts3;
+/*    public Set<User> getUsersSet() {
+        return usersSet;
     }
 
-    public void setNuts3(String nuts3) {
-        this.nuts3 = nuts3;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+    public void setUsersSet(Set<User> usersSet) {
+        this.usersSet = usersSet;
+    }*/
 }

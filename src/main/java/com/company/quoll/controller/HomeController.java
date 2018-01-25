@@ -1,19 +1,29 @@
 package com.company.quoll.controller;
 
+import com.company.quoll.model.SocionicsResult;
+import com.company.quoll.model.User;
+import com.company.quoll.repository.UserRepository;
+import com.company.quoll.services.SocionicsResultService;
+import com.company.quoll.services.UserService;
+import com.company.quoll.utils.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.UUID;
 
 
 @Controller
 public class HomeController {
 
-    /*    @RequestMapping("/")
-        public String helloWorld(@RequestParam(value = "username", required = false, defaultValue = "World") String username, Model model) {
-            model.addAttribute("username", username);
-            return "index";
-        }*/
+    @Autowired
+    SocionicsResultService socionicsResultService;
+
+    @Autowired
+    UserService userService;
+
     @GetMapping("/")
     public String home1(Model model) {
         model.addAttribute("page_title", "quoll");
@@ -28,6 +38,15 @@ public class HomeController {
 
     @GetMapping("/mock")
     public String mock() {
+        List<User> users = userService.findAll();
+        for (User user:users) {
+            user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
+            user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
+            System.out.println(user.getSocionicsResult().getId().toString());
+            System.out.println(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
+            System.out.println(user.getSocionicsType());
+            userService.update(user);
+        }
         return "mock";
     }
 

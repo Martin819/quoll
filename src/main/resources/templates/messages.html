@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/header :: header-css"/>
+<title>quoll</title>
+<!--TODO Vyresit Title-->
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Messages</h1>
+        <p class="lead"></p>
+    </div>
+    <div class="col-md-5">
+        <div class="list-group">
+            <!--/*@thymesVar id="uniqueContacts" type="java.util.List<User>"*/-->
+            <!--/*@thymesVar id="contact" type="com.company.quoll.model.User"*/-->
+            <th:block th:each="contact : ${uniqueContacts}">
+                <a class="list-group-item" th:href="@{'/messages/' + ${contact.getId()}}">
+                    <th:block th:text="${contact.getUsername()}"/>
+                </a>
+            </th:block>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

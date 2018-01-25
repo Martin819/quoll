@@ -1,0 +1,23 @@
+.jumbotron {
+    margin-bottom: 1rem;
+}
+
+.featurette {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.featurette-image {
+    width: 14rem;
+    height: 14rem;
+    display: block;
+}
+
+.featurette-divider {
+    margin: 1rem 0;
+}
+
+h2 {
+    margin-top: 3rem;
+}
