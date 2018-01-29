@@ -8,6 +8,7 @@ import com.company.quoll.services.IntertypeRelationService;
 import com.company.quoll.services.SocionicsRelationsMatchService;
 import com.company.quoll.services.SocionicsResultService;
 import com.company.quoll.services.UserService;
+import com.company.quoll.utils.SocionicsTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,29 +36,9 @@ public class MatchesController {
 
     @GetMapping("/matches")
     public String getMapping(Model model, @AuthenticationPrincipal UserDetails currentUser){
+        
         User user = userService.findUserByUsername(currentUser.getUsername());
-        SocionicsResult userResults = user.getSocionicsResult();
-        String userSocionicsType = user.getSocionicsType();
-        SocionicsRelationsMatch partnerType1 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
-                        intertypeRelationService.findIntertypeRelationByFitnessOrder(1));
-/*        SocionicsRelationsMatch partnerType2 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
-                        intertypeRelationService.findIntertypeRelationByFitnessOrder(2));
-        SocionicsRelationsMatch partnerType3 = socionicsRelationsMatchService
-                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userSocionicsType,
-                        intertypeRelationService.findIntertypeRelationByFitnessOrder(3));*/
-        List<User> partners1 = userService.findUserBySocionicsType(partnerType1.getTypeB());
-/*        List<User> partners2 = userService.findUserBySocionicsType(partnerType2.getTypeB());
-        List<User> partners3 = userService.findUserBySocionicsType(partnerType3.getTypeB());*/
-        model.addAttribute("userResults", userResults);
-        model.addAttribute("userSocionicsType", userSocionicsType);
-        model.addAttribute("partners1", partners1);
-/*        model.addAttribute(partners2);
-        model.addAttribute(partners3);*/
-        System.out.println(userResults.getId().toString() + userResults.getExtrovertValue());
-        System.out.println(userSocionicsType);
-        System.out.println(partners1);
+        SocionicsTypes.getMatchedUsersByFitnessOrder()
         return "matches";
     }
 }

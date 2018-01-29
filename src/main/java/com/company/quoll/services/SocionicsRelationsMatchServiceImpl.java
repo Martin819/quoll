@@ -7,6 +7,8 @@ import com.company.quoll.repository.SocionicsRelationsMatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("socionicsRelationsMatchService")
 public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMatchService {
 
@@ -19,8 +21,8 @@ public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMat
     }
 
     @Override
-    public SocionicsRelationsMatch findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
-                                                                                             IntertypeRelation
+    public List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
+                                                                                                IntertypeRelation
                                                                                                     intertypeRelation){
         return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA,intertypeRelation);
     }
