@@ -40,14 +40,13 @@ public class HomeController {
     public String mock() {
         List<User> users = userService.findAll();
         for (User user:users) {
+            user.setRepeatPassword(user.getPassword());
+            user.setAddressCode(user.getAddress().getId());
             user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
             user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
-            System.out.println(user.getSocionicsResult().getId().toString());
-            System.out.println(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
-            System.out.println(user.getSocionicsType());
             userService.update(user);
         }
-        return "mock";
+        return "redirect:/";
     }
 
     @GetMapping("/admin")
