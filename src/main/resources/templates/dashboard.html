@@ -57,8 +57,12 @@
                     </script>
                 </p>
             </div>
-            <div class="col-md-5 order-md-1">
+            <div class="col-md-5 order-md-1" th:if="${matchedUser.getSex() == 'Male'}">
                 <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
+                     alt="Generic placeholder image"/>
+            </div>
+            <div class="col-md-5 order-md-1" th:if="${matchedUser.getSex() == 'Female'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_female.png"
                      alt="Generic placeholder image"/>
             </div>
         </div>

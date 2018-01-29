@@ -28,6 +28,16 @@
                 <div class="mycoolerror small" th:if="${#fields.hasErrors('user.dateOfBirth')}" th:errors="*{user.dateOfBirth}">Date of birth error</div>
                 <small id="birth-date-help" class="form-text text-muted">Your date of birth will be used for internal purposes only. It will not be visible to other users unless you specify otherwise.</small>
             </div>
+            <br>
+            <div class="form-group m-auto" data-toggle="buttons">
+                <label class="col-form-label" for="dateOfBirth">Select sex:</label><br>
+                <label class="btn btn-primary active">
+                    <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off" checked> Man
+                </label>
+                <label class="btn btn-primary">
+                    <input th:field="*{user.sex}" th:value="Female" type="radio" name="sex" id="sex-f" autocomplete="off"> Woman
+                </label>
+            </div>
             <hr class="featurette-divider"/>
             <div class="form-group">
                 <label for="country">Country</label>

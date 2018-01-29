@@ -58,6 +58,7 @@ public class RegistrationController {
         System.out.println(user.getUsername());
         System.out.println(user.getDateOfBirth());
         System.out.println(user.getEmail());
+        System.out.println(user.getSex());
         System.out.println(user.getPassword());
         System.out.println(user.getAddressCode());
         System.out.println(user.getRepeatPassword());
