@@ -36,9 +36,8 @@ public class MatchesController {
 
     @GetMapping("/matches")
     public String getMapping(Model model, @AuthenticationPrincipal UserDetails currentUser){
-        
         User user = userService.findUserByUsername(currentUser.getUsername());
-        SocionicsTypes.getMatchedUsersByFitnessOrder()
+        SocionicsTypes.getMatchedUsersByFitnessOrder(user, 1);
         return "matches";
     }
 }

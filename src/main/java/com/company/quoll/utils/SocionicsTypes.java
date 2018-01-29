@@ -4,9 +4,7 @@ import com.company.quoll.model.IntertypeRelation;
 import com.company.quoll.model.SocionicsRelationsMatch;
 import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
-import com.company.quoll.services.IntertypeRelationService;
-import com.company.quoll.services.SocionicsRelationsMatchService;
-import com.company.quoll.services.UserService;
+import com.company.quoll.services.*;
 import netscape.security.UserTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,15 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SocionicsTypes {
-
-    @Autowired
-    SocionicsRelationsMatchService socionicsRelationsMatchService;
-
-    @Autowired
-    IntertypeRelationService intertypeRelationService;
-
-    @Autowired
-    UserService userService;
 
     public static String getTypeCode(SocionicsResult socionicsResult) {
         String code = "";
@@ -48,7 +37,10 @@ public class SocionicsTypes {
         return code;
     }
 
-    public List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder) {
+    public static List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder) {
+        IntertypeRelationService intertypeRelationService = new IntertypeRelationServiceImpl();
+        SocionicsRelationsMatchService socionicsRelationsMatchService = new SocionicsRelationsMatchServiceImpl();
+        UserService userService = new UserServiceImpl();
         String userType = user.getSocionicsType();
         IntertypeRelation intertypeRelation = intertypeRelationService.findIntertypeRelationById(fitnessOrder);
         List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService.findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
