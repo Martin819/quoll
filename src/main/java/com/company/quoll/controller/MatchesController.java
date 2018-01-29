@@ -34,10 +34,12 @@ public class MatchesController {
     @Autowired
     SocionicsRelationsMatchService socionicsRelationsMatchService;
 
-    @GetMapping("/matches")
+    @GetMapping("/dashboard")
     public String getMapping(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
-        SocionicsTypes.getMatchedUsersByFitnessOrder(user, 1);
-        return "matches";
+        List<User> matchedUsers = userService.getMatchedUsersByFitnessOrder(user, 1);
+        model.addAttribute("user", user);
+        model.addAttribute("matchedUsers", matchedUsers);
+        return "dashboard";
     }
 }

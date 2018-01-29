@@ -1,8 +1,6 @@
 package com.company.quoll.services;
 
-import com.company.quoll.model.Address;
-import com.company.quoll.model.Role;
-import com.company.quoll.model.User;
+import com.company.quoll.model.*;
 import com.company.quoll.repository.RoleRepository;
 import com.company.quoll.repository.UserRepository;
 import com.company.quoll.utils.SocionicsTypes;
@@ -11,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -24,6 +19,12 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private IntertypeRelationService intertypeRelationService;
+
+    @Autowired
+    private SocionicsRelationsMatchService socionicsRelationsMatchService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -88,4 +89,18 @@ public class UserServiceImpl implements UserService {
         user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
     }
 
+    @Override
+    public List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder) {
+        String userType = user.getSocionicsType();
+        IntertypeRelation intertypeRelation = intertypeRelationService.findIntertypeRelationByFitnessOrder(fitnessOrder);
+        System.out.println(intertypeRelation.getName());
+        List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService.findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
+        List<User> matchedUsers = new ArrayList<>();
+        for (SocionicsRelationsMatch srm:relationsMatches) {
+            String matchType = srm.getTypeB();
+            List<User> typeUsers = this.findUserBySocionicsType(matchType);
+            matchedUsers.addAll(typeUsers);
+        }
+        return matchedUsers;
+    }
 }

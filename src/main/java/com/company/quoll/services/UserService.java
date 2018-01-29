@@ -32,4 +32,6 @@ public interface UserService {
     void update(User user);
 
     void addSocionicsTypeToUser(User user);
+
+    List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder);
 }

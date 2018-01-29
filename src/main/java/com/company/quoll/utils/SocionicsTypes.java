@@ -35,20 +35,4 @@ public class SocionicsTypes {
         return code;
     }
 
-    public static List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder) {
-        IntertypeRelationService intertypeRelationService = new IntertypeRelationServiceImpl();
-        SocionicsRelationsMatchService socionicsRelationsMatchService = new SocionicsRelationsMatchServiceImpl();
-        UserService userService = new UserServiceImpl();
-        String userType = user.getSocionicsType();
-        IntertypeRelation intertypeRelation = intertypeRelationService.findIntertypeRelationById(fitnessOrder);
-        List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService.findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
-        List<User> matchedUsers = new ArrayList<>();
-        for (SocionicsRelationsMatch srm:relationsMatches) {
-            String matchType = srm.getTypeB();
-            List<User> typeUsers = userService.findUserBySocionicsType(matchType);
-            matchedUsers.addAll(typeUsers);
-        }
-        return matchedUsers;
-    }
-
 }

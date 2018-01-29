@@ -5,6 +5,7 @@
     <title>quoll: dashboard</title>
     <div th:replace="fragments/header :: header-css"></div>
     <link th:href="@{/css/dashboard.css}" href="/css/dashboard.css" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/Chart.js}" src="/js/Chart.js"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
@@ -19,16 +20,42 @@
     </div>
 
     <h2 class="text-muted">This is what quoll found for you...</h2>
-
-    <div th:each="i, iter : ${#numbers.sequence(0, 10, 1)}">
+    <th:block th:each="matchedUser : ${matchedUsers}">
         <hr class="featurette-divider"/>
 
-        <div class="row featurette" th:if="${iter.odd}">
+        <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2>lena_bannana_67</h2>
+                <h2 th:text="${matchedUser.getUsername()}"></h2>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
                     semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
                     commodo.</p>
+                <p class="chart-container" style="position: relative; height:20vh; width:20vw">
+                    <canvas id="myChart"></canvas>
+                    <script th:inline="javascript">
+                        var ctx = document.getElementById("myChart");
+                        var ev = [[${matchedUser.getSocionicsResult().getExtrovertValue()}]];
+                        var sv = [[${matchedUser.getSocionicsResult().getSensingValue()}]];
+                        var tv = [[${matchedUser.getSocionicsResult().getThinkingValue()}]];
+                        var pv = [[${matchedUser.getSocionicsResult().getPerceivingValue()}]];
+                        var myChart = new Chart(ctx, {
+                            type: 'radar',
+                            data: {
+                                labels: ["Extrovert", "Sensing", "Thinking", "Perceiving", "Introvert", "Intuitive", "Feeling", "Judging"],
+                                datasets: [{
+                                    label: 'User results',
+                                    data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            }
+                        });
+                    </script>
+                </p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
@@ -36,9 +63,9 @@
             </div>
         </div>
 
-        <div class="row featurette" th:if="${iter.even}">
+<!--        <div class="row featurette" th:if="${iter.even}">
             <div class="col-md-7">
-                <h2 >jennyGirl123</h2>
+                <h2 th:text="${matchedUser.getUsername()}"></h2>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
                     semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
                     commodo.</p>
@@ -47,9 +74,8 @@
                 <img class="featurette-image img-fluid rounded-circle mr-auto" src="/img/avatar_female.png"
                      alt="Generic placeholder image"/>
             </div>
-        </div>
-    </div>
-
+        </div>-->
+    </th:block>
     <hr class="featurette-divider"/>
 </main>
 
