@@ -5,8 +5,6 @@ import com.company.quoll.model.SocionicsRelationsMatch;
 import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
 import com.company.quoll.services.*;
-import netscape.security.UserTarget;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
