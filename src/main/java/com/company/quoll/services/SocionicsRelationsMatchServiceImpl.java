@@ -27,4 +27,9 @@ public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMat
         return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA,intertypeRelation);
     }
 
+    @Override
+    public SocionicsRelationsMatch findSocionicsRelationsMatch(String typeA, String typeB) {
+        return socionicsRelationsMatchRepository.findFirstByTypeAEqualsAndTypeBEquals(typeA, typeB);
+    }
+
 }

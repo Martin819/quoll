@@ -1,5 +1,7 @@
 package com.company.quoll.utils;
 
+import com.company.quoll.model.User;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

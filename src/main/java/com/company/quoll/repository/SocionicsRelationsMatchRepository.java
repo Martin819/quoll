@@ -11,6 +11,7 @@ import java.util.List;
 public interface SocionicsRelationsMatchRepository extends JpaRepository<SocionicsRelationsMatch, Integer> {
 
     SocionicsRelationsMatch findById(int id);
+    SocionicsRelationsMatch findFirstByTypeAEqualsAndTypeBEquals(String typeA, String typeB);
     List<SocionicsRelationsMatch> findByTypeAAndIntertypeRelation(String typeA, IntertypeRelation intertypeRelation);
 
 }

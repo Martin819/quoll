@@ -184,4 +184,13 @@ public class User {
     public void setSocionicsResult(SocionicsResult socionicsResult) {
         this.socionicsResult = socionicsResult;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
 }

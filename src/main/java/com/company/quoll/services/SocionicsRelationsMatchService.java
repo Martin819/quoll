@@ -14,4 +14,6 @@ public interface SocionicsRelationsMatchService {
     List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(
             String typeA, IntertypeRelation intertypeRelation);
 
+    SocionicsRelationsMatch findSocionicsRelationsMatch(String typeA, String typeB);
+
 }

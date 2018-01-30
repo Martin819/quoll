@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>quoll: dashboard</title>
     <div th:replace="fragments/header :: header-css"></div>
     <link th:href="@{/css/dashboard.css}" href="/css/dashboard.css" rel="stylesheet" type="text/css"/>
-    <script th:src="@{/js/Chart.js}" src="/js/Chart.js"></script>
+    <script th:src="@{/webjars/chartjs/2.7.0/Chart.js}" src="/webjars/chartjs/2.7.0/Chart.js"></script>
     <script th:src="@{/webjars/momentjs/2.20.1/moment.js}" src="/webjars/momentjs/2.20.1/moment.js"></script>
 </head>
+
 <body>
+
 <div th:replace="fragments/header :: header"></div>
 
 <main role="main" class="container">
+
     <div class="jumbotron">
         <h1>Dashboard</h1>
         <p class="lead">This is your main page, where you can find everything important.</p>
     </div>
+
     <div class="alert alert-warning" role="alert" th:if="${user.socionicsResult==null}">
         You have not taken your socionics test yet. <a href="/user/test" class="alert-link">Click here</a> to take the test.
     </div>
@@ -24,7 +29,7 @@
     <th:block th:each="matchedUser : ${matchedUsers}">
         <hr class="featurette-divider"/>
 
-        <div class="row featurette" th:onclick="'location.href=\'/\''">
+        <div class="row featurette" th:onclick="'location.href=\'/user/profile/' + ${matchedUser.id} + '\''">
             <div class="col-md-3">
                 <p class="chart-container" style="position: relative; height:20vh; width:20vw">
                     <canvas th:id="@{'chart' + ${matchedUser.id}}"></canvas>
