@@ -30,9 +30,9 @@
                     semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
                     commodo.</p>
                 <p class="chart-container" style="position: relative; height:20vh; width:20vw">
-                    <canvas id="myChart"></canvas>
+                    <canvas th:id="@{'chart' + ${matchedUser.getId()}}"></canvas>
                     <script th:inline="javascript">
-                        var ctx = document.getElementById("myChart");
+                        var ctx = document.getElementById("chart" + [[${matchedUser.getId()}]]);
                         var ev = [[${matchedUser.getSocionicsResult().getExtrovertValue()}]];
                         var sv = [[${matchedUser.getSocionicsResult().getSensingValue()}]];
                         var tv = [[${matchedUser.getSocionicsResult().getThinkingValue()}]];
