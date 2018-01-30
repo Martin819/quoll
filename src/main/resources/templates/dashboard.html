@@ -85,7 +85,7 @@
                 <p class="lead" style="margin: 0; padding: 0"
                    th:text="'Zodiac: ' + ${zodiacSigns[__${matchedUser.zodiacSign - 1}__]}"></p>
                 <p class="lead" style="margin: 0; padding: 0"
-                   th:text="'Location: ' + ${matchedUser.address.name}"></p>
+                   th:text="'Location: ' + ${matchedUser.address.name} + ', ' + ${matchedUser.address.countryCode}"></p>
             </div>
         </div>
 
