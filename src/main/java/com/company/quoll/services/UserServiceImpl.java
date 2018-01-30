@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ROLE_USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
         userRepository.save(user);
     }
@@ -92,14 +92,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder) {
         String userType = user.getSocionicsType();
-        IntertypeRelation intertypeRelation = intertypeRelationService.findIntertypeRelationByFitnessOrder(fitnessOrder);
+        IntertypeRelation intertypeRelation = intertypeRelationService
+                .findIntertypeRelationByFitnessOrder(fitnessOrder);
         System.out.println(intertypeRelation.getName());
-        List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService.findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
+        List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService
+                .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
         List<User> matchedUsers = new ArrayList<>();
         for (SocionicsRelationsMatch srm:relationsMatches) {
             String matchType = srm.getTypeB();
             List<User> typeUsers = this.findUserBySocionicsType(matchType);
-            matchedUsers.addAll(typeUsers);
+
+            for (User u : typeUsers) {
+                if (!u.getSex().equals(user.getSex())) {
+                    matchedUsers.add(u);
+                }
+            }
+
+//            matchedUsers.addAll(typeUsers);
         }
         return matchedUsers;
     }

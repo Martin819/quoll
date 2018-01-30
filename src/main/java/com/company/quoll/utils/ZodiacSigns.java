@@ -1,7 +1,9 @@
 package com.company.quoll.utils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class ZodiacSigns {
 
@@ -50,6 +52,23 @@ public class ZodiacSigns {
         } else {
             return day < 22 ? SAGITTARIUS : CAPRICORN;
         }
+    }
+
+    public static List<String> getZodiacSigns() {
+        List<String> signs = new ArrayList<>();
+        signs.add("Aquarius");
+        signs.add("Pisces");
+        signs.add("Aries");
+        signs.add("Taurus");
+        signs.add("Gemini");
+        signs.add("Cancer");
+        signs.add("Leo");
+        signs.add("Virgo");
+        signs.add("Libra");
+        signs.add("Scorpio");
+        signs.add("Sagittarius");
+        signs.add("Capricorn");
+        return signs;
     }
 
 }

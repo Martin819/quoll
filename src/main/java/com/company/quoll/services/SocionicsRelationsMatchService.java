@@ -10,7 +10,8 @@ import java.util.List;
 public interface SocionicsRelationsMatchService {
 
     SocionicsRelationsMatch findSocionicsRelationsMatchById(int id);
-    List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
-                                                                                         IntertypeRelation
-                                                                                                 intertypeRelation);
+
+    List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(
+            String typeA, IntertypeRelation intertypeRelation);
+
 }

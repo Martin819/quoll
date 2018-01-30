@@ -8,6 +8,10 @@
     padding: 2rem 0;
 }
 
+.featurette:hover {
+    background-color: #eeeeee;
+}
+
 .featurette-image {
     width: 14rem;
     height: 14rem;
@@ -20,4 +24,9 @@
 
 h2 {
     margin-top: 3rem;
+}
+
+.lead {
+    margin: 0;
+    padding: 0;
 }
