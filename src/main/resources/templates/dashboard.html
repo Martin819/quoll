@@ -17,8 +17,52 @@
 <main role="main" class="container">
 
     <div class="jumbotron">
-        <h1>Dashboard</h1>
-        <p class="lead">This is your main page, where you can find everything important.</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Matches</h1>
+                <p class="lead">
+                    Find your soulmates just with a few clicks.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <form th:action="@{/user/dashboard}" method="get">
+                    <div class="form-group m-auto" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="onlyMyCountry" id="onlyMyCountry" />Search only in my contry
+                        </label>
+                    </div>
+                    <div class="form-group m-auto" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="men" id="men"/>Search for men
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="women" id="women"/>Search for women
+                        </label>
+                    </div>
+                    <div class="form-group m-auto">
+                        <label>
+                            Min age: <input type="text" name="ageMin" id="ageMin"/>
+                        </label>
+                        <label>
+                            Max age: <input type="text" name="ageMax" id="ageMax"/>
+                        </label>
+                    </div>
+                    <div class="form-group m-auto">
+                        Match accuracy: (<span id="sliderValue"></span>) <input type="range" min="1" max="14" class="slider" id="sliderRange" name="sliderValue">
+                        <small id="slider-help" class="form-text text-dark">Higher value will return more result, but match won't be perfect. Lower value will return better matches, but there might be less (or none) of them.</small>
+                        <script type="text/javascript">
+                            var slider = document.getElementById("sliderRange");
+                            var output = document.getElementById("sliderValue");
+                            output.innerHTML = slider.value;
+                            slider.oninput = function() {
+                                output.innerHTML = this.value;
+                            }
+                        </script>
+                    </div>
+                    <input class="btn btn-success btn-block" type="submit" value="Search" style="margin-top: 1rem"/>
+                </form>
+            </div>
+        </div>
     </div>
 
     <div class="alert alert-warning" role="alert" th:if="${user.socionicsResult==null}">

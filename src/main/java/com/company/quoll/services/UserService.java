@@ -33,5 +33,13 @@ public interface UserService {
 
     void addSocionicsTypeToUser(User user);
 
-    List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder);
+    List<User> removeForeignMatchedUsers(List<User> matchedUsers, String userAddressCode);
+
+    List<User> removeMatchedUsersBySex(List<User> matchedUsers, String sex);
+
+    List<User> removeYoungMatchedUsers(List<User> matchedUsers, Integer ageMin);
+
+    List<User> removeOldMatchedUsers(List<User> matchedUsers, Integer ageMax);
+
+    List<User> getMatchedUsersByFitnessOrder(User user, int fitnessOrder, String onlyMyCountry, String men, String women, Integer ageMin, Integer ageMax);
 }

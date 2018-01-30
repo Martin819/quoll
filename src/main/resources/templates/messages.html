@@ -15,8 +15,6 @@
     </div>
     <div class="col-md-5">
         <div class="list-group">
-            <!--/*@thymesVar id="uniqueContacts" type="java.util.List<User>"*/-->
-            <!--/*@thymesVar id="contact" type="com.company.quoll.model.User"*/-->
             <th:block th:each="contact : ${uniqueContacts}">
                 <a class="list-group-item" th:href="@{'/messages/' + ${contact.getId()}}">
                     <th:block th:text="${contact.getUsername()}"/>
