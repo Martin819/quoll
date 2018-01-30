@@ -24,7 +24,7 @@
                         document.write('Age: ' + moment().diff([[${user.dateOfBirth}]], 'years'));
                     </script>
                 </p>
-                <a class="btn btn-lg btn-primary" href="#" role="button">Send a message</a>
+                <a class="btn btn-lg btn-primary" th:href="'/messages/' + ${user.id}" role="button">Send a message</a>
             </div>
             <div class="col-md-4" th:if="${user.sex == 'Male'}">
                 <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"

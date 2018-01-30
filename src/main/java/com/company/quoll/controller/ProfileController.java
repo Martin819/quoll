@@ -11,10 +11,15 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -28,8 +33,46 @@ public class ProfileController {
 
     @GetMapping("/user/profile")
     public String showProfile(Model model, @AuthenticationPrincipal UserDetails currentUser) {
-        User user = userService.findUserByUsername(currentUser.getUsername());
-        return "profile";
+        final User user = userService.findUserByUsername(currentUser.getUsername());
+        model.addAttribute("user", user);
+        final String userZodiacName = ZodiacSigns.getZodiacSigns().get(user.getZodiacSign() - 1);
+        model.addAttribute("zodiac", userZodiacName);
+        final String socionicsMessage = getSocionicsValuesExplanation(user, true);
+        model.addAttribute("userSocionicsMessage", socionicsMessage);
+        return "myprofile";
+    }
+
+    @PostMapping("/user/profile")
+    public String updatePersonalDetails(@Valid User user, BindingResult bindingResult) {
+        System.out.println(user.getUsername());
+        System.out.println(user.getDateOfBirth());
+        System.out.println(user.getEmail());
+        System.out.println(user.getSex());
+        System.out.println(user.getPassword());
+        System.out.println(user.getAddressCode());
+        System.out.println(user.getRepeatPassword());
+
+        final List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            if (!"password".equals(error.getField()) && !"repeat-password".equals(error.getField())) {
+                return "myprofile";
+            }
+        }
+
+        // TODO further validation and persisting
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/password")
+    public String updatePassword(@Valid User user, BindingResult bindingResult) {
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getRepeatPassword());
+
+        // TODO password validation and persisting
+
+        return "redirect:/user/profile";
     }
 
     @GetMapping("/user/profile/{userId}")

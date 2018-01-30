@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>quoll: registration</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <script th:src="@{/webjars/chartjs/2.7.0/Chart.js}" src="/webjars/chartjs/2.7.0/Chart.js"></script>
+    <script th:src="@{/webjars/momentjs/2.20.1/moment.js}" src="/webjars/momentjs/2.20.1/moment.js"></script>
+    <link th:href="@{/css/myprofile.css}" href="/css/myprofile.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div layout:fragment="content" th:remove="tag"></div>
+
+<main role="main" class="container">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>My profile</h1>
+                <p class="lead">Here you can change your personal details.</p>
+                <div><a class="jumbotron-link" href="#zodiac-anchor">Zodiac</a></div>
+                <div><a class="jumbotron-link" href="#socionics-anchor">Socionics</a></div>
+                <div><a class="jumbotron-link" href="#personal-details-anchor">Change personal details</a></div>
+                <div><a class="jumbotron-link" href="#password-anchor">Change password</a></div>
+            </div>
+            <div class="col-md-4" th:if="${user.sex == 'Male'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
+                     alt="Generic placeholder image"/>
+            </div>
+            <div class="col-md-4" th:if="${user.sex == 'Female'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_female.png"
+                     alt="Generic placeholder image"/>
+            </div>
+        </div>
+    </div>
+
+    <hr class="featurette-divider" id="zodiac-anchor"/>
+    <div class="featurette">
+        <h2>Zodiac</h2>
+        <p th:text="'Your Zodiac sign is ' + ${zodiac} + '.'"></p>
+    </div>
+
+    <hr class="featurette-divider" id="socionics-anchor"/>
+    <div class="featurette">
+        <h2>Socionics</h2>
+        <p th:text="'Your socionics type is ' + ${user.socionicsType} + '. ' + ${userSocionicsMessage}"></p>
+        <p class="chart-container">
+            <canvas id="user-chart"></canvas>
+            <script th:inline="javascript">
+                var ctx = document.getElementById("user-chart");
+                var ev = [[${user.getSocionicsResult().getExtrovertValue()}]];
+                var sv = [[${user.getSocionicsResult().getSensingValue()}]];
+                var tv = [[${user.getSocionicsResult().getThinkingValue()}]];
+                var pv = [[${user.getSocionicsResult().getPerceivingValue()}]];
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
+                            "Introvert", "Intuitive", "Feeling", "Judging"],
+                        datasets: [{
+                            data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                });
+            </script>
+        </p>
+        <a class="btn btn-primary ml-auto" href="/user/test" role="button">Retake the socionics test</a>
+    </div>
+
+    <hr class="featurette-divider" id="personal-details-anchor"/>
+    <div class="featurette">
+        <h2>Change personal details</h2>
+        <form action="#" th:action="@{/user/profile}" method="post" >
+            <div class="form-div m-auto">
+                <!--<hr class="featurette-divider"/>-->
+                <div class="form-group m-auto">
+                    <label class="col-form-label" for="username">Username</label>
+                    <input type="text" class="form-control" id="username" th:field="*{user.username}" name="username" placeholder="Username"/>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">Username error</div>
+                </div>
+                <div class="form-group m-auto">
+                    <label class="col-form-label" for="dateOfBirth">Date of birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" th:field="*{user.dateOfBirth}" name="dateOfBirth" placeholder="yyyy-MM-dd"/>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.dateOfBirth')}" th:errors="*{user.dateOfBirth}">Date of birth error</div>
+                    <small id="birth-date-help" class="form-text text-muted">Your date of birth will be used for internal purposes only. It will not be visible to other users unless you specify otherwise.</small>
+                </div>
+                <br>
+                <div class="form-group m-auto" data-toggle="buttons">
+                    <label class="col-form-label" for="dateOfBirth">Select sex:</label><br>
+                    <label class="btn btn-primary active">
+                        <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off" checked> Man
+                    </label>
+                    <label class="btn btn-primary">
+                        <input th:field="*{user.sex}" th:value="Female" type="radio" name="sex" id="sex-f" autocomplete="off"> Woman
+                    </label>
+                </div>
+                <hr class="featurette-divider"/>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select class="custom-select form-control" id="country">
+                        <option selected="selected" value="" disabled="disabled">Please select country</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select class="custom-select form-control" id="state" disabled="disabled">
+                        <option selected="selected" disabled="disabled">Please select state</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="region">Region</label>
+                    <select class="custom-select form-control" id="region" disabled="disabled">
+                        <option selected="selected" disabled="disabled">Please select region</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="province">Province</label>
+                    <select class="custom-select form-control" th:field="*{user.addressCode}" id="province" disabled="disabled">
+                        <option selected="selected" value="" disabled="disabled">Please select province</option>
+                    </select>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.addressCode')}" th:errors="*{user.addressCode}">Address code error</div>
+                </div>
+                <hr class="featurette-divider"/>
+                <div class="form-group m-auto">
+                    <label class="col-form-label">E-mail</label>
+                    <input type="email" class="form-control" th:field="*{user.email}" name="email" placeholder="E-mail"/>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">Email error</div>
+                </div>
+                <hr class="featurette-divider"/>
+                <small class="text-muted">Quoll will never share your personal information with any third party.</small><br/>
+                <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 1rem"/>
+            </div>
+        </form>
+    </div>
+
+    <hr class="featurette-divider" id="password-anchor"/>
+    <div class="featurette">
+        <h2>Change password</h2>
+        <form action="#" th:action="@{/user/profile/password}" method="post" >
+            <div class="form-div m-auto">
+                <!--<hr class="featurette-divider"/>-->
+                <div class="form-group m-auto">
+                    <label class="col-form-label">Password</label>
+                    <input type="password" class="form-control" th:field="*{user.password}" name="password" placeholder="Password"/>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}">Password error</div>
+                </div>
+                <div class="form-group m-auto">
+                    <label class="col-form-label">Repeat password</label>
+                    <input type="password" class="form-control" th:field="*{user.repeatPassword}" name="repeat-password" placeholder="Repeat password"/>
+                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.repeatPassword')}" th:errors="*{user.repeatPassword}">Repeat password error</div>
+                </div>
+                <hr class="featurette-divider"/>
+                <small class="text-muted">Quoll will never share your personal information with any third party.</small><br/>
+                <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 1rem"/>
+            </div>
+        </form>
+    </div>
+
+    <hr class="featurette-divider"/>
+</main>
+
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+    <script th:src="@{/js/myprofile.js}" src="/js/myprofile.js"></script>
+</footer>
+
+</body>
+</html>
