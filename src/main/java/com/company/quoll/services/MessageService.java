@@ -22,5 +22,8 @@ public interface MessageService {
     Message findMessageById(long id);
     void saveMessage(Message message);
     List<Message> findLastMessages(User recipient);
+    List<Message> findByRecipientOrSender(User user);
+    List<Message> findLastFor(User user);
+    List<Message> findLastForUsers(User u1, User u2);
 
 }

@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-<head th:include="fragments/header :: header-css"/>
-<title>quoll</title>
-<!--TODO Vyresit Title-->
+<head>
+    <title>quoll: messages</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <link th:href="@{/css/messages.css}" href="/css/messages.css" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/webjars/momentjs/2.20.1/moment.js}" src="/webjars/momentjs/2.20.1/moment.js"></script>
 </head>
+
 <body>
+
 <div th:replace="fragments/header :: header"></div>
 
 <main role="main" class="container">
     <div class="jumbotron">
         <h1>Messages</h1>
-        <p class="lead"></p>
+        <p class="lead">Here you can browse through all your conversation threads.</p>
     </div>
-    <div class="col-md-5">
-        <div class="list-group">
-            <th:block th:each="contact : ${uniqueContacts}">
-                <a class="list-group-item" th:href="@{'/messages/' + ${contact.getId()}}">
-                    <th:block th:text="${contact.getUsername()}"/>
-                </a>
-            </th:block>
+
+    <hr class="featurette-divider"/>
+
+    <label class="text-muted" th:if="${#lists.size(contacts) < 1}">You have no messages.</label>
+
+    <th:block th:each="contact : ${contacts}">
+        <div class="contact-div d-flex align-items-center flex-row" th:onclick="'location.href=\'/messages/' + ${contact.id} + '\''">
+            <div class="p-2" th:if="${contact.sex == 'Male'}">
+                <img class="featurette-image img-fluid rounded-circle" src="/img/avatar_male.png"
+                     alt="Generic placeholder image"/>
+            </div>
+
+            <div class="p-2" th:if="${contact.sex == 'Female'}">
+                <img class="featurette-image img-fluid rounded-circle" src="/img/avatar_female.png"
+                     alt="Generic placeholder image"/>
+            </div>
+
+            <div class="p-2">
+                <p><b th:text="${contact.username}"></b></p>
+                <small class="text-muted">
+                    <script th:inline="javascript">
+                        var message = [[${lastMessages[__${contact.username}__]}]];
+                        var dateTime = message.dateTime;
+                        document.write(moment(dateTime).calendar());
+                    </script>
+                </small>
+                <small th:text="${lastMessages[__${contact.username}__].content}"></small>
+            </div>
         </div>
-    </div>
+    </th:block>
+
+    <hr class="featurette-divider"/>
+
 </main>
 
 <footer class="footer">

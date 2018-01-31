@@ -60,10 +60,9 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findByRecipientAndMessageRead(recipient, messageRead);
     }
 
-
     @Override
     public List<Message> findLastMessages(User recipient) {
-        return messageRepository.findLastForRecipient(recipient);
+        return messageRepository.findLastFor(recipient);
     }
 
     @Override
@@ -74,5 +73,20 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void saveMessage(Message message) {
         messageRepository.save(message);
+    }
+
+    @Override
+    public List<Message> findByRecipientOrSender(User user) {
+        return messageRepository.findByRecipientOrSender(user);
+    }
+
+    @Override
+    public List<Message> findLastFor(User user) {
+        return messageRepository.findLastFor(user);
+    }
+
+    @Override
+    public List<Message> findLastForUsers(User u1, User u2) {
+        return messageRepository.findLastForUsers(u1, u2);
     }
 }
