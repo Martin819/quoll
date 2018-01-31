@@ -22,7 +22,6 @@
                 <div><a class="jumbotron-link" href="#zodiac-anchor">Zodiac</a></div>
                 <div><a class="jumbotron-link" href="#socionics-anchor">Socionics</a></div>
                 <div><a class="jumbotron-link" href="#personal-details-anchor">Change personal details</a></div>
-                <div><a class="jumbotron-link" href="#password-anchor">Change password</a></div>
             </div>
             <div class="col-md-4" th:if="${user.sex == 'Male'}">
                 <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
@@ -38,46 +37,16 @@
     <hr class="featurette-divider" id="zodiac-anchor"/>
     <div class="featurette">
         <h2>Zodiac</h2>
-        <p th:text="'Your Zodiac sign is ' + ${zodiac} + '.'"></p>
+        <p id="zodiac-text"></p>
     </div>
 
     <hr class="featurette-divider" id="socionics-anchor"/>
     <div class="featurette">
         <h2>Socionics</h2>
-        <p th:text="'Your socionics type is ' + ${user.socionicsType} + '. ' + ${userSocionicsMessage}"></p>
-        <p class="chart-container">
-            <canvas id="user-chart"></canvas>
-            <script th:inline="javascript">
-                var ctx = document.getElementById("user-chart");
-                var ev = [[${user.getSocionicsResult().getExtrovertValue()}]];
-                var sv = [[${user.getSocionicsResult().getSensingValue()}]];
-                var tv = [[${user.getSocionicsResult().getThinkingValue()}]];
-                var pv = [[${user.getSocionicsResult().getPerceivingValue()}]];
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
-                            "Introvert", "Intuitive", "Feeling", "Judging"],
-                        datasets: [{
-                            data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                });
-            </script>
-        </p>
-        <a class="btn btn-primary ml-auto" href="/user/test" role="button">Retake the socionics test</a>
+        <p class="lead" id="socionics-type-text"></p>
+        <p id="socionics-type-message"></p>
+        <canvas class="chart-container" id="user-chart"></canvas>
+        <a class="btn btn-primary ml-auto" id="btn-socionics-test" href="/user/test" role="button">Retake the socionics test</a>
     </div>
 
     <hr class="featurette-divider" id="personal-details-anchor"/>
@@ -85,11 +54,10 @@
         <h2>Change personal details</h2>
         <form action="#" th:action="@{/user/profile}" method="post" >
             <div class="form-div m-auto">
-                <!--<hr class="featurette-divider"/>-->
                 <div class="form-group m-auto">
                     <label class="col-form-label" for="username">Username</label>
-                    <input type="text" class="form-control" id="username" th:field="*{user.username}" name="username" placeholder="Username"/>
-                    <div class="mycoolerror small" th:if="${#fields.hasErrors('user.username')}" th:errors="*{user.username}">Username error</div>
+                    <input type="text" class="form-control" id="username" th:field="*{user.username}" name="username" placeholder="Username" disabled="disabled"/>
+                    <input type="text" class="form-control" th:field="*{user.username}" name="username" placeholder="Username" hidden="hidden"/>
                 </div>
                 <div class="form-group m-auto">
                     <label class="col-form-label" for="dateOfBirth">Date of birth</label>
@@ -140,18 +108,6 @@
                     <div class="mycoolerror small" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}">Email error</div>
                 </div>
                 <hr class="featurette-divider"/>
-                <small class="text-muted">Quoll will never share your personal information with any third party.</small><br/>
-                <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 1rem"/>
-            </div>
-        </form>
-    </div>
-
-    <hr class="featurette-divider" id="password-anchor"/>
-    <div class="featurette">
-        <h2>Change password</h2>
-        <form action="#" th:action="@{/user/profile/password}" method="post" >
-            <div class="form-div m-auto">
-                <!--<hr class="featurette-divider"/>-->
                 <div class="form-group m-auto">
                     <label class="col-form-label">Password</label>
                     <input type="password" class="form-control" th:field="*{user.password}" name="password" placeholder="Password"/>
@@ -168,7 +124,6 @@
             </div>
         </form>
     </div>
-
     <hr class="featurette-divider"/>
 </main>
 

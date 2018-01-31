@@ -44,7 +44,6 @@ public class SocionicsTestController {
 
     @PostMapping("/user/test")
     public String showProfile(SocionicsTestForm form, @AuthenticationPrincipal UserDetails activeUser) {
-
         final SocionicsResult result = form.makeResult();
         socionicsResultService.saveSocionicsResult(result);
 
@@ -55,9 +54,7 @@ public class SocionicsTestController {
         user.setSocionicsType(SocionicsTypes.getTypeCode(result));
         userService.update(user);
 
-        // TODO: redirect to profile to show the results (profile view not ready yet, therefore redirecting home for now)
-
-        return "redirect:/";
+        return "redirect:/user/profile";
     }
 
 

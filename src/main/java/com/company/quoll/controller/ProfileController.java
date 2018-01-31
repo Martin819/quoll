@@ -1,8 +1,10 @@
 package com.company.quoll.controller;
 
+import com.company.quoll.model.Address;
 import com.company.quoll.model.SocionicsRelationsMatch;
 import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
+import com.company.quoll.services.AddressService;
 import com.company.quoll.services.SocionicsRelationsMatchService;
 import com.company.quoll.services.UserService;
 import com.company.quoll.utils.ZodiacSigns;
@@ -16,6 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.Calendar;
@@ -29,50 +32,62 @@ public class ProfileController {
     UserService userService;
 
     @Autowired
+    AddressService addressService;
+
+    @Autowired
     SocionicsRelationsMatchService relationsMatchService;
 
     @GetMapping("/user/profile")
     public String showProfile(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         final User user = userService.findUserByUsername(currentUser.getUsername());
         model.addAttribute("user", user);
-        final String userZodiacName = ZodiacSigns.getZodiacSigns().get(user.getZodiacSign() - 1);
-        model.addAttribute("zodiac", userZodiacName);
-        final String socionicsMessage = getSocionicsValuesExplanation(user, true);
-        model.addAttribute("userSocionicsMessage", socionicsMessage);
         return "myprofile";
     }
 
     @PostMapping("/user/profile")
     public String updatePersonalDetails(@Valid User user, BindingResult bindingResult) {
-        System.out.println(user.getUsername());
-        System.out.println(user.getDateOfBirth());
-        System.out.println(user.getEmail());
-        System.out.println(user.getSex());
-        System.out.println(user.getPassword());
-        System.out.println(user.getAddressCode());
-        System.out.println(user.getRepeatPassword());
-
-        final List<FieldError> errors = bindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            if (!"password".equals(error.getField()) && !"repeat-password".equals(error.getField())) {
-                return "myprofile";
-            }
+        if (bindingResult.hasFieldErrors()) {
+            return "myprofile";
         }
 
-        // TODO further validation and persisting
+        if (!user.getPassword().equals(user.getRepeatPassword())) {
+            bindingResult.rejectValue("password", "error.user", "Passwords do not match.");
+            bindingResult.rejectValue("repeatPassword", "error.user", "Passwords do not match.");
+            return "registration";
+        }
+
+        final User u = userService.findUserByUsername(user.getUsername());
+        u.setUsername(user.getUsername());
+        u.setAddressCode(user.getAddressCode());
+        u.setAddress(addressService.findAddressById(user.getAddressCode()));
+        u.setEmail(user.getEmail());
+        u.setPassword(user.getPassword());
+        u.setRepeatPassword(user.getRepeatPassword());
+        userService.saveUser(u);
 
         return "redirect:/user/profile";
     }
 
-    @PostMapping("/user/profile/password")
-    public String updatePassword(@Valid User user, BindingResult bindingResult) {
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getRepeatPassword());
+    @GetMapping("/user/profile/zodiac")
+    public @ResponseBody String getZodiacSign(@AuthenticationPrincipal UserDetails currentUser) {
+        final int zodiacIndex = userService.findUserByUsername(currentUser.getUsername()).getZodiacSign() - 1;
+        return ZodiacSigns.getZodiacSigns().get(zodiacIndex);
+    }
 
-        // TODO password validation and persisting
+    @GetMapping("/user/profile/socionicsResult")
+    public @ResponseBody SocionicsResult getSocionicsResult(@AuthenticationPrincipal UserDetails currentUser) {
+        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsResult();
+    }
 
-        return "redirect:/user/profile";
+    @GetMapping("/user/profile/socionicsType")
+    public @ResponseBody String getSocionicsType(@AuthenticationPrincipal UserDetails currentUser) {
+        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsType();
+    }
+
+    @GetMapping("/user/profile/socionicsMessage")
+    public @ResponseBody String getSocionicsMessage(@AuthenticationPrincipal UserDetails currentUser) {
+        final User user = userService.findUserByUsername(currentUser.getUsername());
+        return getSocionicsValuesExplanation(user, true);
     }
 
     @GetMapping("/user/profile/{userId}")
@@ -122,6 +137,16 @@ public class ProfileController {
 
     private String getSocionicsValuesExplanation(User user, boolean isCurrent) {
         final SocionicsResult usersSocResult = user.getSocionicsResult();
+        if (usersSocResult == null) {
+            if (isCurrent) {
+                return "You have not taken your socionics test yet.";
+            } else {
+                return String.format(Locale.US, "%s has not taken %s socionics test yet.",
+                        user.getUsername(),
+                        "Male".equals(user.getSex()) ? "his" : "her");
+            }
+        }
+
         return String.format(Locale.US, "That means %s more %s than %s, " +
                         "more %s than %s, more %s than %s and more %s than %s.",
                 isCurrent ? "you are" : ("Male".equals(user.getSex()) ? "he is" : "she is"),

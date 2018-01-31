@@ -9,6 +9,64 @@ $(document).ready(function() {
         state.html(options);
         state.prop("disabled", false);
     });
+
+    $.get("/user/profile/zodiac", function (data) {
+        $("#zodiac-text").html("Your zodiac sign is " + data + ".");
+    });
+
+    $.get("/user/profile/socionicsType", function (data) {
+        if (data === null || data === "") {
+            $("#socionics-type-text").hide();
+        } else {
+            $("#socionics-type-text").html("Your socionics type is " + data + ".");
+        }
+    });
+
+    $.get("/user/profile/socionicsMessage", function (data) {
+        $("#socionics-type-message").html(data);
+    });
+
+    $.get("/user/profile/socionicsResult", function (data) {
+        var canvas = $("#user-chart");
+        if (data === null || data === "") {
+            canvas.hide();
+            $("#btn-socionics-test").html("Take socionics test");
+            return;
+        }
+
+        var ev = data.extrovertValue;
+        var sv = data.sensingValue;
+        var tv = data.thinkingValue;
+        var pv = data.perceivingValue;
+        new Chart(canvas, {
+            type: 'radar',
+            data: {
+                labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
+                    "Introvert", "Intuitive", "Feeling", "Judging"],
+                datasets: [{
+                    data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scale: {
+                    ticks: {
+                        min: 0,
+                        max: 1
+                    }
+                }
+            }
+        });
+    });
 });
 
 $("#country").change(function() {
