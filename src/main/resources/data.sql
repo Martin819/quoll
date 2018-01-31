@@ -3068,7 +3068,7 @@ INSERT IGNORE INTO socionics_results (result_id, extrovert_value, perceiving_val
 /* USERS */
 /*       */
 
-INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1984/07/23', 'oallmark0@state.gov', '$2a$10$wzP47DClAeDC.gfb8jogm.mJcM68rp1FXRdYneD5.BQ9qNkYTId8i', 'admin', 'Male', 'ES417', '030d856a-eb61-4e30-a51f-3882d3f1bba3');
+INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1984/07/23', 'oallmark0@state.gov', '$2a$10$wzP47DClAeDC.gfb8jogm.mJcM68rp1FXRdYneD5.BQ9qNkYTId8i', 'admin', 'Male', 'CZ080', '030d856a-eb61-4e30-a51f-3882d3f1bba3');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1956/11/26', 'yreside0@ebay.com', '1ADWFzpx3m6G95Jh1vW7QQRMWPf4zbbSxM', 'cpastor0', 'Male', 'NL230', '030d856a-eb61-4e30-a51f-3882d3f1bba3');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1989/06/16', 'jmacgeaney1@mapy.cz', '1LrXpCgyxpfk3rTmt3xxsv1vZvfk6Y1uXT', 'rclaesens1', 'Female', 'DE80J', '132907b9-ef34-4c96-865f-d4984bfe9c09');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1954/12/24', 'pluca2@indiatimes.com', '131E3Crf9V4ivnaDoDdgBk2st8YjetVaCu', 'ushadrach2', 'Male', 'DEB19', '67abd7f9-09af-468f-92c9-8fbc3c8eb086');
@@ -4069,7 +4069,7 @@ INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex,
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1970/07/04', 'ckoppesrp@cnn.com', '1Pvkx746eQUrQsNeoqpXpcSK3s9TM5SE2p', 'bavannrp', 'Male', 'DEF05', 'a6476556-9bd1-402f-af1e-63af42eacf6c');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1975/01/18', 'cknollerrq@soundcloud.com', '1EyGcbD5FmcCn7fx4s7Vie3etkPMDzwgRi', 'rtumerq', 'Female', 'DE246', '8117f9a3-950b-44b9-8843-eecb7a67f6bf');
 INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1953/04/23', 'usmalerr@unicef.org', '16U5djjMZZyFjD2D22iq9hyCVXVztvgGam', 'awhitehallrr', 'Female', 'DE11D', '2c9d17f8-1951-493e-9239-619604c6a932');
-INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1975/10/25', 'TestMessageUser@yellowbook.com', '1DKdtBnttpWzgHWo223WzEG43P53YtTUDe', 'TestMessageUser', 'Male', 'UKG36', '2c9d17f8-1951-493e-9239-619604c6a932');
+INSERT IGNORE INTO users (active, date_of_birth, email, password, username, sex, address_id, result_id) VALUES (1, '1975/10/25', 'TestMessageUser@yellowbook.com', '1DKdtBnttpWzgHWo223WzEG43P53YtTUDe', 'TestMessageUser', 'Male', 'CZ032', '2c9d17f8-1951-493e-9239-619604c6a932');
 
 
 /*             */
