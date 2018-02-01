@@ -48,14 +48,14 @@ public class MessagesController {
 
         model.addAttribute("contacts", contacts);
 
-        Map<String, Message> lastMessages = new HashMap<>();
+        Map<Integer, Message> lastMessages = new HashMap<>();
         for (User u : contacts) {
             final List<Message> lastUserMessages = messageService.findLastForUsers(user, u);
             if (lastUserMessages.size() < 1) {
                 continue;
             }
 
-            lastMessages.put(u.getUsername(), lastUserMessages.get(0));
+            lastMessages.put(u.getId(), lastUserMessages.get(0));
         }
 
         model.addAttribute("lastMessages", lastMessages);

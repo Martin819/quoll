@@ -38,15 +38,15 @@
                 <p><b th:text="${contact.username}"></b></p>
                 <small class="text-muted">
                     <script th:inline="javascript">
-                        var message = [[${lastMessages[__${contact.username}__]}]];
+                        var message = [[${lastMessages[__${contact.id}__]}]];
                         var dateTime = message.dateTime;
                         document.write(moment(dateTime).calendar());
                     </script>
                 </small>
-                <small th:if="${lastMessages[__${contact.username}__].sender.id == user.id}">You: </small>
+                <small th:if="${lastMessages[__${contact.id}__].sender.id == user.id}">You: </small>
                 <small>
                     <script th:inline="javascript">
-                        var message = [[${lastMessages[__${contact.username}__]}]];
+                        var message = [[${lastMessages[__${contact.id}__]}]];
                         document.write(message.content.substr(0, 50))
                         if (message.content.length > 50) {
                             document.write('...');
