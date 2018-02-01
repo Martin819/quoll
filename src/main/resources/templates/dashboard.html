@@ -18,20 +18,20 @@
 
     <div class="jumbotron">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <h1>Matches</h1>
                 <p class="lead">
                     Find your soulmates just with a few clicks.
                 </p>
             </div>
-            <div class="col-md-6">
-                <form th:action="@{/user/dashboard}" method="get">
-                    <div class="form-group m-auto" data-toggle="buttons">
+            <div class="col-lg-6">
+                <form id="search-form" th:action="@{/user/dashboard}" method="get">
+                    <div class="form-group" data-toggle="buttons">
                         <label class="btn btn-outline-dark">
                             <input type="checkbox" name="onlyMyCountry" id="onlyMyCountry" />Search only in my contry
                         </label>
                     </div>
-                    <div class="form-group m-auto" data-toggle="buttons">
+                    <div class="form-group" data-toggle="buttons">
                         <label class="btn btn-outline-dark">
                             <input type="checkbox" name="men" id="men"/>Search for men
                         </label>
@@ -39,17 +39,17 @@
                             <input type="checkbox" name="women" id="women"/>Search for women
                         </label>
                     </div>
-                    <div class="form-group m-auto">
-                        <label>
+                    <div class="form-group row">
+                        <label class="col-sm-6">
                             Min age: <input type="text" name="ageMin" id="ageMin"/>
                         </label>
-                        <label>
+                        <label class="col-sm-6">
                             Max age: <input type="text" name="ageMax" id="ageMax"/>
                         </label>
                     </div>
                     <div class="form-group m-auto">
                         Match accuracy: (<span id="sliderValue"></span>) <input type="range" min="1" max="14" class="slider" id="sliderRange" name="sliderValue">
-                        <small id="slider-help" class="form-text text-dark">Higher value will return more result, but match won't be perfect. Lower value will return better matches, but there might be less (or none) of them.</small>
+                        <small id="slider-help" class="form-text">Higher value will return more result, but match won't be perfect. Lower value will return better matches, but there might be less (or none) of them.</small>
                         <script type="text/javascript">
                             var slider = document.getElementById("sliderRange");
                             var output = document.getElementById("sliderValue");
@@ -59,7 +59,7 @@
                             }
                         </script>
                     </div>
-                    <input class="btn btn-success btn-block" type="submit" value="Search" style="margin-top: 1rem"/>
+                    <input id="btn-submit-search" class="btn btn-primary btn-block" type="submit" value="Search"/>
                 </form>
             </div>
         </div>
