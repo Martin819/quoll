@@ -46,7 +46,7 @@ public class SocionicsTestController {
     @PostMapping("/user/test")
     public String showProfile(SocionicsTestForm form, @AuthenticationPrincipal UserDetails activeUser) {
         final SocionicsResult result = form.makeResult();
-        socionicsResultService.saveSocionicsResult(result);
+        socionicsResultService.save(result);
 
         final User user = userService.findUserByUsername(activeUser.getUsername());
         user.setRepeatPassword(user.getPassword());

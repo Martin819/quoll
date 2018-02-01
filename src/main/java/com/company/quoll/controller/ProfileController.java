@@ -61,7 +61,7 @@ public class ProfileController {
         u.setEmail(user.getEmail());
         u.setPassword(user.getPassword());
         u.setRepeatPassword(user.getRepeatPassword());
-        userService.saveUser(u);
+        userService.save(u);
 
         return "redirect:/user/profile";
     }
