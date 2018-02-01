@@ -14,7 +14,7 @@ How to deploy:
     CREATE DATABASE IF NOT EXISTS quoll DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
     ```
 
-2. Build, compile and deploy the project with IDE _(First deploy may take up to 5 minutes to finish, due to running sql query with mock data)_
+2. Build, compile and deploy the project with your IDE using maven _(First deploy may take up to 5 minutes to finish, due to running sql query with mock data)_
 
 
 
