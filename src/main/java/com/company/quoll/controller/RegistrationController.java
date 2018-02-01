@@ -78,22 +78,26 @@ public class RegistrationController {
     // REST
 
     @GetMapping("/registration/nuts0")
-    public @ResponseBody List<Address> getNuts0() {
+    public @ResponseBody
+    List<Address> getNuts0() {
         return addressService.findAddresses(null, 0);
     }
 
     @GetMapping("/registration/nuts1")
-    public @ResponseBody List<Address> getNuts1(@RequestParam String nuts0) {
+    public @ResponseBody
+    List<Address> getNuts1(@RequestParam String nuts0) {
         return addressService.findAddresses(nuts0, 1);
     }
 
     @GetMapping("/registration/nuts2")
-    public @ResponseBody List<Address> getNuts2(@RequestParam String nuts1) {
+    public @ResponseBody
+    List<Address> getNuts2(@RequestParam String nuts1) {
         return addressService.findAddresses(nuts1, 2);
     }
 
     @GetMapping("/registration/nuts3")
-    public @ResponseBody List<Address> getNuts3(@RequestParam String nuts2) {
+    public @ResponseBody
+    List<Address> getNuts3(@RequestParam String nuts2) {
         return addressService.findAddresses(nuts2, 3);
     }
 

@@ -10,8 +10,11 @@ import java.util.List;
 public interface MessageService {
 
     List<Message> findMessageByRecipientAndSender(User recipient, User sender);
+
     List<Message> findByRecipientOrSender(User user);
+
     List<Message> findLastForUsers(User u1, User u2);
+
     void saveMessage(Message message);
 
 }

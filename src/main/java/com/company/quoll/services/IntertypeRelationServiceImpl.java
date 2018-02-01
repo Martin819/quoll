@@ -12,12 +12,12 @@ public class IntertypeRelationServiceImpl implements IntertypeRelationService {
     IntertypeRelationRepository intertypeRelationRepository;
 
     @Override
-    public IntertypeRelation findIntertypeRelationById(int id){
-        return  intertypeRelationRepository.findById(id);
+    public IntertypeRelation findIntertypeRelationById(int id) {
+        return intertypeRelationRepository.findById(id);
     }
 
     @Override
-    public IntertypeRelation findIntertypeRelationByFitnessOrder(int order){
+    public IntertypeRelation findIntertypeRelationByFitnessOrder(int order) {
         return intertypeRelationRepository.findByFitnessOrder(order);
     }
 

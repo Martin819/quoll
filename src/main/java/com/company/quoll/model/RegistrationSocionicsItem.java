@@ -5,7 +5,8 @@ public class RegistrationSocionicsItem {
     private String left;
     private String right;
 
-    public RegistrationSocionicsItem() {}
+    public RegistrationSocionicsItem() {
+    }
 
     public RegistrationSocionicsItem(String left, String right) {
         this.left = left;

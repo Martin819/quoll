@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MessagesController {
@@ -27,7 +30,7 @@ public class MessagesController {
     UserService userService;
 
     @GetMapping("/messages")
-    public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
+    public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         User user = userService.findUserByUsername(currentUser.getUsername());
         model.addAttribute("user", user);
 
@@ -64,7 +67,7 @@ public class MessagesController {
     }
 
     @RequestMapping("/messages/{contact_id}")
-    public String getConversation(Model model, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("contact_id") int contact_id){
+    public String getConversation(Model model, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("contact_id") int contact_id) {
         User user = userService.findUserByUsername(currentUser.getUsername());
         model.addAttribute("user", user);
 

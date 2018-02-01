@@ -1,9 +1,11 @@
 package com.company.quoll.services;
 
-import com.company.quoll.model.*;
+import com.company.quoll.model.IntertypeRelation;
+import com.company.quoll.model.Role;
+import com.company.quoll.model.SocionicsRelationsMatch;
+import com.company.quoll.model.User;
 import com.company.quoll.repository.RoleRepository;
 import com.company.quoll.repository.UserRepository;
-import com.company.quoll.utils.SocionicsTypes;
 import com.company.quoll.utils.ZodiacSigns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -83,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> removeYoungMatchedUsers(List<User> matchedUsers, Integer ageMin) {
-        for (Iterator<User> it = matchedUsers.iterator(); it.hasNext();) {
+        for (Iterator<User> it = matchedUsers.iterator(); it.hasNext(); ) {
             User u = it.next();
             int age = ZodiacSigns.getAge(u.getDateOfBirth());
             if (age < ageMin) {
@@ -95,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> removeOldMatchedUsers(List<User> matchedUsers, Integer ageMax) {
-        for (Iterator<User> it = matchedUsers.iterator(); it.hasNext();) {
+        for (Iterator<User> it = matchedUsers.iterator(); it.hasNext(); ) {
             User u = it.next();
             int age = ZodiacSigns.getAge(u.getDateOfBirth());
             if (age > ageMax) {
@@ -114,7 +116,7 @@ public class UserServiceImpl implements UserService {
         List<SocionicsRelationsMatch> relationsMatches = socionicsRelationsMatchService
                 .findSocionicsRelationsMatchByTypeAAndIntertypeRelation(userType, intertypeRelation);
         List<User> matchedUsers = new ArrayList<>();
-        for (SocionicsRelationsMatch srm:relationsMatches) {
+        for (SocionicsRelationsMatch srm : relationsMatches) {
             String matchType = srm.getTypeB();
             List<User> typeUsers = this.findUserBySocionicsType(matchType);
             matchedUsers.addAll(typeUsers);

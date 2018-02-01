@@ -32,7 +32,7 @@ public class SocionicsTestController {
     RegistrationSocionicsProvider socionicsProvider;
 
     @GetMapping("/user/test")
-    public String test(Model model){
+    public String test(Model model) {
         final List<RegistrationSocionicsSection> sections = socionicsProvider.getSections();
         model.addAttribute("sections", sections);
 

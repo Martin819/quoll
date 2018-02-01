@@ -10,7 +10,9 @@ import java.util.UUID;
 public interface SocionicsResultService {
 
     SocionicsResult findSocionicsResult(UUID id);
+
     List<SocionicsResult> findSocionicsResult(float E, float S, float T, float p);
+
     void save(SocionicsResult socionicsResult);
 
 }

@@ -1,7 +1,5 @@
 package com.company.quoll.utils;
 
-import com.company.quoll.model.User;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,9 +87,9 @@ public class ZodiacSigns {
         int todayDayOfMonth = today.get(Calendar.DAY_OF_MONTH);
         int birthDateDayOfMonth = birthDate.get(Calendar.DAY_OF_MONTH);
         int age = todayYear - birthDateYear;
-        if ((birthDateDayOfYear - todayDayOfYear > 3) || (birthDateMonth > todayMonth)){
+        if ((birthDateDayOfYear - todayDayOfYear > 3) || (birthDateMonth > todayMonth)) {
             age--;
-        } else if ((birthDateMonth == todayMonth) && (birthDateDayOfMonth > todayDayOfMonth)){
+        } else if ((birthDateMonth == todayMonth) && (birthDateDayOfMonth > todayDayOfMonth)) {
             age--;
         }
         return age;
