@@ -40,23 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByAddress(Address address) {
-        return userRepository.findByAddress(address);
-    }
-
-    @Override
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    @Override
-    public List<User> findUserByZodiacSign(Integer zodiacSign) {
-        return userRepository.findByZodiacSign(zodiacSign);
-    }
-
-    @Override
-    public List<User> findUserByDateOfBirth(Date dateOfBirth) {
-        return userRepository.findByDateOfBirth(dateOfBirth);
     }
 
     @Override
@@ -82,11 +67,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         userRepository.save(user);
-    }
-
-    @Override
-    public void addSocionicsTypeToUser(User user) {
-        user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
     }
 
     @Override
