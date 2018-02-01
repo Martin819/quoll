@@ -34,6 +34,6 @@ public class DeniedHandler implements AccessDeniedHandler {
         }
 
         httpServletResponse.sendRedirect("/error/403");
-
     }
+
 }

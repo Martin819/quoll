@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,15 +79,14 @@ public class MessagesController {
         return "conversation";
     }
 
+    @Transactional
     @PostMapping("/messages/{contact_id}")
-    public String submitForm(Message newMessage, @AuthenticationPrincipal UserDetails currentUser, @PathVariable("contact_id") int contact_id) {
-        User user = userService.findUserByUsername(currentUser.getUsername());
-        User contact = userService.findUserById(contact_id);
+    public String submitForm(@PathVariable("contact_id") int contactId,
+                             Message newMessage, @AuthenticationPrincipal UserDetails currentUser) {
+        final User user = userService.findUserByUsername(currentUser.getUsername());
+        final User contact = userService.findUserById(contactId);
         newMessage.setSender(user);
         newMessage.setRecipient(contact);
-        System.out.println("Sender: " + newMessage.getSender().getUsername());
-        System.out.println("Recipient: " + newMessage.getRecipient().getUsername());
-        System.out.println("Content: " + newMessage.getContent());
         newMessage.setMessageRead(true);
         messageService.saveMessage(newMessage);
         return "redirect:/messages/{contact_id}";

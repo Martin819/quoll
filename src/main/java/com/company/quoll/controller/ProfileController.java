@@ -1,6 +1,5 @@
 package com.company.quoll.controller;
 
-import com.company.quoll.model.Address;
 import com.company.quoll.model.SocionicsRelationsMatch;
 import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
@@ -12,17 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -44,6 +41,7 @@ public class ProfileController {
         return "myprofile";
     }
 
+    @Transactional
     @PostMapping("/user/profile")
     public String updatePersonalDetails(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
@@ -68,32 +66,8 @@ public class ProfileController {
         return "redirect:/user/profile";
     }
 
-    @GetMapping("/user/profile/zodiac")
-    public @ResponseBody String getZodiacSign(@AuthenticationPrincipal UserDetails currentUser) {
-        final int zodiacIndex = userService.findUserByUsername(currentUser.getUsername()).getZodiacSign() - 1;
-        return ZodiacSigns.getZodiacSigns().get(zodiacIndex);
-    }
-
-    @GetMapping("/user/profile/socionicsResult")
-    public @ResponseBody SocionicsResult getSocionicsResult(@AuthenticationPrincipal UserDetails currentUser) {
-        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsResult();
-    }
-
-    @GetMapping("/user/profile/socionicsType")
-    public @ResponseBody String getSocionicsType(@AuthenticationPrincipal UserDetails currentUser) {
-        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsType();
-    }
-
-    @GetMapping("/user/profile/socionicsMessage")
-    public @ResponseBody String getSocionicsMessage(@AuthenticationPrincipal UserDetails currentUser) {
-        final User user = userService.findUserByUsername(currentUser.getUsername());
-        return getSocionicsValuesExplanation(user, true);
-    }
-
     @GetMapping("/user/profile/{userId}")
     public String showOtherProfile(@PathVariable int userId, Model model, @AuthenticationPrincipal UserDetails currentUserDetails) {
-        System.out.println("user id: " + userId);
-
         final User user = userService.findUserById(userId);
         model.addAttribute("user", user);
 
@@ -134,6 +108,32 @@ public class ProfileController {
 
         return "profile";
     }
+
+    // REST
+
+    @GetMapping("/user/profile/zodiac")
+    public @ResponseBody String getZodiacSign(@AuthenticationPrincipal UserDetails currentUser) {
+        final int zodiacIndex = userService.findUserByUsername(currentUser.getUsername()).getZodiacSign() - 1;
+        return ZodiacSigns.getZodiacSigns().get(zodiacIndex);
+    }
+
+    @GetMapping("/user/profile/socionicsResult")
+    public @ResponseBody SocionicsResult getSocionicsResult(@AuthenticationPrincipal UserDetails currentUser) {
+        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsResult();
+    }
+
+    @GetMapping("/user/profile/socionicsType")
+    public @ResponseBody String getSocionicsType(@AuthenticationPrincipal UserDetails currentUser) {
+        return userService.findUserByUsername(currentUser.getUsername()).getSocionicsType();
+    }
+
+    @GetMapping("/user/profile/socionicsMessage")
+    public @ResponseBody String getSocionicsMessage(@AuthenticationPrincipal UserDetails currentUser) {
+        final User user = userService.findUserByUsername(currentUser.getUsername());
+        return getSocionicsValuesExplanation(user, true);
+    }
+
+    //
 
     private String getSocionicsValuesExplanation(User user, boolean isCurrent) {
         final SocionicsResult usersSocResult = user.getSocionicsResult();
