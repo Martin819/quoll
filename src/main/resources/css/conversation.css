@@ -1,5 +1,13 @@
+.jumbotron > a {
+    color: white;
+}
+
+.jumbotron > a:hover {
+    color: #eeeeee;
+}
+
 .received {
-    background: #eeeeee;
+    background-color: #eeeeee;
 }
 
 .sent {
