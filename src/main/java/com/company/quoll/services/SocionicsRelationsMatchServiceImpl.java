@@ -7,6 +7,8 @@ import com.company.quoll.repository.SocionicsRelationsMatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("socionicsRelationsMatchService")
 public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMatchService {
 
@@ -14,15 +16,19 @@ public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMat
     SocionicsRelationsMatchRepository socionicsRelationsMatchRepository;
 
     @Override
-    public SocionicsRelationsMatch findSocionicsRelationsMatchById(int id){
+    public SocionicsRelationsMatch findSocionicsRelationsMatchById(int id) {
         return socionicsRelationsMatchRepository.findById(id);
     }
 
     @Override
-    public SocionicsRelationsMatch findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
-                                                                                             IntertypeRelation
-                                                                                                    intertypeRelation){
-        return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA,intertypeRelation);
+    public List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(
+            String typeA, IntertypeRelation intertypeRelation) {
+        return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA, intertypeRelation);
+    }
+
+    @Override
+    public SocionicsRelationsMatch findSocionicsRelationsMatch(String typeA, String typeB) {
+        return socionicsRelationsMatchRepository.findFirstByTypeAEqualsAndTypeBEquals(typeA, typeB);
     }
 
 }

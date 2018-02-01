@@ -2,10 +2,31 @@
     margin-bottom: 1rem;
 }
 
+#btn-submit-search {
+    margin-top: 2rem;
+}
+
 .featurette {
     display: flex;
     align-items: center;
     padding: 2rem 0;
+    cursor: pointer;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+.featurette:hover {
+    background-color: #c5e3d2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.1);
+    transition: all 200ms ease-in;
+    transform: scale(1.1);
 }
 
 .featurette-image {
@@ -20,4 +41,49 @@
 
 h2 {
     margin-top: 3rem;
+}
+
+.lead {
+    margin: 0;
+    padding: 0;
+}
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #eeeeee; /* Grey background */
+    outline: none; /* Remove outline */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #004445; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #004445; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 62em) {
+    #search-form {
+        margin-top: 2rem;
+    }
 }

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>quoll: registration</title>
+    <title th:text="'quoll: ' + ${user.username} + '\'s profile'"></title>
     <div th:replace="fragments/header :: header-css"></div>
-    <!--<link th:href="@{/css/registration.css}" href="/css/registration.css" rel="stylesheet" type="text/css"/>-->
+    <script th:src="@{/webjars/chartjs/2.7.0/Chart.js}" src="/webjars/chartjs/2.7.0/Chart.js"></script>
+    <script th:src="@{/webjars/momentjs/2.20.1/moment.js}" src="/webjars/momentjs/2.20.1/moment.js"></script>
+    <link th:href="@{/css/profile.css}" href="/css/profile.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
@@ -11,10 +13,133 @@
 <div layout:fragment="content" th:remove="tag"></div>
 
 <main role="main" class="container">
+
     <div class="jumbotron">
-        <h1>Registration</h1>
-        <p class="lead">In order to join quoll, please tell us a few basic things about yourself.</p>
+        <div class="row">
+            <div class="col-md-8">
+                <h1 th:text="${user.username}"></h1>
+                <p class="lead">
+                    <script th:inline="javascript">
+                        document.write('Sex: ' + [[${user.sex}]] + ', ');
+                        document.write('Age: ' + moment().diff([[${user.dateOfBirth}]], 'years'));
+                    </script>
+                </p>
+                <a class="btn btn-lg btn-primary" th:href="'/messages/' + ${user.id}" role="button">Send a message</a>
+            </div>
+            <div class="col-md-4" th:if="${user.sex == 'Male'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
+                     alt="Generic placeholder image"/>
+            </div>
+            <div class="col-md-4" th:if="${user.sex == 'Female'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_female.png"
+                     alt="Generic placeholder image"/>
+            </div>
+        </div>
     </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="featurette">
+        <h2>Zodiac</h2>
+        <p th:text="${user.username} + '\'s' + ' sign is ' + ${zodiac} + '. ' + ${zodiacMessage}"></p>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="featurette">
+        <h2>Socionics</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p th:text="${user.username} + '\'s socionics type is ' + ${user.socionicsType} + '. '
+                    + ${userSocionicsMessage}"></p>
+                <p class="chart-container">
+                    <canvas id="user-chart"></canvas>
+                    <script th:inline="javascript">
+                        var ctx = document.getElementById("user-chart");
+                        var ev = [[${user.getSocionicsResult().getExtrovertValue()}]];
+                        var sv = [[${user.getSocionicsResult().getSensingValue()}]];
+                        var tv = [[${user.getSocionicsResult().getThinkingValue()}]];
+                        var pv = [[${user.getSocionicsResult().getPerceivingValue()}]];
+                        new Chart(ctx, {
+                            type: 'radar',
+                            data: {
+                                labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
+                                    "Introvert", "Intuitive", "Feeling", "Judging"],
+                                datasets: [{
+                                    data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scale: {
+                                    ticks: {
+                                        min: 0,
+                                        max: 1
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p th:text="'Your socionics type is ' + ${currentUser.socionicsType} + '. '
+                    + ${currentUserSocionicsMessage}"></p>
+                <p class="chart-container">
+                    <canvas id="current-user-chart"></canvas>
+                    <script th:inline="javascript">
+                        var ctx = document.getElementById("current-user-chart");
+                        var ev = [[${currentUser.getSocionicsResult().getExtrovertValue()}]];
+                        var sv = [[${currentUser.getSocionicsResult().getSensingValue()}]];
+                        var tv = [[${currentUser.getSocionicsResult().getThinkingValue()}]];
+                        var pv = [[${currentUser.getSocionicsResult().getPerceivingValue()}]];
+                        new Chart(ctx, {
+                            type: 'radar',
+                            data: {
+                                labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
+                                    "Introvert", "Intuitive", "Feeling", "Judging"],
+                                datasets: [{
+                                    data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scale: {
+                                    ticks: {
+                                        min: 0,
+                                        max: 1
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </p>
+            </div>
+        </div>
+        <p class="lead">Between you two there is a <b th:text="${intertypeRelation.name}"></b></p>
+        <p th:text="${intertypeRelationDesc}"></p>
+    </div>
+
+    <hr class="featurette-divider"/>
+
 </main>
 
 <footer class="footer">

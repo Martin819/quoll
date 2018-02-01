@@ -1,18 +1,16 @@
 package com.company.quoll.controller;
 
-import com.company.quoll.model.SocionicsResult;
 import com.company.quoll.model.User;
-import com.company.quoll.repository.UserRepository;
 import com.company.quoll.services.SocionicsResultService;
 import com.company.quoll.services.UserService;
-import com.company.quoll.utils.*;
+import com.company.quoll.utils.SocionicsTypes;
+import com.company.quoll.utils.ZodiacSigns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @Controller
@@ -39,15 +37,14 @@ public class HomeController {
     @GetMapping("/mock")
     public String mock() {
         List<User> users = userService.findAll();
-        for (User user:users) {
+        for (User user : users) {
+            user.setRepeatPassword(user.getPassword());
+            user.setAddressCode(user.getAddress().getId());
             user.setSocionicsType(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
             user.setZodiacSign(ZodiacSigns.getZodiacSign(user.getDateOfBirth()));
-            System.out.println(user.getSocionicsResult().getId().toString());
-            System.out.println(SocionicsTypes.getTypeCode(user.getSocionicsResult()));
-            System.out.println(user.getSocionicsType());
             userService.update(user);
         }
-        return "mock";
+        return "redirect:/";
     }
 
     @GetMapping("/admin")

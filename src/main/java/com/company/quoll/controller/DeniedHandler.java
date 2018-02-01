@@ -8,12 +8,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// handle 403 page
 @Component
 public class DeniedHandler implements AccessDeniedHandler {
 
@@ -22,7 +20,7 @@ public class DeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest,
                        HttpServletResponse httpServletResponse,
-                       AccessDeniedException e) throws IOException, ServletException {
+                       AccessDeniedException e) throws IOException {
 
         Authentication auth
                 = SecurityContextHolder.getContext().getAuthentication();
@@ -34,6 +32,6 @@ public class DeniedHandler implements AccessDeniedHandler {
         }
 
         httpServletResponse.sendRedirect("/error/403");
-
     }
+
 }

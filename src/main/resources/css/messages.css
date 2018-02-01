@@ -1,0 +1,32 @@
+.contact-div {
+    border-left: 5px solid #004445;
+    margin: 1rem 0;
+    cursor: pointer;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+.contact-div:hover {
+    background-color: #c5e3d2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.1);
+    transition: all 200ms ease-in;
+    transform: scale(1.1);
+}
+
+.featurette-image {
+    width: 5rem;
+    height: 5rem;
+    min-width: 5rem;
+    display: block;
+}
+
+.p-2 > p {
+    margin: 0;
+}

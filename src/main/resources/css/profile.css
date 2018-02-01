@@ -1,0 +1,29 @@
+.featurette-image {
+    width: 14rem;
+    height: 14rem;
+    display: block;
+}
+
+.chart-container {
+    margin: 2rem 0;
+    min-width: 100%;
+    height: auto;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 48em) {
+    .featurette-image {
+        margin-top: 2rem;
+        min-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 62em) {
+    .featurette-image {
+        min-width: 100%;
+        height: auto;
+    }
+}

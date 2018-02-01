@@ -1,0 +1,39 @@
+.jumbotron > a {
+    color: white;
+}
+
+.jumbotron > a:hover {
+    color: #eeeeee;
+}
+
+.received {
+    background-color: #eeeeee;
+}
+
+.sent {
+    background-color: #c5e3d2;
+}
+
+.message-div {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    max-width: 40rem;
+    border-radius: 0.5rem;
+}
+
+.div-margin-top {
+    margin-top: 2rem;
+}
+
+form > .btn {
+    margin-top: 2rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 44rem) {
+    .message-div {
+        max-width: 90%;
+    }
+}

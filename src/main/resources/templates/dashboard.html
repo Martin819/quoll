@@ -1,55 +1,145 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>quoll: dashboard</title>
     <div th:replace="fragments/header :: header-css"></div>
     <link th:href="@{/css/dashboard.css}" href="/css/dashboard.css" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/webjars/chartjs/2.7.0/Chart.js}" src="/webjars/chartjs/2.7.0/Chart.js"></script>
+    <script th:src="@{/webjars/momentjs/2.20.1/moment.js}" src="/webjars/momentjs/2.20.1/moment.js"></script>
 </head>
+
 <body>
+
 <div th:replace="fragments/header :: header"></div>
 
 <main role="main" class="container">
+
     <div class="jumbotron">
-        <h1>Dashboard</h1>
-        <p class="lead">This is your main page, where you can find everything important.</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Matches</h1>
+                <p class="lead">
+                    Find your soulmates just with a few clicks.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <form id="search-form" th:action="@{/user/dashboard}" method="get">
+                    <div class="form-group" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="onlyMyCountry" id="onlyMyCountry" />Search only in my contry
+                        </label>
+                    </div>
+                    <div class="form-group" data-toggle="buttons">
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="men" id="men"/>Search for men
+                        </label>
+                        <label class="btn btn-outline-dark">
+                            <input type="checkbox" name="women" id="women"/>Search for women
+                        </label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6">
+                            Min age: <input type="text" name="ageMin" id="ageMin"/>
+                        </label>
+                        <label class="col-sm-6">
+                            Max age: <input type="text" name="ageMax" id="ageMax"/>
+                        </label>
+                    </div>
+                    <div class="form-group m-auto">
+                        Match accuracy: (<span id="sliderValue"></span>) <input type="range" min="1" max="14" class="slider" id="sliderRange" name="sliderValue">
+                        <small id="slider-help" class="form-text">Higher value will return more result, but match won't be perfect. Lower value will return better matches, but there might be less (or none) of them.</small>
+                        <script type="text/javascript">
+                            var slider = document.getElementById("sliderRange");
+                            var output = document.getElementById("sliderValue");
+                            output.innerHTML = slider.value;
+                            slider.oninput = function() {
+                                output.innerHTML = this.value;
+                            }
+                        </script>
+                    </div>
+                    <input id="btn-submit-search" class="btn btn-primary btn-block" type="submit" value="Search"/>
+                </form>
+            </div>
+        </div>
     </div>
+
     <div class="alert alert-warning" role="alert" th:if="${user.socionicsResult==null}">
         You have not taken your socionics test yet. <a href="/user/test" class="alert-link">Click here</a> to take the test.
     </div>
 
     <h2 class="text-muted">This is what quoll found for you...</h2>
-
-    <div th:each="i, iter : ${#numbers.sequence(0, 10, 1)}">
+    <th:block th:each="matchedUser : ${matchedUsers}">
         <hr class="featurette-divider"/>
 
-        <div class="row featurette" th:if="${iter.odd}">
-            <div class="col-md-7 order-md-2">
-                <h2>lena_bannana_67</h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-                    commodo.</p>
+        <div class="row featurette" th:onclick="'location.href=\'/user/profile/' + ${matchedUser.id} + '\''">
+            <div class="col-md-3">
+                <p class="chart-container" style="position: relative; height:20vh; width:20vw">
+                    <canvas th:id="@{'chart' + ${matchedUser.id}}"></canvas>
+                    <script th:inline="javascript">
+                        var ctx = document.getElementById("chart" + [[${matchedUser.getId()}]]);
+                        var ev = [[${matchedUser.getSocionicsResult().getExtrovertValue()}]];
+                        var sv = [[${matchedUser.getSocionicsResult().getSensingValue()}]];
+                        var tv = [[${matchedUser.getSocionicsResult().getThinkingValue()}]];
+                        var pv = [[${matchedUser.getSocionicsResult().getPerceivingValue()}]];
+                        new Chart(ctx, {
+                            type: 'radar',
+                            data: {
+                                labels: ["Extrovert", "Sensing", "Thinking", "Perceiving",
+                                    "Introvert", "Intuitive", "Feeling", "Judging"],
+                                datasets: [{
+                                    data: [ev, sv, tv, pv, 1-ev, 1-sv, 1-tv, 1-pv],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255,99,132,1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scale: {
+                                    ticks: {
+                                        min: 0,
+                                        max: 1
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </p>
             </div>
-            <div class="col-md-5 order-md-1">
+
+            <div class="col-md-3" th:if="${matchedUser.sex == 'Male'}">
                 <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_male.png"
                      alt="Generic placeholder image"/>
             </div>
-        </div>
-
-        <div class="row featurette" th:if="${iter.even}">
-            <div class="col-md-7">
-                <h2 >jennyGirl123</h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-                    commodo.</p>
-            </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-fluid rounded-circle mr-auto" src="/img/avatar_female.png"
+            <div class="col-md-3" th:if="${matchedUser.sex == 'Female'}">
+                <img class="featurette-image img-fluid rounded-circle ml-auto" src="/img/avatar_female.png"
                      alt="Generic placeholder image"/>
             </div>
-        </div>
-    </div>
 
+            <div class="col-md-6">
+                <h3 th:text="${matchedUser.username}"></h3>
+                <p class="lead" style="margin: 0; padding: 0">
+                    <script th:inline="javascript">
+                        var dob = [[${matchedUser.dateOfBirth}]];
+                        document.write('Age: ' + moment().diff(dob, 'years'));
+                    </script>
+                </p>
+                <p class="lead" style="margin: 0; padding: 0"
+                   th:text="'Zodiac: ' + ${zodiacSigns[__${matchedUser.zodiacSign - 1}__]}"></p>
+                <p class="lead" style="margin: 0; padding: 0"
+                   th:text="'Location: ' + ${matchedUser.address.name} + ', ' + ${matchedUser.address.countryCode}"></p>
+            </div>
+        </div>
+
+    </th:block>
     <hr class="featurette-divider"/>
 </main>
 

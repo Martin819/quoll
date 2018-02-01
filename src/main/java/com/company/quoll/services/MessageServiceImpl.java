@@ -6,7 +6,6 @@ import com.company.quoll.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service("messageService")
@@ -16,63 +15,23 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
-    public List<Message> findMessageByRecipient(User recipient) {
-        return messageRepository.findByRecipient(recipient);
-    }
-
-    @Override
-    public List<Message> findMessageBySender(User sender) {
-        return messageRepository.findBySender(sender);
-    }
-
-    @Override
-    public List<Message> findMessageByRecipientOrderByMessageReadAsc(User recipient) {
-        return messageRepository.findByRecipientOrderByMessageReadAsc(recipient);
-    }
-
-    @Override
     public List<Message> findMessageByRecipientAndSender(User recipient, User sender) {
         return messageRepository.findByRecipientAndSender(recipient, sender);
     }
 
     @Override
-    public List<Message> findMessageByRecipientAndSenderOrderByDateTimeDesc(User recipient, User sender) {
-        return messageRepository.findByRecipientAndSenderOrderByDateTimeDesc(recipient, sender);
+    public List<Message> findByRecipientOrSender(User user) {
+        return messageRepository.findByRecipientOrSender(user);
     }
 
     @Override
-    public List<Message> findMessageByRecipientAndDateTimeAfter(User recipient, Date dateTime) {
-        return messageRepository.findByRecipientAndDateTimeAfter(recipient, dateTime);
-    }
-
-    @Override
-    public List<Message> findMessageByRecipientAndSenderAndDateTimeAfter(User recipient, User sender, Date dateTime) {
-        return messageRepository.findByRecipientAndSenderAndDateTimeAfter(recipient, sender, dateTime);
-    }
-
-    @Override
-    public List<Message> findMessageDistinctByRecipientOrderByMessageReadAsc(User recipient) {
-        return messageRepository.findDistinctByRecipientOrderByMessageReadAsc(recipient);
-    }
-
-    @Override
-    public List<Message> findMessageByRecipientAndMessageRead(User recipient, boolean messageRead) {
-        return messageRepository.findByRecipientAndMessageRead(recipient, messageRead);
-    }
-
-
-    @Override
-    public List<Message> findLastMessages(User recipient) {
-        return messageRepository.findLastForRecipient(recipient);
-    }
-
-    @Override
-    public Message findMessageById(long id) {
-        return messageRepository.findById(id);
+    public List<Message> findLastForUsers(User u1, User u2) {
+        return messageRepository.findLastForUsers(u1, u2);
     }
 
     @Override
     public void saveMessage(Message message) {
         messageRepository.save(message);
     }
+
 }

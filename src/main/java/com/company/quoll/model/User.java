@@ -24,6 +24,10 @@ public class User {
     @NotBlank(message = "*Please fill in your username")
     private String username;
 
+    @Column(name = "sex")
+    @NotBlank(message = "Please select your sex")
+    private String sex;
+
     @Column(name = "email", unique = true)
     @Email(message = "*Please fill in a valid e-mail")
     @NotBlank(message = "*Please fill in your e-mail")
@@ -117,6 +121,14 @@ public class User {
         this.email = email;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public int getActive() {
         return active;
     }
@@ -171,5 +183,14 @@ public class User {
 
     public void setSocionicsResult(SocionicsResult socionicsResult) {
         this.socionicsResult = socionicsResult;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
     }
 }

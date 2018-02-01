@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,7 +32,7 @@ public class SocionicsTestController {
     RegistrationSocionicsProvider socionicsProvider;
 
     @GetMapping("/user/test")
-    public String test(Model model){
+    public String test(Model model) {
         final List<RegistrationSocionicsSection> sections = socionicsProvider.getSections();
         model.addAttribute("sections", sections);
 
@@ -42,11 +42,11 @@ public class SocionicsTestController {
         return "socionicsTest";
     }
 
+    @Transactional
     @PostMapping("/user/test")
     public String showProfile(SocionicsTestForm form, @AuthenticationPrincipal UserDetails activeUser) {
-
         final SocionicsResult result = form.makeResult();
-        socionicsResultService.saveSocionicsResult(result);
+        socionicsResultService.save(result);
 
         final User user = userService.findUserByUsername(activeUser.getUsername());
         user.setRepeatPassword(user.getPassword());
@@ -55,10 +55,7 @@ public class SocionicsTestController {
         user.setSocionicsType(SocionicsTypes.getTypeCode(result));
         userService.update(user);
 
-        // TODO: redirect to profile to show the results (profile view not ready yet, therefore redirecting home for now)
-
-        return "redirect:/";
+        return "redirect:/user/profile";
     }
-
 
 }

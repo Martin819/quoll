@@ -55,4 +55,14 @@ public class SocionicsRelationsMatch {
     public void setIntertypeRelation(IntertypeRelation intertypeRelation) {
         this.intertypeRelation = intertypeRelation;
     }
+
+    @Override
+    public String toString() {
+        return "SocionicsRelationsMatch{" +
+                "id=" + id +
+                ", typeA='" + typeA + '\'' +
+                ", typeB='" + typeB + '\'' +
+                ", intertypeRelation=" + intertypeRelation +
+                '}';
+    }
 }
