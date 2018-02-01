@@ -47,6 +47,12 @@ public class RegistrationController {
             return "registration";
         }
 
+        if (!isEmailUsable(user.getEmail())) {
+            bindingResult.rejectValue("email", "error.email",
+                    "Email already existst.");
+            return "registration";
+        }
+
         if (!user.getPassword().equals(user.getRepeatPassword())) {
             bindingResult.rejectValue("password", "error.user",
                     "Passwords do not match.");
@@ -64,13 +70,9 @@ public class RegistrationController {
             return "registration";
         }
 
-        userService.saveUser(user);
+        userService.save(user);
 
         return "redirect:/login";
-    }
-
-    private boolean isUsernameUsable(String username) {
-        return userService.findUserByUsername(username) == null;
     }
 
     // REST
@@ -93,6 +95,16 @@ public class RegistrationController {
     @GetMapping("/registration/nuts3")
     public @ResponseBody List<Address> getNuts3(@RequestParam String nuts2) {
         return addressService.findAddresses(nuts2, 3);
+    }
+
+    //
+
+    private boolean isUsernameUsable(String username) {
+        return userService.findUserByUsername(username) == null;
+    }
+
+    private boolean isEmailUsable(String email) {
+        return userService.findUserByEmail(email) == null;
     }
 
 }
