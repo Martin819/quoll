@@ -1,0 +1,14 @@
+.jumbotron {
+    margin-top: 2rem;
+    padding: 2rem;
+    width: 25rem;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 44rem) {
+    .jumbotron {
+        max-width: 90%;
+    }
+}
