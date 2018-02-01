@@ -31,8 +31,8 @@
             <br>
             <div class="form-group m-auto" data-toggle="buttons">
                 <label class="col-form-label" for="dateOfBirth">Select sex:</label><br>
-                <label class="btn btn-primary active">
-                    <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off" checked> Man
+                <label class="btn btn-primary">
+                    <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off"> Man
                 </label>
                 <label class="btn btn-primary">
                     <input th:field="*{user.sex}" th:value="Female" type="radio" name="sex" id="sex-f" autocomplete="off"> Woman
@@ -43,12 +43,8 @@
                 <label for="country">Country</label>
                 <select class="custom-select form-control" id="country">
                     <option selected="selected" value="" disabled="disabled">Please select country</option>
-                    <!--<th:block th:each="address : ${countries}">-->
-                        <!--<option th:value="${address.id}" th:text="${address.name}"></option>-->
-                    <!--</th:block>-->
                 </select>
-                <!--<div class="mycoolerror small" th:if="${#fields.hasErrors('registrationForm.nuts0')}" th:errors="*{registrationForm.nuts0}">Country error</div>-->
-            </div>
+                 </div>
             <div class="form-group">
                 <label for="state">State</label>
                 <select class="custom-select form-control" id="state" disabled="disabled">
