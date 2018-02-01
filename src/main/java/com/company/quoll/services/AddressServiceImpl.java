@@ -27,34 +27,4 @@ public class AddressServiceImpl implements AddressService {
         }
     }
 
-
-
-
-//
-//    @Override
-//    public Address findAddressById(int id) {
-//        return addressRepository.findById(id);
-//    }
-//
-//    @Override
-//    public List<Address> findAddressByNuts0StartingWith(String nuts0) {
-//        return addressRepository.findByNuts0StartingWith(nuts0);
-//    }
-//
-//    @Override
-//    public List<Address> findAddressByNuts1StartingWith(String nuts1) {
-//        return addressRepository.findByNuts1StartingWith(nuts1);
-//    }
-//
-//    @Override
-//    public List<Address> findAddressByNuts2StartingWith(String nuts2) {
-//        return addressRepository.findByNuts2StartingWith(nuts2);
-//    }
-//
-//    @Override
-//    public Address findAddressByNuts3(String nuts3) {
-//        return addressRepository.findByNuts3(nuts3);
-//    }
-//
-//    ;
 }

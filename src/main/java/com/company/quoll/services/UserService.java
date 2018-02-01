@@ -11,15 +11,14 @@ import java.util.List;
 
 @Service
 public interface UserService {
-    User findUserByEmail(String email);
 
+    User findUserById(int id);
+    User findUserByEmail(String email);
     User findUserByUsername(String username);
 
     List<User> findUserByAddress(Address address);
 
     List<User> findUserByZodiacSign(Integer zodiacSign);
-
-    User findUserById(int id);
 
     List<User> findUserByDateOfBirth(Date dateOfBirth);
 
@@ -27,7 +26,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    void saveUser(User user);
+    void save(User user);
 
     void update(User user);
 

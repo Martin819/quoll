@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
 import java.util.*;
 
 @Service("userService")
@@ -31,7 +27,12 @@ public class UserServiceImpl implements UserService {
     private SocionicsRelationsMatchService socionicsRelationsMatchService;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Override
+    public User findUserById(int id) {
+        return userRepository.findById(id);
+    }
 
     @Override
     public User findUserByEmail(String email) {
@@ -54,11 +55,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(int id) {
-        return userRepository.findById(id);
-    }
-
-    @Override
     public List<User> findUserByDateOfBirth(Date dateOfBirth) {
         return userRepository.findByDateOfBirth(dateOfBirth);
     }
@@ -74,8 +70,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ROLE_USER");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));

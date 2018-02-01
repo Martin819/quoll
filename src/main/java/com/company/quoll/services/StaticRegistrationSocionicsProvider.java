@@ -13,7 +13,7 @@ public class StaticRegistrationSocionicsProvider implements RegistrationSocionic
     private List<RegistrationSocionicsSection> sections;
 
     public StaticRegistrationSocionicsProvider() {
-        sections = new ArrayList<RegistrationSocionicsSection>();
+        sections = new ArrayList<>();
 
         final RegistrationSocionicsSection extInt = new RegistrationSocionicsSection("Extrovert or introvert");
         extInt.addItem(new RegistrationSocionicsItem(

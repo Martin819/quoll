@@ -9,7 +9,8 @@ import java.util.UUID;
 @Service
 public interface SocionicsResultService {
 
-    SocionicsResult findSocionicsResultById(UUID id);
-    List<SocionicsResult> findSocionicsResultByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(float E, float S, float T, float p);
-    void saveSocionicsResult(SocionicsResult socionicsResult);
+    SocionicsResult findSocionicsResult(UUID id);
+    List<SocionicsResult> findSocionicsResult(float E, float S, float T, float p);
+    void save(SocionicsResult socionicsResult);
+
 }

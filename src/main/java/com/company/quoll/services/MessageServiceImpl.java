@@ -89,4 +89,5 @@ public class MessageServiceImpl implements MessageService {
     public List<Message> findLastForUsers(User u1, User u2) {
         return messageRepository.findLastForUsers(u1, u2);
     }
+
 }

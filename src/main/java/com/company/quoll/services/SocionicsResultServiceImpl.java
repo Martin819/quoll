@@ -15,17 +15,18 @@ public class SocionicsResultServiceImpl implements SocionicsResultService {
     private SocionicsResultRepository socionicsResultRepository;
 
     @Override
-    public SocionicsResult findSocionicsResultById(UUID id) {
+    public SocionicsResult findSocionicsResult(UUID id) {
         return socionicsResultRepository.findById(id);
     }
 
     @Override
-    public List<SocionicsResult> findSocionicsResultByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(float E, float S, float T, float p){
+    public List<SocionicsResult> findSocionicsResult(float E, float S, float T, float p){
         return socionicsResultRepository.findByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(E,S,T,p);
     }
 
     @Override
-    public void saveSocionicsResult(SocionicsResult socionicsResult) {
+    public void save(SocionicsResult socionicsResult) {
         socionicsResultRepository.save(socionicsResult);
     }
+
 }

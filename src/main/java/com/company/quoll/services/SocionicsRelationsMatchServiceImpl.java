@@ -21,9 +21,8 @@ public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMat
     }
 
     @Override
-    public List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(String typeA,
-                                                                                                IntertypeRelation
-                                                                                                    intertypeRelation){
+    public List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(
+            String typeA, IntertypeRelation intertypeRelation){
         return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA,intertypeRelation);
     }
 
