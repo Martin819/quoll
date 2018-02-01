@@ -43,7 +43,16 @@
                         document.write(moment(dateTime).calendar());
                     </script>
                 </small>
-                <small th:text="${lastMessages[__${contact.username}__].content}"></small>
+                <small th:if="${lastMessages[__${contact.username}__].sender.id == user.id}">You: </small>
+                <small>
+                    <script th:inline="javascript">
+                        var message = [[${lastMessages[__${contact.username}__]}]];
+                        document.write(message.content.substr(0, 50))
+                        if (message.content.length > 50) {
+                            document.write('...');
+                        }
+                    </script>
+                </small>
             </div>
         </div>
     </th:block>

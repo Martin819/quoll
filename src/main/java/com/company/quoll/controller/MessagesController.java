@@ -29,6 +29,7 @@ public class MessagesController {
     @GetMapping("/messages")
     public String getMessages(Model model, @AuthenticationPrincipal UserDetails currentUser){
         User user = userService.findUserByUsername(currentUser.getUsername());
+        model.addAttribute("user", user);
 
         List<Message> messages = messageService.findByRecipientOrSender(user);
         List<User> contacts = new ArrayList<>();
