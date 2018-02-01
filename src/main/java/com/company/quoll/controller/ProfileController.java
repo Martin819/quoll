@@ -112,23 +112,27 @@ public class ProfileController {
     // REST
 
     @GetMapping("/user/profile/zodiac")
-    public @ResponseBody String getZodiacSign(@AuthenticationPrincipal UserDetails currentUser) {
+    public @ResponseBody
+    String getZodiacSign(@AuthenticationPrincipal UserDetails currentUser) {
         final int zodiacIndex = userService.findUserByUsername(currentUser.getUsername()).getZodiacSign() - 1;
         return ZodiacSigns.getZodiacSigns().get(zodiacIndex);
     }
 
     @GetMapping("/user/profile/socionicsResult")
-    public @ResponseBody SocionicsResult getSocionicsResult(@AuthenticationPrincipal UserDetails currentUser) {
+    public @ResponseBody
+    SocionicsResult getSocionicsResult(@AuthenticationPrincipal UserDetails currentUser) {
         return userService.findUserByUsername(currentUser.getUsername()).getSocionicsResult();
     }
 
     @GetMapping("/user/profile/socionicsType")
-    public @ResponseBody String getSocionicsType(@AuthenticationPrincipal UserDetails currentUser) {
+    public @ResponseBody
+    String getSocionicsType(@AuthenticationPrincipal UserDetails currentUser) {
         return userService.findUserByUsername(currentUser.getUsername()).getSocionicsType();
     }
 
     @GetMapping("/user/profile/socionicsMessage")
-    public @ResponseBody String getSocionicsMessage(@AuthenticationPrincipal UserDetails currentUser) {
+    public @ResponseBody
+    String getSocionicsMessage(@AuthenticationPrincipal UserDetails currentUser) {
         final User user = userService.findUserByUsername(currentUser.getUsername());
         return getSocionicsValuesExplanation(user, true);
     }

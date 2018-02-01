@@ -48,18 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/", "/index", "/about", "/img/**", "/css/**", "/error/**", "/registration/**", "/mock/**").permitAll()
-                    .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                    .antMatchers("/user/**").hasRole("USER")
-                    .anyRequest().authenticated()
+                .antMatchers("/", "/index", "/about", "/img/**", "/css/**", "/error/**", "/registration/**", "/mock/**").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/user/**").hasRole("USER")
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login").defaultSuccessUrl("/user/dashboard")
-                    .permitAll()
-                    .and()
+                .formLogin()
+                .loginPage("/login").defaultSuccessUrl("/user/dashboard")
+                .permitAll()
+                .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                    .permitAll()
-                    .and()
+                .permitAll()
+                .and()
                 .exceptionHandling().accessDeniedHandler(deniedHandler);
     }
 

@@ -23,7 +23,7 @@ public class AddressServiceImpl implements AddressService {
         if (name == null) {
             return addressRepository.findAddressesByNutsLevelEquals(nutsLevel);
         } else {
-            return addressRepository.findAddressesByNutsLevelEqualsAndIdStartingWith(nutsLevel,name);
+            return addressRepository.findAddressesByNutsLevelEqualsAndIdStartingWith(nutsLevel, name);
         }
     }
 

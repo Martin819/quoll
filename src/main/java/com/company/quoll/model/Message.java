@@ -2,7 +2,6 @@ package com.company.quoll.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -30,7 +29,7 @@ public class Message {
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_time", updatable=false)
+    @Column(name = "date_time", updatable = false)
     private Date dateTime;
 
     @NotEmpty

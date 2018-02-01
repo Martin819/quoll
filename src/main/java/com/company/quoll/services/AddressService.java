@@ -9,6 +9,7 @@ import java.util.List;
 public interface AddressService {
 
     Address findAddressById(String id);
+
     List<Address> findAddresses(String name, int nutsLevel);
 
 }

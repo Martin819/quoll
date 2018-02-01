@@ -16,14 +16,14 @@ public class SocionicsRelationsMatchServiceImpl implements SocionicsRelationsMat
     SocionicsRelationsMatchRepository socionicsRelationsMatchRepository;
 
     @Override
-    public SocionicsRelationsMatch findSocionicsRelationsMatchById(int id){
+    public SocionicsRelationsMatch findSocionicsRelationsMatchById(int id) {
         return socionicsRelationsMatchRepository.findById(id);
     }
 
     @Override
     public List<SocionicsRelationsMatch> findSocionicsRelationsMatchByTypeAAndIntertypeRelation(
-            String typeA, IntertypeRelation intertypeRelation){
-        return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA,intertypeRelation);
+            String typeA, IntertypeRelation intertypeRelation) {
+        return socionicsRelationsMatchRepository.findByTypeAAndIntertypeRelation(typeA, intertypeRelation);
     }
 
     @Override

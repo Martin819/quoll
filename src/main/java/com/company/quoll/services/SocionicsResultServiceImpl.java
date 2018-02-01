@@ -20,8 +20,8 @@ public class SocionicsResultServiceImpl implements SocionicsResultService {
     }
 
     @Override
-    public List<SocionicsResult> findSocionicsResult(float E, float S, float T, float p){
-        return socionicsResultRepository.findByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(E,S,T,p);
+    public List<SocionicsResult> findSocionicsResult(float E, float S, float T, float p) {
+        return socionicsResultRepository.findByExtrovertValueAndSensingValueAndThinkingValueAndPerceivingValue(E, S, T, p);
     }
 
     @Override
