@@ -68,11 +68,13 @@
                 <br>
                 <div class="form-group m-auto" data-toggle="buttons">
                     <label class="col-form-label" for="dateOfBirth">Select sex:</label><br>
-                    <label class="btn btn-primary active">
-                        <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off" checked> Man
+                    <label th:class="'btn btn-primary' + ${user.sex == 'Male' ? ' active' : ''}">
+                        <input th:field="*{user.sex}" th:value="Male" type="radio" name="sex" id="sex-m" autocomplete="off"
+                               th:checked="${user.sex == 'Male'}"> Man
                     </label>
-                    <label class="btn btn-primary">
-                        <input th:field="*{user.sex}" th:value="Female" type="radio" name="sex" id="sex-f" autocomplete="off"> Woman
+                    <label th:class="'btn btn-primary' + ${user.sex == 'Female' ? ' active' : ''}">
+                        <input th:field="*{user.sex}" th:value="Female" type="radio" name="sex" id="sex-f" autocomplete="off"
+                               th:checked="${user.sex == 'Female'}"> Woman
                     </label>
                 </div>
                 <hr class="featurette-divider"/>
