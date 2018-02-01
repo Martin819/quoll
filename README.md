@@ -27,3 +27,5 @@ How to deploy:
 6. Now, everything is set up. You can register your own account or use predefined one with some mocked conversations with `admin:heslo1234`.
 
 7. Enjoy and feel free to contribute
+
+_Please be aware, that example sql file only contains users from Austria, Czech Republic, Germany and Netherlands, so it can only return users from this countries in the matching. Users from any EU country can be created using registration form._
